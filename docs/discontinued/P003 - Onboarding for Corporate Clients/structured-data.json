@@ -1,0 +1,21 @@
+{
+  "session": {
+    "id": "2025-12-04-001",
+    "started": "2025-12-04T00:00:00Z",
+    "contributor": {
+      "name": "Markus",
+      "role": "CEO"
+    },
+    "process": {
+      "id": "P003",
+      "name": "Onboarding for Corporate Clients"
+    },
+    "client_groups": ["BizBanking", "MidCap", "LargeCap"]
+  },
+  "metadata": {},
+  "process_steps": [],
+  "process_exceptions": [],
+  "pain_points": [],
+  "controls": [],
+  "systems": []
+}

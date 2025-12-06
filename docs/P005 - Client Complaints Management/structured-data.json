@@ -1,0 +1,457 @@
+{
+  "session": {
+    "id": "20251204-001",
+    "started": "2025-12-04T10:00:00Z",
+    "contributor": {
+      "name": "Orchestration Test",
+      "role": "Process Owner - Compliance Officer"
+    },
+    "process": {
+      "id": "P005",
+      "name": "Client Complaints Management"
+    },
+    "client_groups": ["All segments"]
+  },
+  "metadata": {
+    "bank_name": "Test Bank",
+    "process_type": "Regulatory compliance process",
+    "regulatory_framework": ["FCA (UK)", "Consumer Duty", "GDPR"],
+    "frequency": "~200 complaints/month",
+    "sla_acknowledgment": "5 business days",
+    "sla_resolution": "30 days"
+  },
+  "process_steps": [
+    {
+      "id": "PS01",
+      "name": "Complaint Receipt and Registration",
+      "description": "Client complaint received through channel (phone, email, branch, web portal) and initial details captured in complaint management system",
+      "owner": "Customer Service Team",
+      "systems": ["SYS01", "SYS02"],
+      "rationale": "FCA requires all complaints to be logged within 1 business day. Critical for regulatory reporting and SLA tracking.",
+      "duration": "5-10 minutes",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS02",
+      "name": "Complaint Classification and Categorization",
+      "description": "Complaint categorized by product type, issue type, and severity. Priority level assigned based on regulatory risk and client impact.",
+      "owner": "Complaints Manager",
+      "systems": ["SYS01"],
+      "rationale": "FCA requires accurate categorization for regulatory reporting. Determines routing and handling approach.",
+      "duration": "5-15 minutes",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS03",
+      "name": "Initial Acknowledgment to Client",
+      "description": "Automated or manual acknowledgment sent to client confirming receipt, providing complaint reference number, and outlining expected resolution timeframe.",
+      "owner": "System/Customer Service",
+      "systems": ["SYS01", "SYS03"],
+      "rationale": "FCA requires acknowledgment within 5 business days. Sets client expectations and demonstrates regulatory compliance.",
+      "duration": "2-5 minutes",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS04",
+      "name": "Complaint Assignment to Investigation Owner",
+      "description": "Complaint routed to relevant department (Lending, Cards, Operations, etc.) based on product and issue type. Investigation owner assigned.",
+      "owner": "Complaints Manager",
+      "systems": ["SYS01"],
+      "rationale": "Ensures appropriate expertise handles investigation. Critical for timely resolution within SLA.",
+      "duration": "10-15 minutes",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS05",
+      "name": "Investigation and Evidence Gathering",
+      "description": "Investigation owner reviews complaint details, gathers evidence from systems, interviews staff if needed, and documents findings.",
+      "owner": "Department Investigation Owner",
+      "systems": ["SYS01", "SYS02", "SYS04"],
+      "rationale": "Core of complaint handling. Must be thorough for fair resolution and audit trail.",
+      "duration": "2-8 hours spread over days",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS06",
+      "name": "Root Cause Analysis",
+      "description": "Investigation owner identifies root cause of complaint - process failure, system issue, staff error, or client misunderstanding.",
+      "owner": "Department Investigation Owner",
+      "systems": ["SYS01"],
+      "rationale": "Required for effective resolution and preventing recurrence. FCA expects root cause tracking.",
+      "duration": "30-60 minutes",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS07",
+      "name": "Resolution Proposal and Approval",
+      "description": "Investigation owner proposes resolution (redress, apology, explanation, process change). Escalated to manager for approval if financial redress or policy exception required.",
+      "owner": "Investigation Owner/Manager",
+      "systems": ["SYS01"],
+      "rationale": "Ensures fair and consistent outcomes. Four-eyes principle for financial decisions.",
+      "duration": "15-30 minutes",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS08",
+      "name": "Final Response to Client",
+      "description": "Formal final response letter sent to client explaining investigation findings, resolution offered, and right to escalate to Financial Ombudsman Service.",
+      "owner": "Investigation Owner",
+      "systems": ["SYS01", "SYS03"],
+      "rationale": "FCA requires final response within 8 weeks (or earlier if upheld). Must include specific regulatory wording.",
+      "duration": "30-45 minutes",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS09",
+      "name": "Client Acceptance/Escalation Tracking",
+      "description": "Client response tracked - accepted, rejected, or escalated to Financial Ombudsman. Status updated in system.",
+      "owner": "Complaints Manager",
+      "systems": ["SYS01"],
+      "rationale": "FCA requires tracking of ombudsman referrals. Critical for performance metrics.",
+      "duration": "5-10 minutes per update",
+      "frequency": "~200 times/month"
+    },
+    {
+      "id": "PS10",
+      "name": "Lessons Learned and Process Improvement",
+      "description": "Investigation owner documents lessons learned. Patterns analyzed monthly. Process improvements or training needs identified and actioned.",
+      "owner": "Complaints Manager/Quality Team",
+      "systems": ["SYS01", "SYS04"],
+      "rationale": "FCA expects continuous improvement. Prevents complaint recurrence.",
+      "duration": "30-60 minutes per complaint + monthly analysis",
+      "frequency": "Ongoing"
+    },
+    {
+      "id": "PS11",
+      "name": "Regulatory Reporting (Quarterly)",
+      "description": "Complaint statistics compiled and reported to FCA quarterly - volumes, categories, outcomes, redress paid, ombudsman referrals.",
+      "owner": "Compliance Officer",
+      "systems": ["SYS01", "SYS04"],
+      "rationale": "FCA mandatory reporting requirement. Non-compliance results in fines.",
+      "duration": "4-8 hours per quarter",
+      "frequency": "Quarterly"
+    },
+    {
+      "id": "PS12",
+      "name": "Management Information and Oversight",
+      "description": "Monthly MI reports produced for senior management showing complaint trends, SLA compliance, root causes, actions taken.",
+      "owner": "Complaints Manager",
+      "systems": ["SYS01", "SYS04"],
+      "rationale": "Senior management oversight required by FCA. Enables proactive management.",
+      "duration": "2-4 hours per month",
+      "frequency": "Monthly"
+    }
+  ],
+  "process_exceptions": [
+    {
+      "id": "EX01",
+      "name": "Duplicate Complaint",
+      "description": "Client submits same complaint through multiple channels or resubmits existing complaint",
+      "trigger": "Multiple entries with same client and issue",
+      "affected_steps": ["PS01", "PS02"],
+      "frequency": "15-20 times/month (~10%)",
+      "impact": "Medium - wastes time, risks duplicate responses, confuses SLA tracking",
+      "handling": "Check for duplicates, merge records, notify client of single reference"
+    },
+    {
+      "id": "EX02",
+      "name": "SLA Breach - Investigation Delay",
+      "description": "Investigation cannot be completed within 30-day SLA due to complexity or resource constraints",
+      "trigger": "Approaching SLA deadline with investigation incomplete",
+      "affected_steps": ["PS05", "PS08"],
+      "frequency": "30-40 times/month (~15-20%)",
+      "impact": "High - regulatory breach, client dissatisfaction, ombudsman risk",
+      "handling": "Escalate to manager, send holding letter to client, extend deadline with justification"
+    },
+    {
+      "id": "EX03",
+      "name": "Third-Party Involvement",
+      "description": "Complaint involves third-party provider (card scheme, insurance, investment manager) requiring external investigation",
+      "trigger": "Issue originates from third-party action",
+      "affected_steps": ["PS05", "PS06", "PS07"],
+      "frequency": "10-15 times/month (~5-7%)",
+      "impact": "High - delays resolution, complex coordination, SLA pressure",
+      "handling": "Contact third party, track separately, update client on delays"
+    },
+    {
+      "id": "EX04",
+      "name": "Vulnerable Customer",
+      "description": "Complainant identified as vulnerable (elderly, disabled, mental health, financial difficulty)",
+      "trigger": "Vulnerability flags in CRM or identified during contact",
+      "affected_steps": ["All steps"],
+      "frequency": "40-50 times/month (~20-25%)",
+      "impact": "High - regulatory scrutiny, requires special handling, Consumer Duty obligations",
+      "handling": "Flag in system, adjust communication approach, assign experienced handler, expedite where appropriate"
+    },
+    {
+      "id": "EX05",
+      "name": "Legal Action Threatened",
+      "description": "Client threatens or initiates legal action alongside complaint",
+      "trigger": "Client mentions solicitor or legal proceedings",
+      "affected_steps": ["PS05", "PS07", "PS08"],
+      "frequency": "5-8 times/month (~2-4%)",
+      "impact": "High - involves legal team, changes response approach, potential cost",
+      "handling": "Notify legal team immediately, coordinate responses, careful documentation"
+    },
+    {
+      "id": "EX06",
+      "name": "Systemic Issue Identified",
+      "description": "Complaint reveals systemic problem affecting multiple clients (e.g., system error, process failure)",
+      "trigger": "Pattern identified or single complaint reveals wider issue",
+      "affected_steps": ["PS06", "PS10"],
+      "frequency": "2-3 times/quarter (rare but significant)",
+      "impact": "Critical - may trigger mass redress, regulatory investigation, reputational damage",
+      "handling": "Escalate to senior management and compliance, investigate scope, proactive client contact, regulatory notification if required"
+    }
+  ],
+  "pain_points": [
+    {
+      "id": "PP01",
+      "name": "Manual Data Entry and Duplication",
+      "description": "Complaint details manually entered into ServiceNow from emails, call notes, or letters. Same information often re-entered into other systems.",
+      "category": "Operational inefficiency",
+      "affected_steps": ["PS01", "PS02"],
+      "impact": "Medium-High",
+      "frequency": "Daily",
+      "manifestation": "Time wasted on data entry, transcription errors, inconsistent data quality",
+      "root_cause": "No integration between channels and complaint system. Email and phone systems not connected to ServiceNow.",
+      "priority": 7
+    },
+    {
+      "id": "PP02",
+      "name": "Lack of Automated Duplicate Detection",
+      "description": "No automated check for duplicate complaints. Staff manually search by client name before logging new complaint.",
+      "category": "Process gap",
+      "affected_steps": ["PS01", "PS02"],
+      "impact": "Medium",
+      "frequency": "Daily",
+      "manifestation": "Duplicate complaints logged, wasted investigation effort, conflicting responses sent to clients",
+      "root_cause": "ServiceNow not configured with duplicate detection rules. No unique client identifier used across channels.",
+      "priority": 6
+    },
+    {
+      "id": "PP03",
+      "name": "Slow Investigation Due to System Fragmentation",
+      "description": "Investigation requires accessing multiple systems (ServiceNow, Salesforce, banking platform, document storage). Evidence gathering is time-consuming.",
+      "category": "System integration",
+      "affected_steps": ["PS05"],
+      "impact": "High",
+      "frequency": "Daily",
+      "manifestation": "Investigations take 2-5 days longer than needed. Staff frustration. SLA breaches.",
+      "root_cause": "No single view of client. Systems not integrated. Evidence scattered across platforms.",
+      "priority": 9
+    },
+    {
+      "id": "PP04",
+      "name": "Inadequate Root Cause Tracking",
+      "description": "Root cause captured as free text with no standardized categories. Difficult to analyze trends or identify systemic issues.",
+      "category": "Data quality",
+      "affected_steps": ["PS06", "PS10"],
+      "impact": "High",
+      "frequency": "Ongoing",
+      "manifestation": "Cannot easily identify patterns. Systemic issues go undetected. Regulatory risk if FCA asks for root cause analysis.",
+      "root_cause": "No structured root cause taxonomy. Staff training inadequate. No validation rules in ServiceNow.",
+      "priority": 8
+    },
+    {
+      "id": "PP05",
+      "name": "Inconsistent Quality of Final Response Letters",
+      "description": "Final responses vary in quality. Some lack required regulatory wording. Some too technical, some too brief. No standard templates enforced.",
+      "category": "Quality and compliance",
+      "affected_steps": ["PS08"],
+      "impact": "High",
+      "frequency": "Weekly",
+      "manifestation": "Client confusion, increased ombudsman referrals, regulatory risk if wording non-compliant",
+      "root_cause": "No template library. No quality review before sending. Staff skill levels vary.",
+      "priority": 8
+    },
+    {
+      "id": "PP06",
+      "name": "Manual Regulatory Reporting Process",
+      "description": "Quarterly FCA report compiled manually by extracting data from ServiceNow, manipulating in Excel, and cross-checking with finance system for redress figures.",
+      "category": "Operational inefficiency",
+      "affected_steps": ["PS11"],
+      "impact": "Medium",
+      "frequency": "Quarterly",
+      "manifestation": "2-3 days of manual effort per quarter. Error risk. Delays submission if issues found.",
+      "root_cause": "No automated reporting capability in ServiceNow. Data fields not aligned to FCA requirements.",
+      "priority": 6
+    },
+    {
+      "id": "PP07",
+      "name": "Limited Real-Time SLA Visibility",
+      "description": "SLA status not visible in real-time. Staff rely on daily report to identify at-risk cases. No proactive alerts.",
+      "category": "Process gap",
+      "affected_steps": ["PS04", "PS05"],
+      "impact": "Medium-High",
+      "frequency": "Daily",
+      "manifestation": "SLA breaches discovered late. Reactive fire-fighting. Stress on staff. Client dissatisfaction.",
+      "root_cause": "ServiceNow not configured with SLA dashboard or alerts. No automated escalation workflow.",
+      "priority": 7
+    },
+    {
+      "id": "PP08",
+      "name": "No Systematic Lessons Learned Capture",
+      "description": "Lessons learned captured inconsistently. No structured process to ensure actions are tracked and completed.",
+      "category": "Continuous improvement",
+      "affected_steps": ["PS10"],
+      "impact": "Medium",
+      "frequency": "Ongoing",
+      "manifestation": "Same issues recur. Improvement opportunities missed. FCA criticism of lack of continuous improvement.",
+      "root_cause": "No formal process. No accountability for action completion. No tracking tool.",
+      "priority": 5
+    }
+  ],
+  "controls": [
+    {
+      "id": "CP01",
+      "name": "Complaint Registration Within 1 Business Day",
+      "type": "Preventive",
+      "regulation": "FCA DISP 1.4",
+      "process_step": "PS01",
+      "description": "All complaints must be logged in ServiceNow within 1 business day of receipt",
+      "effectiveness": "Medium",
+      "implementation": "Manual process with daily monitoring",
+      "owner": "Customer Service Manager",
+      "risk_level": "Medium"
+    },
+    {
+      "id": "CP02",
+      "name": "Acknowledgment Letter SLA Control",
+      "type": "Detective",
+      "regulation": "FCA DISP 1.6",
+      "process_step": "PS03",
+      "description": "System tracks acknowledgment sent within 5 business days. Daily report identifies overdue cases.",
+      "effectiveness": "High",
+      "implementation": "Automated tracking with manual follow-up",
+      "owner": "Complaints Manager",
+      "risk_level": "High"
+    },
+    {
+      "id": "CP03",
+      "name": "Four-Eyes Approval for Financial Redress",
+      "type": "Preventive",
+      "regulation": "Internal Policy (Fraud Prevention)",
+      "process_step": "PS07",
+      "description": "Any complaint resolution involving financial redress over £500 requires manager approval before payment",
+      "effectiveness": "High",
+      "implementation": "Workflow approval in ServiceNow",
+      "owner": "Department Manager",
+      "risk_level": "High"
+    },
+    {
+      "id": "CP04",
+      "name": "Final Response Letter Quality Check",
+      "type": "Detective",
+      "regulation": "FCA DISP 1.6 (regulatory wording requirement)",
+      "process_step": "PS08",
+      "description": "Sample of final response letters reviewed weekly by Complaints Manager to ensure quality and compliance",
+      "effectiveness": "Medium",
+      "implementation": "Manual review of 10% sample",
+      "owner": "Complaints Manager",
+      "risk_level": "Medium"
+    },
+    {
+      "id": "CP05",
+      "name": "8-Week Final Response Deadline",
+      "type": "Detective",
+      "regulation": "FCA DISP 1.6",
+      "process_step": "PS08",
+      "description": "System tracks final response due date (8 weeks from receipt). Weekly report shows at-risk and overdue cases.",
+      "effectiveness": "Medium",
+      "implementation": "Automated tracking with manual escalation",
+      "owner": "Complaints Manager",
+      "risk_level": "High"
+    },
+    {
+      "id": "CP06",
+      "name": "Root Cause Documentation Requirement",
+      "type": "Preventive",
+      "regulation": "FCA DISP 1.9 (root cause analysis requirement)",
+      "process_step": "PS06",
+      "description": "ServiceNow requires root cause field to be populated before complaint can be marked as resolved",
+      "effectiveness": "Medium",
+      "implementation": "Mandatory field in system",
+      "owner": "Investigation Owner",
+      "risk_level": "Medium"
+    },
+    {
+      "id": "CP07",
+      "name": "Vulnerable Customer Flag",
+      "type": "Preventive",
+      "regulation": "Consumer Duty / FCA vulnerability guidance",
+      "process_step": "PS02",
+      "description": "System checks for vulnerability flag from CRM. If present, complaint automatically escalated to senior handler and flagged for special care.",
+      "effectiveness": "High",
+      "implementation": "Automated flag with manual handling",
+      "owner": "Complaints Manager",
+      "risk_level": "High"
+    },
+    {
+      "id": "CP08",
+      "name": "Audit Trail Completeness",
+      "type": "Detective",
+      "regulation": "FCA DISP 1.9 (record keeping)",
+      "process_step": "All steps",
+      "description": "All complaint actions and communications logged in ServiceNow. Monthly audit checks 20 random cases for complete audit trail.",
+      "effectiveness": "Medium",
+      "implementation": "Manual monthly audit",
+      "owner": "Compliance Officer",
+      "risk_level": "High"
+    },
+    {
+      "id": "CP09",
+      "name": "Quarterly Regulatory Reporting Deadline",
+      "type": "Corrective",
+      "regulation": "FCA DISP 1.10",
+      "process_step": "PS11",
+      "description": "Quarterly report submission deadline tracked. Pre-submission quality check by Compliance Officer. Board attestation required.",
+      "effectiveness": "High",
+      "implementation": "Manual process with calendar reminders",
+      "owner": "Compliance Officer",
+      "risk_level": "Critical"
+    },
+    {
+      "id": "CP10",
+      "name": "Management Oversight Meeting",
+      "type": "Detective",
+      "regulation": "FCA SYSC 3 (senior management arrangements)",
+      "process_step": "PS12",
+      "description": "Monthly Complaints Committee meeting reviews MI, trends, breaches, actions. Minutes retained. Attended by Head of Customer Service, Compliance Officer, and relevant Heads of Department.",
+      "effectiveness": "High",
+      "implementation": "Formal monthly meeting",
+      "owner": "Head of Customer Service",
+      "risk_level": "High"
+    }
+  ],
+  "systems": [
+    {
+      "id": "SYS01",
+      "name": "ServiceNow",
+      "purpose": "Complaint management system - case tracking, workflow, reporting",
+      "integration_points": "Limited integration with email (manual import). No CRM integration.",
+      "data_flows": "Complaint data entered manually, workflow tracked, reports extracted to Excel"
+    },
+    {
+      "id": "SYS02",
+      "name": "Salesforce CRM",
+      "purpose": "Customer relationship management - client contact history, vulnerability flags, account details",
+      "integration_points": "No integration with ServiceNow. Staff access both systems separately.",
+      "data_flows": "Client data viewed during investigation, not automatically pulled into complaint record"
+    },
+    {
+      "id": "SYS03",
+      "name": "Email System (Outlook)",
+      "purpose": "Communication with clients - acknowledgments, final responses, ongoing correspondence",
+      "integration_points": "Emails manually saved to ServiceNow as attachments",
+      "data_flows": "Complaint emails received, manually logged. Response emails sent from template, copy saved to case."
+    },
+    {
+      "id": "SYS04",
+      "name": "Power BI",
+      "purpose": "Management reporting and analytics",
+      "integration_points": "Connects to ServiceNow database (read-only)",
+      "data_flows": "Data pulled from ServiceNow, transformed in Power BI, dashboards published for management"
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "import_metadata": {
+    "source_documents_folder": "docs/P002 - SEPA Direct Debit process/source-documentation",
+    "source_documents": [
+      {
+        "filename": "sepa-dd-process-chart.md",
+        "stored_path": "docs/P002 - SEPA Direct Debit process/source-documentation/sepa-dd-process-chart.md",
+        "original_path": "uploaded",
+        "format": "markdown",
+        "processed_date": "2025-12-03",
+        "page_count": 1,
+        "extraction_confidence": "high"
+      }
+    ],
+    "processed_by": "Markus",
+    "import_date": "2025-12-03",
+    "extraction_method": "AI-assisted pattern recognition",
+    "completeness_score": 42
+  },
+  "validation_metadata": {
+    "validated_by": "Markus",
+    "validation_date": "2025-12-03",
+    "validation_status": "validated",
+    "gap_resolution_choice": "fill_now",
+    "changes_made": [
+      "Added CP-01-004 (File Processing Verification) to controls",
+      "Linked CP-01-004 to PS-01-002",
+      "Updated confidence scores to validated for all SME-confirmed items"
+    ]
+  },
+  "process_metadata": {
+    "process_name": "SEPA Direct Debit process",
+    "process_id": "P002",
+    "business_unit": null,
+    "purpose": null,
+    "trigger": "Receipt of DD Collection File from Client",
+    "frequency": null,
+    "volume": null,
+    "client_segments": ["All segments"],
+    "confidence": "medium"
+  },
+  "process_steps": [
+    {
+      "id": "PS-01-001",
+      "name": "Receive DD Collection File from Client",
+      "description": "Receive direct debit collection file from client",
+      "sequence": 1,
+      "owner": null,
+      "rationale": null,
+      "source_reference": "sepa-dd-process-chart.md, section 1",
+      "confidence": "validated",
+      "systems_used": ["SYS-01-003"],
+      "controls_applied": [],
+      "needs_clarification": true,
+      "clarification_needed": ["Step owner/performer", "Input format details"]
+    },
+    {
+      "id": "PS-01-002",
+      "name": "Validate File Format (pain.008 / XML)",
+      "description": "Validate the submitted file format against pain.008 / XML schema",
+      "sequence": 2,
+      "owner": null,
+      "rationale": null,
+      "source_reference": "sepa-dd-process-chart.md, section 2",
+      "confidence": "validated",
+      "systems_used": [],
+      "controls_applied": ["CP-01-001", "CP-01-004"],
+      "needs_clarification": true,
+      "clarification_needed": ["Step owner/performer", "Validation rules"]
+    },
+    {
+      "id": "PS-01-003",
+      "name": "Check Mandate Status in Mandate Database",
+      "description": "Verify mandate validity in the mandate database",
+      "sequence": 3,
+      "owner": null,
+      "rationale": null,
+      "source_reference": "sepa-dd-process-chart.md, section 3",
+      "confidence": "validated",
+      "systems_used": ["SYS-01-001"],
+      "controls_applied": ["CP-01-002"],
+      "exception_path": "EX-01-001",
+      "needs_clarification": true,
+      "clarification_needed": ["Step owner/performer", "Mandate validation rules"]
+    },
+    {
+      "id": "PS-01-004",
+      "name": "Apply Cut-off Time Check",
+      "description": "Verify submission is within cut-off time window",
+      "sequence": 4,
+      "owner": null,
+      "rationale": null,
+      "source_reference": "sepa-dd-process-chart.md, section 4",
+      "confidence": "validated",
+      "systems_used": [],
+      "controls_applied": ["CP-01-003"],
+      "needs_clarification": true,
+      "clarification_needed": ["Step owner/performer", "Actual cut-off times"]
+    },
+    {
+      "id": "PS-01-005",
+      "name": "Submit to Clearing (STEP2 / EBA)",
+      "description": "Submit validated direct debit instructions to SEPA clearing network",
+      "sequence": 5,
+      "owner": null,
+      "rationale": null,
+      "source_reference": "sepa-dd-process-chart.md, section 5",
+      "confidence": "validated",
+      "systems_used": ["SYS-01-002"],
+      "controls_applied": [],
+      "needs_clarification": true,
+      "clarification_needed": ["Step owner/performer"]
+    },
+    {
+      "id": "PS-01-006",
+      "name": "Process Settlement on Due Date",
+      "description": "Process settlement of direct debit on the due date",
+      "sequence": 6,
+      "owner": null,
+      "rationale": null,
+      "source_reference": "sepa-dd-process-chart.md, section 6",
+      "confidence": "validated",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true,
+      "clarification_needed": ["Step owner/performer", "Settlement process details"]
+    },
+    {
+      "id": "PS-01-007",
+      "name": "Handle Returns (R-Tx) if applicable",
+      "description": "Process return transactions when applicable",
+      "sequence": 7,
+      "owner": null,
+      "rationale": null,
+      "source_reference": "sepa-dd-process-chart.md, section 7",
+      "confidence": "validated",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true,
+      "clarification_needed": ["Step owner/performer", "R-transaction types handled", "Return reason codes"]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "EX-01-001",
+      "name": "Invalid Mandate Rejection",
+      "trigger": "Mandate validation fails at PS-01-003",
+      "affected_steps": ["PS-01-003"],
+      "handling": "Reject & Notify Client",
+      "frequency": null,
+      "impact": null,
+      "source_reference": "sepa-dd-process-chart.md, exception path",
+      "confidence": "validated",
+      "needs_clarification": true,
+      "clarification_needed": ["Notification method", "Client communication template"]
+    }
+  ],
+  "pain_points": [],
+  "controls": [
+    {
+      "id": "CP-01-001",
+      "name": "File Format Validation",
+      "description": "Validate file format against pain.008 / XML schema",
+      "type": "Preventive",
+      "requirement": null,
+      "regulation": null,
+      "owner": null,
+      "linked_steps": ["PS-01-002"],
+      "source_reference": "sepa-dd-process-chart.md",
+      "confidence": "validated",
+      "needs_clarification": true,
+      "clarification_needed": ["Regulatory requirement", "Control owner", "Validation rules"]
+    },
+    {
+      "id": "CP-01-002",
+      "name": "Mandate Validation Check",
+      "description": "Verify mandate status and validity in mandate database",
+      "type": "Preventive",
+      "requirement": null,
+      "regulation": null,
+      "owner": null,
+      "linked_steps": ["PS-01-003"],
+      "source_reference": "sepa-dd-process-chart.md",
+      "confidence": "validated",
+      "needs_clarification": true,
+      "clarification_needed": ["Regulatory requirement", "Control owner", "Validation criteria"]
+    },
+    {
+      "id": "CP-01-003",
+      "name": "Cut-off Time Check",
+      "description": "Verify submission is within acceptable cut-off time window",
+      "type": "Preventive",
+      "requirement": null,
+      "regulation": null,
+      "owner": null,
+      "linked_steps": ["PS-01-004"],
+      "source_reference": "sepa-dd-process-chart.md",
+      "confidence": "validated",
+      "needs_clarification": true,
+      "clarification_needed": ["Actual cut-off times", "Regulatory requirement", "Control owner"]
+    },
+    {
+      "id": "CP-01-004",
+      "name": "File Processing Verification",
+      "description": "Control to verify that the submitted file has actually been processed",
+      "type": "Detective",
+      "requirement": null,
+      "regulation": null,
+      "owner": null,
+      "linked_steps": ["PS-01-002"],
+      "source_reference": "SME input during validation",
+      "confidence": "validated",
+      "needs_clarification": true,
+      "clarification_needed": ["Verification method", "Control owner"]
+    }
+  ],
+  "systems": [
+    {
+      "id": "SYS-01-001",
+      "name": "Mandate Database",
+      "purpose": "Storage and validation of SEPA direct debit mandates",
+      "integration": null,
+      "linked_steps": ["PS-01-003"],
+      "source_reference": "sepa-dd-process-chart.md",
+      "confidence": "validated",
+      "needs_clarification": true,
+      "clarification_needed": ["System vendor/name", "Integration details"]
+    },
+    {
+      "id": "SYS-01-002",
+      "name": "STEP2 / EBA Clearing",
+      "purpose": "SEPA clearing network for direct debit instructions",
+      "integration": null,
+      "linked_steps": ["PS-01-005"],
+      "source_reference": "sepa-dd-process-chart.md",
+      "confidence": "validated",
+      "needs_clarification": false
+    },
+    {
+      "id": "SYS-01-003",
+      "name": "Client File Interface",
+      "purpose": "Channel for clients to submit DD collection files",
+      "integration": null,
+      "linked_steps": ["PS-01-001"],
+      "source_reference": "sepa-dd-process-chart.md",
+      "confidence": "validated",
+      "needs_clarification": true,
+      "clarification_needed": ["Interface type (API, SFTP, portal)", "Upstream systems"]
+    }
+  ],
+  "gaps": {
+    "missing_metadata": [
+      "Process owner / business unit",
+      "Process purpose statement",
+      "Volume and frequency metrics"
+    ],
+    "incomplete_steps": [
+      "PS-01-001 - missing owner",
+      "PS-01-002 - missing owner",
+      "PS-01-003 - missing owner",
+      "PS-01-004 - missing owner",
+      "PS-01-005 - missing owner",
+      "PS-01-006 - missing owner",
+      "PS-01-007 - missing owner"
+    ],
+    "missing_pain_points": "No pain points captured - to be elicited",
+    "missing_controls": "Control owners and regulatory requirements not specified",
+    "missing_systems": "System integration details not documented",
+    "needs_sme_clarification": [
+      "What are the actual cut-off times for DD submission?",
+      "Which R-transaction/return reason codes are handled?",
+      "What specific rules make a mandate valid or invalid?",
+      "Who performs each step (role/team)?",
+      "What systems feed into the Client File Interface?"
+    ]
+  },
+  "conflicts": []
+}

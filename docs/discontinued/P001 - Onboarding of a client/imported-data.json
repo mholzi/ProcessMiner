@@ -1,0 +1,159 @@
+{
+  "import_metadata": {
+    "source_documents_folder": "docs/P001 - Onboarding of a client/source-documentation",
+    "source_documents": [
+      {
+        "filename": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+        "stored_path": "docs/P001 - Onboarding of a client/source-documentation/customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+        "original_path": "/Users/markusholzhaeuser/Downloads/customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+        "format": "image/jpeg",
+        "processed_date": "2025-12-03",
+        "page_count": 1,
+        "extraction_confidence": "MEDIUM"
+      }
+    ],
+    "processed_by": "Markus",
+    "import_date": "2025-12-03",
+    "extraction_method": "AI-assisted visual pattern recognition"
+  },
+  "process_metadata": {
+    "process_name": "Customer Onboarding",
+    "business_unit": "Bank Managers / Customer Relations",
+    "purpose": "Continue communications with new customers through activation and ongoing engagement",
+    "trigger": "Customer sign-in / Account opening",
+    "frequency": "Per new customer, spans 180 days",
+    "confidence": "MEDIUM"
+  },
+  "process_steps": [
+    {
+      "id": "PS-01-001",
+      "name": "Sign In",
+      "description": "Customer initiates the onboarding process by signing in",
+      "owner": null,
+      "rationale": "Entry point for new customer journey",
+      "timeline": "Day 1",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "HIGH",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-002",
+      "name": "Initial Activation Communications",
+      "description": "Send initial activation communications to new customer",
+      "activities": ["Mobile SMS", "E-mail campaigns", "Pre-approved offer"],
+      "owner": null,
+      "rationale": "Immediate engagement after sign-up",
+      "timeline": "Day 1",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "MEDIUM",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-003",
+      "name": "Welcome & Demo",
+      "description": "Provide welcome materials and demo content to familiarize customer with bank services",
+      "activities": ["Demo video and presentation of bank process", "Introductory video", "Welcome email"],
+      "owner": null,
+      "rationale": "Education and orientation for new customers",
+      "timeline": "Day 2",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "MEDIUM",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-004",
+      "name": "Customer Follow-up",
+      "description": "Follow up with customer to check engagement and address questions",
+      "activities": ["Follow up with customer"],
+      "owner": null,
+      "rationale": "Ensure customer engagement and resolve early issues",
+      "timeline": "Day 5",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "MEDIUM",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-005",
+      "name": "Bank Check-in",
+      "description": "Proactive bank-initiated check-in with customer",
+      "activities": ["Bank check-in call", "Day 14 e-mail", "Targeted digital campaign"],
+      "owner": null,
+      "rationale": "Proactive engagement to ensure customer activation",
+      "timeline": "Day 7-30",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "MEDIUM",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-006",
+      "name": "Activation Notifications",
+      "description": "Send activation status notifications and branch engagement",
+      "activities": ["Day 30 activation notification", "Day 45 activation notification", "Branch engagement call"],
+      "owner": null,
+      "rationale": "Monitor and encourage full product activation",
+      "timeline": "Day 30-60",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "MEDIUM",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-007",
+      "name": "Feedback Collection",
+      "description": "Collect customer feedback and engagement metrics",
+      "activities": ["Call centre feedback and engagement call", "Social media campaign"],
+      "owner": null,
+      "rationale": "Measure customer satisfaction and identify improvement areas",
+      "timeline": "Day 60-90",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "MEDIUM",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-008",
+      "name": "Long-term Follow-up",
+      "description": "Final follow-up to ensure ongoing customer relationship",
+      "activities": ["Call centre follow up"],
+      "owner": null,
+      "rationale": "Long-term retention and relationship building",
+      "timeline": "Day 180",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "LOW",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    }
+  ],
+  "pain_points": [],
+  "controls": [],
+  "systems": [],
+  "gaps": {
+    "missing_metadata": ["process_owner", "volume_metrics", "SLA_targets"],
+    "incomplete_steps": ["All steps missing owner/performer", "All steps missing system references", "All steps missing control references"],
+    "missing_pain_points": "No pain points identified in source documentation",
+    "missing_controls": "No controls or compliance requirements identified in source documentation",
+    "missing_systems": "No specific systems/tools identified in source documentation",
+    "needs_sme_clarification": [
+      "Who performs each step?",
+      "What systems support this process?",
+      "What are the compliance/control requirements?",
+      "What are the known pain points or challenges?",
+      "What happens if customer doesn't activate?",
+      "What are the success metrics/KPIs?"
+    ]
+  },
+  "conflicts": []
+}

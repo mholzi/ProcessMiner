@@ -1,0 +1,159 @@
+{
+  "session": {
+    "id": "20251203-001",
+    "started": "2025-12-03T16:30:00Z",
+    "contributor": {
+      "name": "Markus",
+      "role": "CEO"
+    },
+    "process": {
+      "id": "P001",
+      "name": "Onboarding of a client"
+    },
+    "client_groups": ["All segments"],
+    "documents_uploaded": true,
+    "import_status": "review_required"
+  },
+  "metadata": {
+    "workflow_step": 2,
+    "last_updated": "2025-12-03",
+    "completeness_score": 40,
+    "data_source": "imported"
+  },
+  "process_overview": {
+    "purpose": "Continue communications with new customers through activation and ongoing engagement",
+    "trigger": "Customer sign-in / Account opening",
+    "frequency": "Per new customer, spans 180 days",
+    "phases": ["Activation (Day 1-5)", "Continuous Communication (Day 7-180)"]
+  },
+  "process_steps": [
+    {
+      "id": "PS-01-001",
+      "name": "Sign In",
+      "description": "Customer initiates the onboarding process by signing in",
+      "timeline": "Day 1",
+      "owner": null,
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "HIGH",
+      "source": "imported"
+    },
+    {
+      "id": "PS-01-002",
+      "name": "Initial Activation Communications",
+      "description": "Send initial activation communications to new customer",
+      "activities": ["Mobile SMS", "E-mail campaigns", "Pre-approved offer"],
+      "timeline": "Day 1",
+      "owner": null,
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "MEDIUM",
+      "source": "imported"
+    },
+    {
+      "id": "PS-01-003",
+      "name": "Welcome & Demo",
+      "description": "Provide welcome materials and demo content to familiarize customer with bank services",
+      "activities": ["Demo video and presentation of bank process", "Introductory video", "Welcome email"],
+      "timeline": "Day 2",
+      "owner": null,
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "MEDIUM",
+      "source": "imported"
+    },
+    {
+      "id": "PS-01-004",
+      "name": "Customer Follow-up",
+      "description": "Follow up with customer to check engagement and address questions",
+      "activities": ["Follow up with customer"],
+      "timeline": "Day 5",
+      "owner": null,
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "MEDIUM",
+      "source": "imported"
+    },
+    {
+      "id": "PS-01-005",
+      "name": "Bank Check-in",
+      "description": "Proactive bank-initiated check-in with customer",
+      "activities": ["Bank check-in call", "Day 14 e-mail", "Targeted digital campaign"],
+      "timeline": "Day 7-30",
+      "owner": null,
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "MEDIUM",
+      "source": "imported"
+    },
+    {
+      "id": "PS-01-006",
+      "name": "Activation Notifications",
+      "description": "Send activation status notifications and branch engagement",
+      "activities": ["Day 30 activation notification", "Day 45 activation notification", "Branch engagement call"],
+      "timeline": "Day 30-60",
+      "owner": null,
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "MEDIUM",
+      "source": "imported"
+    },
+    {
+      "id": "PS-01-007",
+      "name": "Feedback Collection",
+      "description": "Collect customer feedback and engagement metrics",
+      "activities": ["Call centre feedback and engagement call", "Social media campaign"],
+      "timeline": "Day 60-90",
+      "owner": null,
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "MEDIUM",
+      "source": "imported"
+    },
+    {
+      "id": "PS-01-008",
+      "name": "Long-term Follow-up",
+      "description": "Final follow-up to ensure ongoing customer relationship",
+      "activities": ["Call centre follow up"],
+      "timeline": "Day 180",
+      "owner": null,
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "LOW",
+      "source": "imported"
+    }
+  ],
+  "process_exceptions": [],
+  "pain_points": [
+    {
+      "id": "PP-01-001",
+      "name": "No Client Portal",
+      "description": "Clients cannot onboard online and must call ACO",
+      "narrative": "The bank lacks a client portal for the onboarding process, forcing new clients to contact the ACO (Account/Client Officer) by phone to complete onboarding activities. This creates immediate friction at Day 1 of the customer journey, affecting Sign In (PS-01-001) and Initial Activation Communications (PS-01-002). The dependency on phone-based interaction signals a non-digital-first approach in a market where competitors offer fully digital onboarding.\n\nThis affects 100% of new clients across all segments (BizBanking, MidCap, LargeCap). Key impacts include: Client Experience (Day 1 friction sets negative tone for 180-day relationship), Operational (ACO team faces high call volumes, potential bottlenecks and wait times), Competitive (Market disadvantage vs. fintechs offering <10 minute digital onboarding), Strategic (Missed platform opportunity for upselling, document collection, and engagement throughout the journey). Potential client drop-off/abandonment at this stage is unknown but likely significant.\n\nClients must call ACO for tasks that could be self-service. Root cause is unclear — may be legacy process rather than regulatory requirement. Many banks have solved AML/KYC digitally. The existing infrastructure (SMS, email systems) could potentially support a portal; the gap is the self-service interface and identity verification architecture.",
+      "linked_steps": ["PS-01-001", "PS-01-002"],
+      "impact_level": "High",
+      "frequency": "100% of new clients",
+      "root_cause": "Unclear - possibly legacy process, not regulatory requirement",
+      "quantified_impact": "Unknown drop-off rate; ACO bottleneck",
+      "current_workaround": "Clients call ACO to complete onboarding",
+      "improvement_ideas": [
+        "Client portal with digital KYC",
+        "Full 180-day engagement platform",
+        "Self-service document upload and status tracking"
+      ],
+      "sme_quotes": ["We don't have a client portal"],
+      "created_date": "2025-12-03",
+      "created_by": "Markus",
+      "created_role": "CEO",
+      "completeness_score": 85,
+      "confidence": "MEDIUM-HIGH",
+      "elicitation_method": "Party Mode (multi-perspective analysis)"
+    }
+  ],
+  "controls": [],
+  "systems": [],
+  "gaps": {
+    "missing": ["step_owners", "systems", "controls", "exceptions", "kpis"],
+    "completeness_score": 40
+  }
+}

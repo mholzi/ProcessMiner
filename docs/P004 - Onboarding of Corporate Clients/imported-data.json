@@ -1,0 +1,296 @@
+{
+  "import_metadata": {
+    "source_documents_folder": "P004 - Onboarding of Corporate Clients/source-documentation",
+    "source_documents": [
+      {
+        "filename": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+        "stored_path": "P004 - Onboarding of Corporate Clients/source-documentation/customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+        "original_path": "/Users/markusholzhaeuser/Downloads/customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+        "format": "image/jpeg",
+        "processed_date": "2025-12-04",
+        "page_count": 1,
+        "extraction_confidence": "medium"
+      }
+    ],
+    "processed_by": "Markus",
+    "import_date": "2025-12-04",
+    "extraction_method": "AI-assisted pattern recognition",
+    "completeness_score": 32,
+    "validation": {
+      "validated_by": "Markus",
+      "validated_date": "2025-12-04",
+      "changes_made": ["SYS-01-004: Renamed to Genesys"],
+      "status": "SME_VALIDATED"
+    }
+  },
+  "process_metadata": {
+    "process_name": "Onboarding of Corporate Clients",
+    "process_id": "P004",
+    "business_unit": "All segments",
+    "purpose": "Continue communications with new customers through activation and ongoing engagement",
+    "trigger": "Customer sign-in / Account creation",
+    "frequency": null,
+    "volume": null,
+    "confidence": "medium"
+  },
+  "process_steps": [
+    {
+      "id": "PS-01-001",
+      "name": "Sign in",
+      "description": "Customer completes initial sign-in to banking platform",
+      "owner": null,
+      "rationale": null,
+      "phase": "Activation",
+      "timeline": "Day 1",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-002",
+      "name": "Initial outreach campaigns",
+      "description": "Mobile SMS, E-mail campaigns, Pre-approved offer communications",
+      "owner": null,
+      "rationale": null,
+      "phase": "Activation",
+      "timeline": "Day 1",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high",
+      "systems_used": ["SYS-01-001", "SYS-01-002"],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-003",
+      "name": "Demo video and presentation",
+      "description": "Demo video and presentation of bank process, introductory video",
+      "owner": null,
+      "rationale": null,
+      "phase": "Activation",
+      "timeline": "Day 2",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high",
+      "systems_used": ["SYS-01-003"],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-01-004",
+      "name": "Welcome email",
+      "description": "Send welcome email to new customer",
+      "owner": null,
+      "rationale": null,
+      "phase": "Activation",
+      "timeline": "Day 2",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high",
+      "systems_used": ["SYS-01-002"],
+      "controls_applied": [],
+      "needs_clarification": false
+    },
+    {
+      "id": "PS-01-005",
+      "name": "Follow up with customer",
+      "description": "Initial follow-up contact with customer",
+      "owner": null,
+      "rationale": null,
+      "phase": "Activation",
+      "timeline": "Day 5",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "medium",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-02-001",
+      "name": "Bank check-in call",
+      "description": "Bank-initiated check-in call to customer",
+      "owner": null,
+      "rationale": null,
+      "phase": "Continuous Communication",
+      "timeline": "Day 7-30",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high",
+      "systems_used": ["SYS-01-004"],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-02-002",
+      "name": "Day 14 e-mail and targeted campaign",
+      "description": "Day 14 e-mail, targeted digital campaign",
+      "owner": null,
+      "rationale": null,
+      "phase": "Continuous Communication",
+      "timeline": "Day 14",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high",
+      "systems_used": ["SYS-01-002", "SYS-01-006"],
+      "controls_applied": [],
+      "needs_clarification": false
+    },
+    {
+      "id": "PS-02-003",
+      "name": "Day 30 activation notification",
+      "description": "Activation notification sent at Day 30 milestone",
+      "owner": null,
+      "rationale": null,
+      "phase": "Continuous Communication",
+      "timeline": "Day 30",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-02-004",
+      "name": "Day 45 activation notification",
+      "description": "Activation notification sent at Day 45 milestone",
+      "owner": null,
+      "rationale": null,
+      "phase": "Continuous Communication",
+      "timeline": "Day 45",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-02-005",
+      "name": "Branch engagement call",
+      "description": "Branch-initiated engagement call to customer",
+      "owner": "Branch Staff",
+      "rationale": null,
+      "phase": "Continuous Communication",
+      "timeline": "Day 30-60",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "medium",
+      "systems_used": [],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-02-006",
+      "name": "Call centre feedback and engagement call",
+      "description": "Call centre feedback collection and engagement call",
+      "owner": "Call Centre Staff",
+      "rationale": null,
+      "phase": "Continuous Communication",
+      "timeline": "Day 60-90",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "medium",
+      "systems_used": ["SYS-01-004"],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-02-007",
+      "name": "Social media campaign",
+      "description": "Social media engagement campaign",
+      "owner": null,
+      "rationale": null,
+      "phase": "Continuous Communication",
+      "timeline": "Day 60-90",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "medium",
+      "systems_used": ["SYS-01-005"],
+      "controls_applied": [],
+      "needs_clarification": true
+    },
+    {
+      "id": "PS-02-008",
+      "name": "Call centre follow up",
+      "description": "Final call centre follow-up at Day 180",
+      "owner": "Call Centre Staff",
+      "rationale": null,
+      "phase": "Continuous Communication",
+      "timeline": "Day 180",
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "medium",
+      "systems_used": ["SYS-01-004"],
+      "controls_applied": [],
+      "needs_clarification": true
+    }
+  ],
+  "pain_points": [],
+  "controls": [],
+  "systems": [
+    {
+      "id": "SYS-01-001",
+      "name": "Mobile SMS Platform",
+      "purpose": "Customer notifications via SMS",
+      "integration": null,
+      "linked_steps": ["PS-01-002"],
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high"
+    },
+    {
+      "id": "SYS-01-002",
+      "name": "E-mail System",
+      "purpose": "Customer communications, campaigns, welcome emails",
+      "integration": null,
+      "linked_steps": ["PS-01-002", "PS-01-004", "PS-02-002"],
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high"
+    },
+    {
+      "id": "SYS-01-003",
+      "name": "Video Platform",
+      "purpose": "Demo videos, introductory content delivery",
+      "integration": null,
+      "linked_steps": ["PS-01-003"],
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "medium"
+    },
+    {
+      "id": "SYS-01-004",
+      "name": "Genesys",
+      "purpose": "Call centre system - customer call management, follow-up tracking",
+      "integration": null,
+      "linked_steps": ["PS-02-001", "PS-02-006", "PS-02-008"],
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "high"
+    },
+    {
+      "id": "SYS-01-005",
+      "name": "Social Media Platform",
+      "purpose": "Marketing campaigns, customer engagement",
+      "integration": null,
+      "linked_steps": ["PS-02-007"],
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "medium"
+    },
+    {
+      "id": "SYS-01-006",
+      "name": "Digital Campaign Tool",
+      "purpose": "Targeted digital marketing campaigns",
+      "integration": null,
+      "linked_steps": ["PS-02-002"],
+      "source_reference": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+      "confidence": "medium"
+    }
+  ],
+  "gaps": {
+    "missing_metadata": ["frequency", "volume", "detailed_purpose"],
+    "incomplete_steps": ["PS-01-001", "PS-01-002", "PS-01-003", "PS-01-005", "PS-02-001", "PS-02-003", "PS-02-004", "PS-02-005", "PS-02-006", "PS-02-007", "PS-02-008"],
+    "missing_pain_points": "No pain points documented in source material",
+    "missing_controls": "No controls or compliance requirements documented in source material",
+    "missing_systems": "System integration details not documented",
+    "needs_sme_clarification": [
+      "Step ownership for all steps",
+      "Step rationale (why each step is necessary)",
+      "Input/output for each step",
+      "What triggers branch engagement vs call centre follow-up",
+      "What happens after Day 180",
+      "Compliance/regulatory controls (KYC, AML, GDPR)",
+      "Exception handling paths",
+      "SLAs and performance metrics"
+    ]
+  },
+  "conflicts": []
+}

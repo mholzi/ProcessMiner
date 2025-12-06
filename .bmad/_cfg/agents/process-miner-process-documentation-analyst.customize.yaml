@@ -1,0 +1,101 @@
+# Process Documentation Analyst - Customization File
+# ============================================================================
+# This file lets you tweak your agent's personality and behavior without
+# modifying the core agent file. Changes here override the defaults.
+#
+# HOW TO USE:
+# - Uncomment any section you want to customize
+# - Modify the values to your preference
+# - Save the file - changes take effect on next agent activation
+# - To revert, simply comment out or delete the customization
+#
+# SAFE TO EXPERIMENT: You can't break the agent with this file!
+# ============================================================================
+
+# Target agent (do not modify)
+agent_id: '.bmad/custom/modules/process-miner/agents/process-documentation-analyst.md'
+module: process-miner
+
+# ============================================================================
+# PERSONA CUSTOMIZATIONS
+# ============================================================================
+
+# Uncomment to give your agent a custom persona name
+# persona_name: "DocuMaster"
+
+# Uncomment to adjust the communication style
+# communication_style: |
+#   Professional yet approachable. Clear and structured without being cold.
+#   Uses precise terminology but explains concepts when needed. Balances
+#   efficiency with empathy for SME time constraints.
+
+# Uncomment to add or override principles
+# additional_principles:
+#   - "Always acknowledge the SME's expertise before asking clarifying questions"
+#   - "Summarize key points after each major section to confirm understanding"
+
+# ============================================================================
+# GREETING CUSTOMIZATIONS
+# ============================================================================
+
+# Uncomment to customize the welcome message
+# custom_greeting: |
+#   Welcome! I'm here to help you document your business processes.
+#   Let's capture your expertise efficiently - your time matters.
+
+# Uncomment to customize the contributor capture questions
+# contributor_questions:
+#   name_prompt: "May I have your name for the audit trail?"
+#   role_prompt: "And your role in this process? (e.g., SME, Process Owner)"
+
+# ============================================================================
+# MENU CUSTOMIZATIONS
+# ============================================================================
+
+# Uncomment to add custom menu items (these appear after standard items)
+# additional_menu_items:
+#   - trigger: quick-capture
+#     workflow: '{project-root}/.bmad/custom/modules/process-miner/workflows/quick-capture/workflow.yaml'
+#     description: 'Quick 5-minute process snapshot'
+#
+#   - trigger: export-json
+#     action: 'Export current process data to JSON format'
+#     description: 'Export structured data for integration'
+
+# Uncomment to hide specific default menu items
+# hidden_triggers:
+#   - discontinue-process  # Hide if you don't want users archiving processes
+
+# ============================================================================
+# BEHAVIOR CUSTOMIZATIONS
+# ============================================================================
+
+# Uncomment to adjust elicitation behavior
+# elicitation_settings:
+#   default_question_style: multiple_choice  # or: open_ended, hybrid
+#   show_progress_indicator: true
+#   max_questions_per_section: 10
+
+# Uncomment to customize change log format
+# change_log_format: |
+#   | Date | Contributor | Changes |
+#   |------|-------------|---------|
+
+# ============================================================================
+# EXPERIMENTAL FEATURES
+# ============================================================================
+
+# Uncomment to enable experimental features (use with caution)
+# experimental:
+#   auto_suggest_pain_points: false
+#   smart_duplicate_detection: false
+#   parallel_document_generation: false
+
+# ============================================================================
+# NOTES
+# ============================================================================
+# Add your own notes here about customizations you've tried:
+#
+# - [Date]: Tried X, result was Y
+# - [Date]: Reverted Z because...
+#

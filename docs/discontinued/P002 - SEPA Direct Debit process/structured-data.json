@@ -1,0 +1,183 @@
+{
+  "session": {
+    "id": "20251203-001",
+    "started": "2025-12-03T00:00:00Z",
+    "contributor": {
+      "name": "Markus",
+      "role": "SME"
+    },
+    "process": {
+      "id": "P002",
+      "name": "SEPA Direct Debit process"
+    },
+    "client_groups": ["All segments"]
+  },
+  "metadata": {
+    "status": "complete",
+    "current_step": 9,
+    "completed_date": "2025-12-03",
+    "last_updated": "2025-12-03T00:00:00Z",
+    "process_purpose": "The SEPA Direct Debit process enables the bank to execute direct debit collections on behalf of corporate clients (creditors) across all SEPA countries. The process ensures timely and compliant processing of bulk direct debit instructions, from file receipt through clearing submission and settlement, while managing mandate validation and handling return transactions.",
+    "process_trigger": "The process is triggered when a corporate client (creditor) submits a SEPA Direct Debit collection file through the Client File Interface. The file contains one or more direct debit instructions in pain.008 XML format, requesting collection from debtor accounts on a specified due date.",
+    "process_frequency": "The process runs continuously throughout business hours, processing direct debit collection files in real-time as they are received from clients. Files are validated and submitted to clearing based on cut-off times for same-day or next-day settlement cycles.",
+    "process_volume": "The process handles very high volumes, processing over 10,000 direct debit transactions per day across all client segments (BizBanking, MidCap, LargeCap). Peak volumes may occur at month-end and during recurring payment cycles."
+  },
+  "process_steps": [
+    {
+      "id": "PS-01-001",
+      "name": "Receive DD Collection File from Client",
+      "description": "Receive direct debit collection file from client",
+      "sequence": 1,
+      "owner": "Client / External party",
+      "systems_used": ["SYS-01-003"],
+      "controls_applied": [],
+      "confidence": "validated"
+    },
+    {
+      "id": "PS-01-002",
+      "name": "Validate File Format (pain.008 / XML)",
+      "description": "Validate the submitted file format against pain.008 / XML schema",
+      "sequence": 2,
+      "owner": "System (automated)",
+      "systems_used": [],
+      "controls_applied": ["CP-01-001", "CP-01-004"],
+      "confidence": "validated"
+    },
+    {
+      "id": "PS-01-003",
+      "name": "Check Mandate Status in Mandate Database",
+      "description": "Verify mandate validity in the mandate database",
+      "sequence": 3,
+      "owner": "System (automated)",
+      "systems_used": ["SYS-01-001"],
+      "controls_applied": ["CP-01-002"],
+      "exception_path": "EX-01-001",
+      "confidence": "validated"
+    },
+    {
+      "id": "PS-01-004",
+      "name": "Apply Cut-off Time Check",
+      "description": "Verify submission is within cut-off time window",
+      "sequence": 4,
+      "owner": "System (automated)",
+      "systems_used": [],
+      "controls_applied": ["CP-01-003"],
+      "confidence": "validated"
+    },
+    {
+      "id": "PS-01-005",
+      "name": "Submit to Clearing (STEP2 / EBA)",
+      "description": "Submit validated direct debit instructions to SEPA clearing network",
+      "sequence": 5,
+      "owner": "System (automated)",
+      "systems_used": ["SYS-01-002"],
+      "controls_applied": [],
+      "confidence": "validated"
+    },
+    {
+      "id": "PS-01-006",
+      "name": "Process Settlement on Due Date",
+      "description": "Process settlement of direct debit on the due date",
+      "sequence": 6,
+      "owner": "System (automated)",
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "validated"
+    },
+    {
+      "id": "PS-01-007",
+      "name": "Handle Returns (R-Tx) if applicable",
+      "description": "Process return transactions when applicable",
+      "sequence": 7,
+      "owner": "Operations team",
+      "systems_used": [],
+      "controls_applied": [],
+      "confidence": "validated"
+    }
+  ],
+  "process_exceptions": [
+    {
+      "id": "EX-01-001",
+      "name": "Invalid Mandate Rejection",
+      "trigger": "Mandate validation fails at PS-01-003",
+      "affected_steps": ["PS-01-003"],
+      "handling": "Reject & Notify Client",
+      "confidence": "validated"
+    },
+    {
+      "id": "EX-01-002",
+      "name": "Cut-off Time Missed",
+      "trigger": "File submitted after cut-off time for same-day/next-day processing",
+      "affected_steps": ["PS-01-004"],
+      "handling": "File returned to client via electronic channels",
+      "impact": "Delayed processing, client must resubmit for next cycle",
+      "confidence": "validated"
+    }
+  ],
+  "pain_points": [],
+  "controls": [
+    {
+      "id": "CP-01-001",
+      "name": "File Format Validation",
+      "description": "Validate file format against pain.008 / XML schema",
+      "type": "Preventive",
+      "regulation": "SEPA Rulebook (EPC)",
+      "requirement": "pain.008 format compliance",
+      "linked_steps": ["PS-01-002"],
+      "confidence": "validated"
+    },
+    {
+      "id": "CP-01-002",
+      "name": "Mandate Validation Check",
+      "description": "Verify mandate status and validity in mandate database",
+      "type": "Preventive",
+      "regulation": "PSD2",
+      "requirement": "Customer authorization verification",
+      "linked_steps": ["PS-01-003"],
+      "confidence": "validated"
+    },
+    {
+      "id": "CP-01-003",
+      "name": "Cut-off Time Check",
+      "description": "Verify submission is within acceptable cut-off time window",
+      "type": "Preventive",
+      "regulation": "Internal Policy",
+      "requirement": "SLA compliance for processing windows",
+      "linked_steps": ["PS-01-004"],
+      "confidence": "validated"
+    },
+    {
+      "id": "CP-01-004",
+      "name": "File Processing Verification",
+      "description": "Control to verify that the submitted file has actually been processed",
+      "type": "Detective",
+      "regulation": "Internal Policy",
+      "requirement": "Audit trail and processing confirmation",
+      "linked_steps": ["PS-01-002"],
+      "confidence": "validated"
+    }
+  ],
+  "systems": [
+    {
+      "id": "SYS-01-001",
+      "name": "Mandate Database",
+      "purpose": "Storage and validation of SEPA direct debit mandates",
+      "linked_steps": ["PS-01-003"],
+      "confidence": "validated"
+    },
+    {
+      "id": "SYS-01-002",
+      "name": "STEP2 / EBA Clearing",
+      "purpose": "SEPA clearing network for direct debit instructions",
+      "linked_steps": ["PS-01-005"],
+      "confidence": "validated"
+    },
+    {
+      "id": "SYS-01-003",
+      "name": "Client File Interface",
+      "purpose": "Channel for clients to submit DD collection files",
+      "linked_steps": ["PS-01-001"],
+      "confidence": "validated"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "session_id": "20251204-095414",
+  "process_id": "P004",
+  "process_name": "Onboarding of Corporate Clients",
+  "started": "2025-12-04T09:54:14",
+  "contributor": {
+    "name": "Markus",
+    "role": "CEO"
+  },
+  "client_groups": ["All segments"],
+  "workflow": "elicit-process-knowledge",
+  "current_step": "step-02-existing-docs",
+  "steps_completed": ["step-01-init"],
+  "status": "in_progress"
+}

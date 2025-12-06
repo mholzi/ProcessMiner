@@ -1,0 +1,461 @@
+{
+  "session": {
+    "id": "20251204-095414",
+    "started": "2025-12-04T09:54:14",
+    "contributor": {
+      "name": "Markus",
+      "role": "CEO"
+    },
+    "process": {
+      "id": "P004",
+      "name": "Onboarding of Corporate Clients"
+    },
+    "client_groups": ["All segments"]
+  },
+  "metadata": {
+    "stepsCompleted": ["step-01-init", "step-02-existing-docs", "step-03-overview", "step-04-process-steps", "step-05-exceptions", "step-06-pain-points", "step-07-controls", "step-08-systems"],
+    "currentStep": "step-09-review",
+    "lastUpdated": "2025-12-04",
+    "purpose": "Continue communications with new customers through activation and ongoing engagement activities. The process ensures new corporate clients receive consistent touchpoints from Day 1 (sign-in) through Day 180, building relationship and driving product activation through multi-channel communications including SMS, email, chat, video content, and personal calls from branch and call centre staff.",
+    "trigger": "The process is triggered when a prospective corporate client initiates first contact with an onboarding request, AND that contact is formally registered in the bank's system of record (CRM/case management). Trigger Type: Client-initiated, system-captured. The client's outreach (via phone, email, web form, or branch visit) must be logged to create an auditable starting point. Pre-condition: Prior exposure to marketing channels (website, advertising) that informed the client about corporate banking offerings. The formal registration timestamp marks Day 0 for all SLA and regulatory reporting purposes.",
+    "frequency": "Continuous. Onboarding requests are received throughout the day, every business day. The process operates as a steady flow rather than batch processing.",
+    "volume": "Very High - 200+ corporate client onboarding requests per month. At this volume, the bank manages hundreds of concurrent 180-day journeys at any given time, with approximately 1,200+ clients active in the onboarding pipeline."
+  },
+  "process_steps": [
+    {
+      "id": "PS-01-001",
+      "name": "Sign in",
+      "description": "Customer completes initial sign-in to banking platform",
+      "owner": "System",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Activation",
+      "timeline": "Day 1"
+    },
+    {
+      "id": "PS-01-002",
+      "name": "Initial outreach campaigns",
+      "description": "Mobile SMS, E-mail campaigns, Pre-approved offer communications",
+      "owner": "Marketing",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Activation",
+      "timeline": "Day 1"
+    },
+    {
+      "id": "PS-01-003",
+      "name": "Demo video and presentation",
+      "description": "Demo video and presentation of bank process, introductory video",
+      "owner": "Marketing",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Activation",
+      "timeline": "Day 2"
+    },
+    {
+      "id": "PS-01-004",
+      "name": "Welcome email",
+      "description": "Send welcome email to new customer",
+      "owner": "Marketing",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Activation",
+      "timeline": "Day 2"
+    },
+    {
+      "id": "PS-01-005",
+      "name": "Follow up with customer",
+      "description": "Initial follow-up contact with customer",
+      "owner": "Sales",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Activation",
+      "timeline": "Day 5"
+    },
+    {
+      "id": "PS-02-001",
+      "name": "Bank check-in call",
+      "description": "Bank-initiated check-in call to customer",
+      "owner": "Call Centre",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Continuous Communication",
+      "timeline": "Day 7-30"
+    },
+    {
+      "id": "PS-02-002",
+      "name": "Day 14 e-mail and targeted campaign",
+      "description": "Day 14 e-mail, targeted digital campaign",
+      "owner": "Marketing",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Continuous Communication",
+      "timeline": "Day 14"
+    },
+    {
+      "id": "PS-02-003",
+      "name": "Day 30 activation notification",
+      "description": "Activation notification sent at Day 30 milestone",
+      "owner": "System",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Continuous Communication",
+      "timeline": "Day 30"
+    },
+    {
+      "id": "PS-02-004",
+      "name": "Day 45 activation notification",
+      "description": "Activation notification sent at Day 45 milestone",
+      "owner": "System",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Continuous Communication",
+      "timeline": "Day 45"
+    },
+    {
+      "id": "PS-02-005",
+      "name": "Branch engagement call",
+      "description": "Branch-initiated engagement call to customer",
+      "owner": "Branch Staff",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Continuous Communication",
+      "timeline": "Day 30-60"
+    },
+    {
+      "id": "PS-02-006",
+      "name": "Call centre feedback and engagement",
+      "description": "Call centre feedback collection and engagement call",
+      "owner": "Call Centre Staff",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Continuous Communication",
+      "timeline": "Day 60-90"
+    },
+    {
+      "id": "PS-02-007",
+      "name": "Social media campaign",
+      "description": "Social media engagement campaign",
+      "owner": "Marketing",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Continuous Communication",
+      "timeline": "Day 60-90"
+    },
+    {
+      "id": "PS-02-008",
+      "name": "Call centre follow up",
+      "description": "Final call centre follow-up at Day 180",
+      "owner": "Call Centre Staff",
+      "rationale": "Drive product activation and build client relationship",
+      "phase": "Continuous Communication",
+      "timeline": "Day 180"
+    }
+  ],
+  "process_exceptions": [
+    {
+      "id": "EX-OCC-001",
+      "name": "Defence Client Additional Approval",
+      "description": "When a prospective corporate client operates in the defence sector, the standard onboarding journey is placed on full hold until additional KYC approval is obtained.",
+      "trigger": "Client identified as defence industry/sector",
+      "affected_steps": ["PS-01-001", "All subsequent steps"],
+      "category": "Regulatory/Compliance",
+      "frequency": "Occasional",
+      "impact_level": "High",
+      "owner": "KYC Team",
+      "resolution_time": "3-5 business days",
+      "handling_procedure": [
+        "Defence sector client identified at intake",
+        "Standard onboarding journey paused (no communications sent)",
+        "Case escalated to KYC Team for additional approval",
+        "KYC Team reviews and approves/rejects (3-5 business days)",
+        "If approved: Standard journey begins from Day 1",
+        "If rejected: Client notified, onboarding terminated"
+      ],
+      "completeness": 100
+    }
+  ],
+  "pain_points": [
+    {
+      "id": "PP-OCC-001",
+      "name": "No Client Portal",
+      "description": "There is no self-service client portal. Clients must always contact the ACO team to initiate onboarding - they cannot start the process themselves, track progress, or access information online.",
+      "narrative": "The absence of a self-service client portal creates a significant operational bottleneck in the corporate client onboarding process. Staff must handle all client inquiries and onboarding initiation requests manually through email, with no automated self-service channel available. This affects the pre-process stage through PS-01-001 (Sign in) and all subsequent communication steps, as clients have no visibility into their onboarding progress and must contact the ACO team for every interaction.\n\nThe quantified impact is substantial: staff spend a minimum of one hour per day reading and responding to emails that could be handled through self-service. This administrative burden directly reduces selling capacity, as relationship managers and sales staff have less time available for revenue-generating activities. At a volume of 200+ corporate client onboarding requests per month, this email overhead compounds significantly across the team.\n\nCurrently, there is no formal workaround in place — staff absorb the email volume as part of their daily workload, accepting reduced sales productivity as an unavoidable cost. Improvement ideas already captured include building a full client portal for self-service initiation and progress tracking, or implementing a web form as a quick-win minimum viable solution.",
+      "category": "Customer Experience / Efficiency",
+      "affected_steps": ["Pre-process", "PS-01-001", "All communication steps"],
+      "frequency": "Every case",
+      "impact_level": "High",
+      "root_cause": "No digital self-service channel exists for corporate client onboarding",
+      "quantified_impact": "Minimum 1 hour/day on email handling; reduced sales capacity",
+      "workarounds": "No formal workaround — staff absorb email volume as daily workload",
+      "problems_caused": [
+        "No self-service initiation - clients must contact ACO",
+        "No visibility into onboarding progress for clients",
+        "Staff dependency for status updates",
+        "Potential friction in client acquisition"
+      ],
+      "improvement_ideas": [
+        "Build a client portal - self-service onboarding initiation and progress tracking",
+        "Add a web form (minimum) - online form to start the process"
+      ],
+      "quick_win": "Web form could be quick win; full portal requires more effort",
+      "modified_date": "2025-12-04",
+      "modified_by": "Markus",
+      "completeness": 89
+    },
+    {
+      "id": "PP-OCC-002",
+      "name": "Manual Email Handoffs Between Teams",
+      "description": "All handoffs between teams (Marketing → Sales → Call Centre → Branch) are coordinated via email. There is no system-based workflow or automatic task assignment.",
+      "category": "Efficiency / Communication",
+      "affected_steps": ["PS-01-002", "PS-01-005", "PS-02-001", "PS-02-005"],
+      "frequency": "Every case",
+      "impact_level": "High",
+      "root_cause": "No integrated workflow system connecting teams",
+      "problems_caused": [
+        "No visibility into handoff status",
+        "Risk of emails being missed or delayed",
+        "No audit trail of who did what and when",
+        "Manual effort to track and coordinate",
+        "Difficult to report on process performance",
+        "Clients may fall through the cracks"
+      ],
+      "improvement_ideas": [
+        "Implement workflow automation with task assignment",
+        "Use a shared CRM/case management system",
+        "Automated triggers when client moves to next stage"
+      ],
+      "quick_win": "No - requires system integration",
+      "completeness": 100
+    }
+  ],
+  "controls": [],
+  "enhancement_ideas": [
+    {
+      "id": "EI-OCC-001",
+      "name": "Full Client Portal with Status Tracking",
+      "linked_friction_point": "FP-001 (No Self-Service Portal)",
+      "proposed_solution": "Build a comprehensive client portal where corporate clients can initiate onboarding, upload documents, and track their application status in real-time throughout the 180-day journey.",
+      "impact_level": "Very High",
+      "complexity": "High",
+      "ces_reduction_estimate": "-15 points",
+      "priority": "Could Have",
+      "innovation_source": "Internal analysis + Metro Commercial Bank benchmark",
+      "linked_pain_point": "PP-OCC-001"
+    },
+    {
+      "id": "EI-OCC-002",
+      "name": "Simple Web Form for Initiation",
+      "linked_friction_point": "FP-001 (No Self-Service Portal)",
+      "proposed_solution": "Implement a simple online web form allowing corporate clients to initiate onboarding requests without needing to send emails or call. Quick-win stepping stone to full portal.",
+      "impact_level": "Medium",
+      "complexity": "Low-Medium",
+      "ces_reduction_estimate": "-5 points",
+      "priority": "Should Have",
+      "innovation_source": "Internal analysis",
+      "linked_pain_point": "PP-OCC-001"
+    },
+    {
+      "id": "EI-OCC-003",
+      "name": "Automated KYC Status Email (Day 2)",
+      "linked_friction_point": "FP-002 (KYC Black Box)",
+      "proposed_solution": "Send automated status update email on Day 2 of KYC review period, informing client their application is being processed and providing expected timeline.",
+      "impact_level": "Medium",
+      "complexity": "Low",
+      "ces_reduction_estimate": "-2 points",
+      "priority": "Must Have",
+      "innovation_source": "Friction analysis",
+      "linked_pain_point": "PP-OCC-003 (KYC Blind Spot)"
+    },
+    {
+      "id": "EI-OCC-004",
+      "name": "Defence Sector Status Communication",
+      "linked_friction_point": "FP-003 (Defence Silence)",
+      "proposed_solution": "Implement proactive status emails every 2 days during extended KYC review for defence sector clients, explaining the additional verification requirements.",
+      "impact_level": "High",
+      "complexity": "Low",
+      "ces_reduction_estimate": "-2 points",
+      "priority": "Must Have",
+      "innovation_source": "Exception impact analysis",
+      "linked_pain_point": null
+    },
+    {
+      "id": "EI-OCC-005",
+      "name": "Day 120 + Day 150 Touchpoints",
+      "linked_friction_point": "FP-004 (Day 90-180 Gap)",
+      "proposed_solution": "Add two additional touchpoints at Day 120 and Day 150 to bridge the 90-day communication gap, maintaining engagement through the final phase.",
+      "impact_level": "Medium",
+      "complexity": "Low",
+      "ces_reduction_estimate": "-2 points",
+      "priority": "Should Have",
+      "innovation_source": "Journey mapping analysis",
+      "linked_pain_point": "PP-OCC-004 (Communication Gap)"
+    },
+    {
+      "id": "EI-OCC-006",
+      "name": "Unified CRM with Client View",
+      "linked_friction_point": "FP-005 (Multi-Channel Fragmentation)",
+      "proposed_solution": "Implement unified CRM system across all 4 teams (Marketing, Sales, Call Centre, Branch) providing single view of client journey and eliminating information silos.",
+      "impact_level": "Very High",
+      "complexity": "High",
+      "ces_reduction_estimate": "-10 points",
+      "priority": "Could Have",
+      "innovation_source": "Systemic issue analysis",
+      "linked_pain_point": "PP-OCC-002 (Manual Handoffs), PP-OCC-005"
+    },
+    {
+      "id": "EI-OCC-007",
+      "name": "Auto-Responder with SLA Commitment",
+      "linked_friction_point": "FP-006 (Generic Inbox)",
+      "proposed_solution": "Implement immediate auto-responder for all corporate onboarding inquiries, confirming receipt and committing to specific response SLA (e.g., 'We will respond within 4 business hours').",
+      "impact_level": "High",
+      "complexity": "Low",
+      "ces_reduction_estimate": "-2 points",
+      "priority": "Must Have",
+      "innovation_source": "First impression analysis",
+      "linked_pain_point": "PP-OCC-006"
+    },
+    {
+      "id": "EI-OCC-008",
+      "name": "Dedicated Corporate Onboarding Email",
+      "linked_friction_point": "FP-006 (Generic Inbox)",
+      "proposed_solution": "Create dedicated email address for corporate onboarding (e.g., corporate.onboarding@bank.com) separate from generic inbox, with specialized routing and priority handling.",
+      "impact_level": "Medium",
+      "complexity": "Low",
+      "ces_reduction_estimate": "-1 point",
+      "priority": "Should Have",
+      "innovation_source": "Channel analysis",
+      "linked_pain_point": "PP-OCC-006"
+    },
+    {
+      "id": "EI-OCC-009",
+      "name": "Upfront Document Checklist",
+      "linked_friction_point": "FP-007 (Multiple Document Rounds)",
+      "proposed_solution": "Provide comprehensive upfront document checklist at initial contact, specifying all required documents by client type. Reduce average document rounds from 3 to 1.",
+      "impact_level": "High",
+      "complexity": "Low",
+      "ces_reduction_estimate": "-6 points",
+      "priority": "Must Have",
+      "innovation_source": "Pain point analysis",
+      "linked_pain_point": "PP-OCC-007"
+    },
+    {
+      "id": "EI-OCC-010",
+      "name": "Assign Named Relationship Manager",
+      "linked_friction_point": "FP-008 (No Single Point of Contact)",
+      "proposed_solution": "Assign dedicated relationship manager to each corporate client at onboarding start, providing single point of contact throughout 180-day journey and beyond.",
+      "impact_level": "High",
+      "complexity": "Medium",
+      "ces_reduction_estimate": "-4 points",
+      "priority": "Should Have",
+      "innovation_source": "Relationship analysis",
+      "linked_pain_point": "PP-OCC-008"
+    },
+    {
+      "id": "EI-OCC-011",
+      "name": "Fully Digital Onboarding Platform",
+      "linked_friction_point": "Multiple systemic issues",
+      "proposed_solution": "Build comprehensive digital onboarding platform with end-to-end automation, document upload, e-signatures, real-time status, and self-service capabilities.",
+      "impact_level": "Very High",
+      "complexity": "Very High",
+      "ces_reduction_estimate": "-25+ points",
+      "priority": "Deferred",
+      "innovation_source": "Metro Commercial Bank (30% acquisition increase)",
+      "dependencies": ["E1", "E2", "E6"],
+      "deferral_reason": "Major infrastructure investment required"
+    },
+    {
+      "id": "EI-OCC-012",
+      "name": "AI-Powered Document Verification",
+      "linked_friction_point": "FP-007 (Multiple Document Rounds)",
+      "proposed_solution": "Implement AI/ML-based document verification to automatically validate completeness, extract data, and flag issues — reducing manual review time and document rounds.",
+      "impact_level": "High",
+      "complexity": "High",
+      "ces_reduction_estimate": "-5 points",
+      "priority": "Deferred",
+      "innovation_source": "Industry trend research",
+      "deferral_reason": "Requires AI/ML capability build"
+    },
+    {
+      "id": "EI-OCC-013",
+      "name": "Open API Integration",
+      "linked_friction_point": "Multiple systemic issues",
+      "proposed_solution": "Develop open API layer enabling integration with client ERP systems, third-party KYC providers, and partner services for streamlined data exchange.",
+      "impact_level": "High",
+      "complexity": "High",
+      "ces_reduction_estimate": "-5 points",
+      "priority": "Deferred",
+      "innovation_source": "Gartner Survey",
+      "deferral_reason": "Requires external partnerships and integrations"
+    },
+    {
+      "id": "EI-OCC-014",
+      "name": "AI Chatbot for 24/7 Support",
+      "linked_friction_point": "FP-006 (Generic Inbox, 9-5 only)",
+      "proposed_solution": "Deploy AI-powered chatbot on corporate banking portal providing 24/7 support for onboarding queries, document guidance, and status updates.",
+      "impact_level": "High",
+      "complexity": "Medium",
+      "ces_reduction_estimate": "-5 points",
+      "priority": "Must Have",
+      "innovation_source": "Industry trend T7 (Zendesk, Wavetec research)"
+    },
+    {
+      "id": "EI-OCC-015",
+      "name": "Personalized Journey Paths",
+      "linked_friction_point": "One-size-fits-all journey",
+      "proposed_solution": "Implement journey personalization based on client segment, industry, and engagement patterns — adapting communication frequency, channels, and content to client preferences.",
+      "impact_level": "High",
+      "complexity": "Medium",
+      "ces_reduction_estimate": "-4 points",
+      "priority": "Must Have",
+      "innovation_source": "Industry trend T2 (86% prioritizing personalization)"
+    },
+    {
+      "id": "EI-OCC-016",
+      "name": "Predictive Next-Best-Action",
+      "linked_friction_point": "Reactive communication approach",
+      "proposed_solution": "Implement predictive analytics with three-tier maturity: (1) Rules-based triggers for immediate value, (2) Statistical propensity scoring, (3) Full ML real-time decisioning. Start with quick-win rules: no engagement after Day 14 → flag for call; defence KYC >5 days → RM outreach; no activation by Day 30 → branch escalation.",
+      "impact_level": "High",
+      "complexity": "Medium-High",
+      "ces_reduction_estimate": "-5 points (reduced anxiety through proactive outreach, preventing negative experiences)",
+      "priority": "Must Have",
+      "innovation_source": "Commonwealth Bank Australia (55M decisions/day); Industry benchmarks (25-30% churn reduction, 40% cross-sell improvement)",
+      "linked_pain_point": "PP-OCC-002 (Manual Handoffs) — NBA tells staff what action to take, not just who to contact",
+      "dependencies": ["EI-OCC-006 (Unified CRM) for data consolidation", "EI-OCC-015 (Personalized Journeys) for contextual relevance"],
+      "implementation_considerations": "Three-tier implementation: Tier 1 (rules-based) as quick win using existing data; Tier 2 (statistical scoring) requires data consolidation; Tier 3 (full ML) requires unified CRM and event-driven architecture. Current systems (Genesys, email, SMS) are siloed — data consolidation needed for advanced tiers.",
+      "affected_process_steps": ["PS-02-002 (Day 14 email)", "PS-02-003 (Day 30 notification)", "PS-02-005 (Branch call)", "KYC process (Days 2-5)"],
+      "expected_benefits": "CX: Proactive outreach reduces anxiety, prevents disengagement. Ops: Staff guided on what action to take. ROI: 25-30% churn reduction, 40% cross-sell improvement, 20% fewer support inquiries.",
+      "quick_win_triggers": ["No engagement after Day 14 email → proactive call", "Defence sector KYC >5 days → RM outreach", "No activation by Day 30 → branch escalation"],
+      "narrative": "The Predictive Next-Best-Action enhancement addresses the fundamentally reactive nature of the current corporate client onboarding communication approach. Rather than waiting for clients to disengage or escalate issues, this capability would enable the bank to identify at-risk clients proactively and trigger timely outreach before problems materialize. The enhancement draws inspiration from Commonwealth Bank Australia's Customer Engagement Engine, which processes 55 million decisions daily, though the implementation should start more pragmatically with rules-based automation as a quick-win foundation.\n\nThe technical implementation follows a three-tier maturity model: starting with rules-based triggers using existing data signals (Tier 1), progressing to statistical propensity scoring (Tier 2), and eventually achieving full ML-powered real-time decisioning (Tier 3). Critical dependencies exist with EI-OCC-006 (Unified CRM) for data consolidation across the current siloed systems — Genesys for calls, email platform, and SMS — and EI-OCC-015 (Personalized Journeys) for contextual relevance.\n\nFrom a client experience perspective, this enhancement targets three critical moments that matter: the KYC silence period (Days 2-5) where client anxiety peaks, the Day 30 activation milestone where clients evaluate whether the relationship is working, and the Day 90-180 communication gap where disengagement risk is highest. Market validation is strong: banks implementing predictive engagement report 25-30% reduction in client churn during onboarding, 40% improvement in cross-sell success, and 20% fewer support inquiries.",
+      "modified_date": "2025-12-04",
+      "modified_by": "Peter",
+      "completeness": 93
+    }
+  ],
+  "systems": [
+    {
+      "id": "SYS-OCC-001",
+      "name": "SMS Platform",
+      "type": "Communication",
+      "used_in_steps": ["PS-01-002"]
+    },
+    {
+      "id": "SYS-OCC-002",
+      "name": "E-mail",
+      "type": "Communication",
+      "used_in_steps": ["PS-01-002", "PS-01-004", "PS-02-002"]
+    },
+    {
+      "id": "SYS-OCC-003",
+      "name": "Video Platform",
+      "type": "Content",
+      "used_in_steps": ["PS-01-003"]
+    },
+    {
+      "id": "SYS-OCC-004",
+      "name": "Campaign Tool",
+      "type": "Marketing",
+      "used_in_steps": ["PS-02-002"]
+    },
+    {
+      "id": "SYS-OCC-005",
+      "name": "Social Media Platform",
+      "type": "Marketing",
+      "used_in_steps": ["PS-02-007"]
+    },
+    {
+      "id": "SYS-OCC-006",
+      "name": "Genesys",
+      "type": "Call Centre",
+      "used_in_steps": ["PS-02-001", "PS-02-006", "PS-02-008"]
+    }
+  ]
+}
