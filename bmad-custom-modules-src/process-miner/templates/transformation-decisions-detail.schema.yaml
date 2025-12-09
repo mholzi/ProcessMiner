@@ -1,0 +1,167 @@
+# Schema for Transformation Decisions Detail Template
+# Used by review-draft workflow for sync and confidence scoring
+
+schema_version: "1.0"
+template_name: "transformation-decisions-detail"
+template_description: "Detailed transformation decision log with alternatives analysis, trade-offs, and audit trail"
+
+# Sections configuration
+sections:
+  # Decision Catalog
+  - title_pattern: "Decision Catalog"
+    section_number: 1
+    detail_document: null
+    structured_id_prefix: "TD"
+    sync_enabled: false
+    summary_table_header: "| TD# | Decision Title | Category | AS-IS Impact | Stakeholders | Status |"
+
+  # Detailed Decision Records
+  - title_pattern: "Detailed Decision Records"
+    section_number: 2
+    detail_document: null
+    structured_id_prefix: "TD"
+    sync_enabled: false
+
+  # Trade-off Analysis
+  - title_pattern: "Trade-off Analysis"
+    section_number: 3
+    detail_document: null
+    sync_enabled: false
+    summary_table_header: "| Trade-off | Competing Demands | Decision | Rationale |"
+
+  # Deferred Decisions
+  - title_pattern: "Deferred Decisions"
+    section_number: 4
+    detail_document: null
+    structured_id_prefix: "TD"
+    sync_enabled: false
+    summary_table_header: "| TD# | Decision | Reason Deferred | Trigger for Revisit | Target Date |"
+
+  # Decision Patterns and Themes
+  - title_pattern: "Decision Patterns"
+    section_number: 5
+    sync_enabled: false
+
+  # Decision Audit Trail
+  - title_pattern: "Decision Audit Trail"
+    section_number: 6
+    sync_enabled: false
+    summary_table_header: "| Date | TD# | Decision | Category | Outcome |"
+
+# Confidence scoring rules
+confidence_rules:
+  high_threshold: 90
+  medium_threshold: 70
+
+  # Fields that indicate incomplete content
+  incomplete_markers:
+    - "[TBD]"
+    - "[Unknown]"
+    - "[TODO]"
+    - "{{.*}}"
+    - "..."
+
+  # Required cross-references by section
+  required_references:
+    1:  # Decision Catalog
+      - "TD#"
+    2:  # Detailed Records
+      - "TD#"
+      - "PS#"
+      - "TS#"
+    4:  # Deferred Decisions
+      - "TD#"
+
+# Structured ID patterns for validation
+id_patterns:
+  transformation_decision: "TD-[A-Z]{2,4}-\\d{3}"
+
+# Decision configuration
+decision_config:
+  categories:
+    - id: "strategic"
+      name: "Strategic"
+      description: "Fundamental design direction affecting multiple areas"
+
+    - id: "tactical"
+      name: "Tactical"
+      description: "Specific implementation choices within a design direction"
+
+    - id: "tradeoff"
+      name: "Trade-off"
+      description: "Balancing competing demands (efficiency vs control, etc.)"
+
+    - id: "deferred"
+      name: "Deferred"
+      description: "Decisions postponed for future consideration"
+
+  status_values:
+    - "Proposed"
+    - "Under Review"
+    - "Approved"
+    - "Implemented"
+    - "Deferred"
+    - "Rejected"
+    - "Superseded"
+
+  # Required fields for each decision
+  required_fields:
+    - "id"
+    - "title"
+    - "category"
+    - "context"
+    - "alternatives"
+    - "rationale"
+    - "impact"
+
+  # Evaluation criteria for alternatives
+  evaluation_criteria:
+    - "Feasibility"
+    - "Cost"
+    - "Risk"
+    - "Time to Implement"
+    - "Strategic Alignment"
+    - "Client Impact"
+    - "Operational Impact"
+
+# Trade-off configuration
+tradeoff_config:
+  common_tradeoffs:
+    - demand_a: "Efficiency"
+      demand_b: "Control"
+
+    - demand_a: "Speed"
+      demand_b: "Quality"
+
+    - demand_a: "Cost"
+      demand_b: "Client Experience"
+
+    - demand_a: "Innovation"
+      demand_b: "Stability"
+
+    - demand_a: "Automation"
+      demand_b: "Human Oversight"
+
+    - demand_a: "Standardization"
+      demand_b: "Flexibility"
+
+# Parent document reference
+parent_document:
+  name: "Target State Documentation"
+  file: "target-state-documentation.md"
+  sync_section: 7
+
+# Companion documents
+companion_documents:
+  - name: "Target State Documentation"
+    file: "target-state-documentation.md"
+    relationship: "parent"
+
+  - name: "Gap Resolution Log"
+    file: "gap-resolution-log.md"
+    relationship: "sibling"
+
+# Change log format
+change_log:
+  section_title: "Change Log"
+  table_format: "| Date | Contributor | Role | Changes |"

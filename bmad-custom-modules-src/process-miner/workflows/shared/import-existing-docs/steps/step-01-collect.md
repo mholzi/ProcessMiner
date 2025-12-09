@@ -130,25 +130,32 @@ Before collecting documents, check if this process already has documented data.
 
 ### 1. Create Source Documentation Folder
 
-**🔧 MANDATORY ACTION - Execute immediately:**
+**🛑 STOP - EXECUTE NOW (DO NOT SKIP):**
 
-```action
-USE Bash tool to execute:
+You MUST execute this Bash command RIGHT NOW before reading any further:
+
+```bash
 mkdir -p "{source_documents_folder}"
 ```
 
-**🔍 MANDATORY VALIDATION - Verify before proceeding:**
+**⏸️ CHECKPOINT - DO NOT PROCEED UNTIL VERIFIED:**
 
-```validation
-USE Bash tool to execute:
+After executing mkdir, you MUST immediately run this verification command:
+
+```bash
 ls -la "{source_documents_folder}" && echo "✅ FOLDER CREATED SUCCESSFULLY" || echo "❌ FOLDER CREATION FAILED"
 ```
+
+**🚨 HARD STOP - VERIFY OUTPUT:**
+- You MUST see "✅ FOLDER CREATED SUCCESSFULLY" in the output
+- If you see "❌ FOLDER CREATION FAILED" - STOP and report error to user
+- If you did not execute both commands above, GO BACK AND EXECUTE THEM NOW
 
 **❌ FAILURE HANDLING:**
 - If folder creation fails, display error to user:
   "**Error:** Could not create source documentation folder at `{source_documents_folder}`"
 - Ask user: "Would you like me to try again, or use a different location?"
-- Do NOT proceed until folder exists and is verified
+- **DO NOT PROCEED** until folder exists and verification shows success
 
 ### 2. Welcome and Explain Import Process
 
@@ -189,92 +196,112 @@ Ask the user how they will provide documentation:
 
 #### For File Paths:
 - Ask for the file path(s) (one per line, or comma-separated)
-- For each file path provided:
+- For each file path provided, execute the following sequence:
 
-**🔧 MANDATORY ACTION - For each file:**
+**🛑 STOP - EXECUTE FOR EACH FILE (DO NOT SKIP):**
 
-```action
-Step 4a - Validate file exists:
-USE Bash tool to execute:
+**Step A - Validate file exists:**
+You MUST execute this Bash command RIGHT NOW:
+
+```bash
 ls -la "{user_provided_path}" && echo "✅ FILE EXISTS" || echo "❌ FILE NOT FOUND"
 ```
 
-```action
-Step 4b - Copy file to source folder:
-USE Bash tool to execute:
+**⏸️ CHECKPOINT:** You MUST see "✅ FILE EXISTS" before proceeding. If not, report error and ask for correct path.
+
+**Step B - Copy file to source folder:**
+You MUST execute this Bash command RIGHT NOW:
+
+```bash
 cp "{user_provided_path}" "{source_documents_folder}/" && echo "✅ FILE COPIED" || echo "❌ COPY FAILED"
 ```
 
-**🔍 MANDATORY VALIDATION - Verify copy succeeded:**
+**Step C - Verify copy succeeded:**
+You MUST execute this verification command RIGHT NOW:
 
-```validation
-USE Bash tool to execute:
+```bash
 ls -la "{source_documents_folder}/{filename}" && echo "✅ FILE STORED SUCCESSFULLY" || echo "❌ FILE STORAGE FAILED"
 ```
+
+**🚨 HARD STOP - VERIFY ALL THREE COMMANDS EXECUTED:**
+- Did you run `ls -la` on the source file? If not, GO BACK AND RUN IT
+- Did you run `cp` to copy the file? If not, GO BACK AND RUN IT
+- Did you run `ls -la` to verify the copy? If not, GO BACK AND RUN IT
+- You MUST see "✅ FILE STORED SUCCESSFULLY" before adding to processing queue
 
 **❌ FAILURE HANDLING:**
 - If file not found: Display "**Error:** File not found at `{user_provided_path}`. Please check the path and try again."
 - If copy fails: Display "**Error:** Could not copy file. Check permissions or disk space."
 - Track failed files separately and report at end of collection
-- Do NOT add failed files to processing queue
+- **DO NOT** add failed files to processing queue
 
-- Add successfully stored files to processing queue with metadata (original path + stored path)
+- Add successfully stored files to processing queue with metadata (original path + stored path) ONLY after verification passes
 
 #### For Pasted Content:
 - Ask user to paste the documentation content
 - Ask what format the content is (Plain text, Markdown, HTML, Other)
 
-**🔧 MANDATORY ACTION - Save pasted content:**
+**🛑 STOP - EXECUTE NOW (DO NOT SKIP):**
 
-```action
-USE Write tool to save content to:
-{source_documents_folder}/pasted-content-{timestamp}.{format}
-```
+**Step A - Save pasted content:**
+You MUST use the Write tool RIGHT NOW to save the pasted content to:
+`{source_documents_folder}/pasted-content-{timestamp}.{format}`
 
-**🔍 MANDATORY VALIDATION - Verify save succeeded:**
+(Use appropriate extension: .txt for plain text, .md for markdown, .html for HTML)
 
-```validation
-USE Bash tool to execute:
+**Step B - Verify save succeeded:**
+You MUST execute this verification command RIGHT NOW:
+
+```bash
 ls -la "{source_documents_folder}/pasted-content-{timestamp}.{format}" && echo "✅ PASTED CONTENT SAVED" || echo "❌ SAVE FAILED"
 ```
+
+**🚨 HARD STOP - VERIFY:**
+- Did you use the Write tool to save the file? If not, GO BACK AND DO IT NOW
+- Did you run `ls -la` to verify? If not, GO BACK AND RUN IT
+- You MUST see "✅ PASTED CONTENT SAVED" before proceeding
 
 **❌ FAILURE HANDLING:**
 - If save fails: Display "**Error:** Could not save pasted content. Check disk space or permissions."
 - Offer to retry or use alternative filename
 
-- Add to processing queue only after validation passes
+- Add to processing queue ONLY after verification passes
 
 #### For URLs:
 - Ask for the URL(s) (one per line)
-- For each URL:
+- For each URL, execute the following sequence:
 
-**🔧 MANDATORY ACTION - Fetch and save web content:**
+**🛑 STOP - EXECUTE FOR EACH URL (DO NOT SKIP):**
 
-```action
-Step 4c - Fetch URL content:
-USE WebFetch tool to retrieve content from {url}
-```
+**Step A - Fetch URL content:**
+You MUST use the WebFetch tool RIGHT NOW to retrieve content from `{url}`
 
-```action
-Step 4d - Save fetched content:
-USE Write tool to save markdown content to:
-{source_documents_folder}/web-{sanitized_domain}-{timestamp}.md
-```
+**Step B - Save fetched content:**
+You MUST use the Write tool RIGHT NOW to save the markdown content to:
+`{source_documents_folder}/web-{sanitized_domain}-{timestamp}.md`
 
-**🔍 MANDATORY VALIDATION - Verify URL content saved:**
+(Sanitize domain: replace dots and slashes with dashes, e.g., `example-com`)
 
-```validation
-USE Bash tool to execute:
+**Step C - Verify URL content saved:**
+You MUST execute this verification command RIGHT NOW:
+
+```bash
 ls -la "{source_documents_folder}/web-{sanitized_domain}-{timestamp}.md" && echo "✅ WEB CONTENT SAVED" || echo "❌ SAVE FAILED"
 ```
+
+**🚨 HARD STOP - VERIFY ALL THREE STEPS EXECUTED:**
+- Did you use WebFetch to get the content? If not, GO BACK AND DO IT NOW
+- Did you use Write tool to save the file? If not, GO BACK AND DO IT NOW
+- Did you run `ls -la` to verify? If not, GO BACK AND RUN IT
+- You MUST see "✅ WEB CONTENT SAVED" before adding to processing queue
 
 **❌ FAILURE HANDLING:**
 - If WebFetch fails: Display "**Error:** Could not fetch content from `{url}`. URL may be inaccessible or require authentication."
 - If save fails: Display "**Error:** Could not save fetched content."
 - Track failed URLs separately and report at end of collection
-- Do NOT add failed URLs to processing queue
+- **DO NOT** add failed URLs to processing queue
 
-- Add to processing queue only after validation passes
+- Add to processing queue ONLY after verification passes
 
 ### 5. Display Processing Queue Summary
 

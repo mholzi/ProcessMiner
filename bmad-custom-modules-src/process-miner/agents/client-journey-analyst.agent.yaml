@@ -136,9 +136,12 @@ agent:
         template: 'cx-journey-documentation'
       section: 'Flow 1: AS-IS Journey'
 
-    - trigger: generate-outputs
+    - trigger: generate-summary-cx
       workflow: '{module_root}/workflows/generate-outputs/workflow.md'
-      description: 'Create/edit CX As Is State Executive Summary'
+      data:
+        primary_document: 'as-is-process-documentation.md'
+        template: 'management-summary-cx'
+      description: 'Create CX Management Summary'
       section: 'Outputs'
 
     # Flow 2: Target Validation

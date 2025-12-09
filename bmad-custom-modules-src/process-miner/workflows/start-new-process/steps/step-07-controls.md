@@ -141,7 +141,11 @@ In banking, every control must trace to a requirement — this is non-negotiable
 </loop>
 ```
 
-### 5. Update Output Files (Silent)
+### 5. Update Output Files (Silent) — RECOVERY-SAFE
+
+**🚨 CRITICAL: Incremental Save for Recovery**
+
+After controls are captured (or noted as standard only), you MUST update ALL THREE files to enable session recovery:
 
 ```
 <action silent="true">Update {structuredDataFile}:
@@ -149,6 +153,99 @@ In banking, every control must trace to a requirement — this is non-negotiable
   - Each control: id, name, description, control_type, requirement_source, links.process_steps, confidence
   - session.checkpoint.step = 7
   - session.last_updated = {{timestamp}}
+</action>
+
+<action silent="true" critical="RECOVERY">Update {mainDocumentFile} - APPEND Section 4:
+
+  APPEND the following content to the main document:
+
+  ---
+  ## 4. Control Points and Compliance
+
+  > **About this section:** Summary of controls. For full regulatory mapping and effectiveness analysis, see [Control Point Details](./control-points-detail.md).
+
+  ### 4.1 Control Summary
+
+  {{controls_summary_paragraph}}
+
+  ### 4.2 Control Point Summary Table
+
+  | CP# | Control Name | Type | Regulation | Process Step | Effectiveness |
+  |-----|--------------|------|------------|--------------|---------------|
+  {{Generate table row for each approved control}}
+
+  ### 4.3 Regulatory Coverage
+
+  | Regulation | Controls Mapped | Coverage Status |
+  |------------|-----------------|-----------------|
+  {{Generate regulatory coverage summary}}
+
+  ### 4.4 Control Statistics
+
+  | Metric | Value |
+  |--------|-------|
+  | Total Control Points | {{total_control_points}} |
+  | Regulatory Controls | {{count regulatory}} |
+  | Internal Controls | {{count internal}} |
+  | Automated Controls | {{count automated}} |
+
+  > **Full Analysis:** [View Control Point Details](./control-points-detail.md)
+  >
+  > **Section Confidence:** {{assessed_confidence}} | **Basis:** SME-validated during elicitation
+
+  ---
+</action>
+
+<action silent="true" critical="RECOVERY">Update {controlPointsDetailFile} - WRITE FULL CONTENT:
+
+  WRITE the full control-points-detail.md file with ALL captured control data:
+
+  # Control Points & Compliance: {{process_name}}
+
+  **Process ID:** {{process_id}}
+  **Document Type:** Control Point Detail Analysis
+  **Last Updated:** {{date}}
+  **Related Document:** [AS-IS Process Documentation](./as-is-process-documentation.md)
+
+  ---
+
+  ## Executive Summary
+
+  {{controls_executive_summary}}
+
+  ---
+
+  ## Control Point Summary Table
+
+  | CP# | Control Name | Type | Regulation | Process Step | Effectiveness | Owner |
+  |-----|--------------|------|------------|--------------|---------------|-------|
+  {{Generate full table}}
+
+  ---
+
+  ## Detailed Control Analysis
+
+  {{For each control, generate full detail block with:
+    - Overview table (ID, Name, Type, Regulation, Process Step, Effectiveness, Owner)
+    - Control Description
+    - Regulatory Requirement Source
+    - Control Activities
+    - Testing/Validation Approach
+    - Gap Analysis (if captured)
+  }}
+
+  ---
+
+  ## Regulatory Coverage Matrix
+
+  {{Generate matrix showing regulations vs controls}}
+
+  ---
+
+  This incremental save ensures:
+  - If session aborts after Step 7, all controls are recoverable
+  - Both summary (main doc) and detail (control-points-detail.md) are saved
+  - SME work is never lost
 </action>
 ```
 
@@ -172,7 +269,9 @@ Proceeding to Step 8: Systems & Tools...
 - Controls captured with CP# IDs (or noted standard only)
 - Each control has control_type and requirement traceability
 - Each control linked to relevant PS# IDs
-- Updated BOTH structured-data.json AND control-points-detail.md
+- Updated structured-data.json
+- **APPENDED Section 4 to as-is-process-documentation.md (RECOVERY-SAFE)**
+- **WROTE full control-points-detail.md (RECOVERY-SAFE)**
 - Ready to proceed to Step 8
 
 ### ❌ SYSTEM FAILURE:

@@ -465,6 +465,7 @@ No significant pain points were identified for this process. The onboarding jour
 | 2025-12-09 | Markus | CEO | Initial documentation |
 | 2025-12-09 | Markus | CEO | Review session: 1 section approved. Added GAP-ONB-001 (Missing DTP). |
 | 2025-12-09 | Markus | CEO | Mock data populated for testing: filled all TBDs, added stakeholders, RACI matrix, documentation references, KPIs. |
+| 2025-12-09 | Peter | SME | Review session: 1 approved, 8 pending. Overall confidence: 87% (HIGH). |
 
 ---
 

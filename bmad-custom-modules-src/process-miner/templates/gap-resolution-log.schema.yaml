@@ -1,0 +1,306 @@
+# Schema for Gap Resolution Log Template
+# Used by review-draft workflow for sync and confidence scoring
+
+schema_version: "1.0"
+template_name: "gap-resolution-log"
+template_description: "Validation gap tracking log with resolution history, iteration tracking, and risk assessment"
+
+# Sections configuration
+sections:
+  # Gap Summary by Status
+  - title_pattern: "Gap Summary by Status"
+    section_number: 1
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+
+  # Open Gaps
+  - title_pattern: "Open Gaps"
+    section_number: 1.1
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+    summary_table_header: "| VG# | Source | Gap Description | Severity | Days Open | Assigned To |"
+
+  # In Progress Gaps
+  - title_pattern: "In Progress Gaps"
+    section_number: 1.2
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+    summary_table_header: "| VG# | Source | Gap Description | Severity | Resolution Approach | ETA |"
+
+  # Resolved Gaps
+  - title_pattern: "Resolved Gaps"
+    section_number: 1.3
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+    summary_table_header: "| VG# | Source | Gap Description | Resolution | Verified By | Date |"
+
+  # Deferred Gaps
+  - title_pattern: "Deferred Gaps"
+    section_number: 1.4
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+    summary_table_header: "| VG# | Source | Gap Description | Reason Deferred | Risk Owner | Review Date |"
+
+  # Detailed Gap Records
+  - title_pattern: "Detailed Gap Records"
+    section_number: 2
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+
+  # Gaps by Validation Area
+  - title_pattern: "Gaps by Validation Area"
+    section_number: 3
+    detail_document: null
+    sync_enabled: false
+
+  # Control Validation Gaps
+  - title_pattern: "Control Validation Gaps"
+    section_number: 3.1
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+
+  # CX Validation Gaps
+  - title_pattern: "Client Experience Validation Gaps"
+    section_number: 3.2
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+
+  # Innovation Validation Gaps
+  - title_pattern: "Innovation Validation Gaps"
+    section_number: 3.3
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+
+  # Process Validation Gaps
+  - title_pattern: "Process Validation Gaps"
+    section_number: 3.4
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+
+  # Validation Iteration History
+  - title_pattern: "Validation Iteration History"
+    section_number: 4
+    detail_document: null
+    sync_enabled: false
+    summary_table_header: "| Iteration | Date | Gaps Raised | Gaps Resolved | Net Open | Status |"
+
+  # Gap Trends and Analysis
+  - title_pattern: "Gap Trends"
+    section_number: 5
+    detail_document: null
+    sync_enabled: false
+
+  # Deferred Gap Risk Register
+  - title_pattern: "Deferred Gap Risk Register"
+    section_number: 6
+    detail_document: null
+    sync_enabled: false
+    summary_table_header: "| VG# | Gap | Risk Level | Risk Owner | Mitigation | Review Date |"
+
+  # Gap Resolution Metrics
+  - title_pattern: "Gap Resolution Metrics"
+    section_number: 7
+    detail_document: null
+    sync_enabled: false
+
+# Confidence scoring rules
+confidence_rules:
+  high_threshold: 90
+  medium_threshold: 70
+
+  # Fields that indicate incomplete content
+  incomplete_markers:
+    - "[TBD]"
+    - "[Unknown]"
+    - "[TODO]"
+    - "{{.*}}"
+    - "..."
+
+  # Required cross-references by section
+  required_references:
+    1:  # Gap Summary
+      - "VG#"
+    2:  # Detailed Records
+      - "VG#"
+      - "TS#"
+    3:  # Gaps by Area
+      - "VG#"
+    6:  # Risk Register
+      - "VG#"
+
+# Structured ID patterns for validation
+id_patterns:
+  validation_gap: "VG-[A-Z]{2,4}-\\d{3}"
+
+# Gap configuration
+gap_config:
+  source_agents:
+    - id: "control"
+      name: "Control Analyst"
+      focus: "Control compliance and regulatory gaps"
+
+    - id: "cx"
+      name: "Client Journey Analyst"
+      focus: "Client experience and CES gaps"
+
+    - id: "innovation"
+      name: "Innovation Analyst"
+      focus: "Innovation inclusion and feasibility gaps"
+
+    - id: "process"
+      name: "Process Documentation Analyst"
+      focus: "Traceability and documentation gaps"
+
+  severity_levels:
+    - level: "Critical"
+      description: "Blocks transformation approval, must be resolved"
+      resolution_required: true
+      target_resolution_days: 2
+
+    - level: "High"
+      description: "Significant issue, should be resolved before approval"
+      resolution_required: true
+      target_resolution_days: 5
+
+    - level: "Medium"
+      description: "Notable concern, resolution recommended"
+      resolution_required: false
+      target_resolution_days: 10
+
+    - level: "Low"
+      description: "Minor issue, can be deferred with justification"
+      resolution_required: false
+      target_resolution_days: null
+
+  status_values:
+    - id: "open"
+      name: "Open"
+      description: "Gap identified, resolution pending"
+
+    - id: "in_progress"
+      name: "In Progress"
+      description: "Resolution being implemented"
+
+    - id: "resolved"
+      name: "Resolved"
+      description: "Gap addressed, verified by source agent"
+
+    - id: "deferred"
+      name: "Deferred"
+      description: "Gap accepted, resolution postponed with justification"
+
+    - id: "rejected"
+      name: "Rejected"
+      description: "Gap disputed, not accepted as valid"
+
+  resolution_types:
+    - "Design Change"
+    - "Documentation Update"
+    - "Control Addition"
+    - "Process Modification"
+    - "Innovation Inclusion"
+    - "Scope Adjustment"
+    - "Risk Acceptance"
+
+# Metrics configuration
+metrics:
+  resolution_metrics:
+    - name: "Average Resolution Time"
+      field: "avg_resolution_time"
+      unit: "days"
+      target: 5
+
+    - name: "First-Pass Resolution Rate"
+      field: "first_pass_rate"
+      unit: "percent"
+      target: 80
+
+    - name: "Critical Gap Resolution Time"
+      field: "critical_resolution_time"
+      unit: "days"
+      target: 2
+
+    - name: "Reopened Gap Rate"
+      field: "reopened_rate"
+      unit: "percent"
+      target: 5
+
+# Risk assessment for deferred gaps
+risk_assessment:
+  likelihood_levels:
+    - "Very Low"
+    - "Low"
+    - "Medium"
+    - "High"
+    - "Very High"
+
+  impact_levels:
+    - "Negligible"
+    - "Minor"
+    - "Moderate"
+    - "Major"
+    - "Severe"
+
+  risk_matrix:
+    # likelihood x impact = overall risk
+    very_low:
+      negligible: "Very Low"
+      minor: "Very Low"
+      moderate: "Low"
+      major: "Medium"
+      severe: "Medium"
+    low:
+      negligible: "Very Low"
+      minor: "Low"
+      moderate: "Low"
+      major: "Medium"
+      severe: "High"
+    medium:
+      negligible: "Low"
+      minor: "Low"
+      moderate: "Medium"
+      major: "High"
+      severe: "High"
+    high:
+      negligible: "Low"
+      minor: "Medium"
+      moderate: "High"
+      major: "High"
+      severe: "Critical"
+    very_high:
+      negligible: "Medium"
+      minor: "Medium"
+      moderate: "High"
+      major: "Critical"
+      severe: "Critical"
+
+# Parent document reference
+parent_document:
+  name: "Target State Documentation"
+  file: "target-state-documentation.md"
+  sync_section: 13
+
+# Companion documents
+companion_documents:
+  - name: "Target State Documentation"
+    file: "target-state-documentation.md"
+    relationship: "parent"
+
+  - name: "Transformation Decisions Detail"
+    file: "transformation-decisions-detail.md"
+    relationship: "sibling"
+
+# Change log format
+change_log:
+  section_title: "Change Log"
+  table_format: "| Date | Contributor | Role | Changes |"

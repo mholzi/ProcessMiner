@@ -93,9 +93,12 @@ agent:
         template: 'control-compliance-documentation'
       section: 'Flow 1: AS-IS Controls'
 
-    - trigger: generate-outputs
+    - trigger: generate-summary-compliance
       workflow: '{module_root}/workflows/generate-outputs/workflow.md'
-      description: 'Create Control and Compliance Management Summary'
+      data:
+        primary_document: 'as-is-process-documentation.md'
+        template: 'management-summary-compliance'
+      description: 'Create Compliance Management Summary'
       section: 'Outputs'
 
     # Flow 2: Target Validation

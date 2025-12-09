@@ -150,7 +150,11 @@ We'll note what each system does and how they integrate.
 </approval-menu>
 ```
 
-### 5. Update Output Files (Silent)
+### 5. Update Output Files (Silent) — RECOVERY-SAFE
+
+**🚨 CRITICAL: Incremental Save for Recovery**
+
+After systems are captured, you MUST update BOTH files to enable session recovery:
 
 ```
 <action silent="true">Update {structuredDataFile}:
@@ -159,7 +163,39 @@ We'll note what each system does and how they integrate.
   - session.checkpoint.step = 8
   - session.last_updated = {{timestamp}}
 </action>
-<action silent="true">Update {mainDocumentFile}: Section 5 (System Dependencies)</action>
+
+<action silent="true" critical="RECOVERY">Update {mainDocumentFile} - APPEND Section 5:
+
+  APPEND the following content to the main document:
+
+  ---
+  ## 5. System Dependencies
+
+  > **About this section:** What technology supports this process?
+
+  ### 5.1 System Summary
+
+  | SYS# | System Name | Purpose | Type | Integration Points |
+  |------|-------------|---------|------|-------------------|
+  {{Generate table row for each approved system}}
+
+  ### 5.2 System Integration Overview
+
+  {{Generate narrative describing how systems connect and data flows between them}}
+
+  ### 5.3 Data Flow Summary
+
+  {{Generate summary of key data flows: what data moves between which systems}}
+
+  > **Section Confidence:** {{assessed_confidence}} | **Basis:** SME-validated during elicitation
+
+  ---
+
+  This incremental save ensures:
+  - If session aborts after Step 8, all systems are recoverable
+  - Section 5 preserved in main document
+  - SME work is never lost
+</action>
 ```
 
 ### 6. Proceed to Next Step
@@ -183,7 +219,8 @@ Proceeding to Step 9: Final Review...
 - Each system has system_type
 - Each system linked to relevant PS# IDs
 - Integration status documented
-- Updated structured-data.json and main document
+- Updated structured-data.json
+- **APPENDED Section 5 to as-is-process-documentation.md (RECOVERY-SAFE)**
 - Ready to proceed to Step 9
 
 ### ❌ SYSTEM FAILURE:

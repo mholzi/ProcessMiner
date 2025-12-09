@@ -152,8 +152,6 @@ agent:
       description: 'Finalise/Update Detailed As-Is Process Documentation (requires process selection)'
       section: 'Outputs'
 
-
-
     - trigger: generate-summary-process
       workflow: '{module_root}/workflows/generate-outputs/workflow.md'
       data:
@@ -162,28 +160,7 @@ agent:
       description: 'Create Process Management Summary'
       section: 'Outputs'
 
-    - trigger: generate-summary-compliance
-      workflow: '{module_root}/workflows/generate-outputs/workflow.md'
-      data:
-        primary_document: 'as-is-process-documentation.md'
-        template: 'management-summary-compliance'
-      description: 'Create Compliance Management Summary'
-      section: 'Outputs'
 
-    - trigger: generate-summary-cx
-      workflow: '{module_root}/workflows/generate-outputs/workflow.md'
-      data:
-        primary_document: 'as-is-process-documentation.md'
-        template: 'management-summary-cx'
-      description: 'Create CX Management Summary'
-      section: 'Outputs'
 
-    - trigger: generate-summary-innovation
-      workflow: '{module_root}/workflows/generate-outputs/workflow.md'
-      data:
-        primary_document: 'as-is-process-documentation.md'
-        template: 'management-summary-innovation'
-      description: 'Create Innovation Management Summary'
-      section: 'Outputs'
 
 # End of BMAD-compliant agent definition

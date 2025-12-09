@@ -135,7 +135,11 @@ These are issues that make the process difficult, slow, or error-prone.
 </loop>
 ```
 
-### 5. Update Output Files (Silent)
+### 5. Update Output Files (Silent) — RECOVERY-SAFE
+
+**🚨 CRITICAL: Incremental Save for Recovery**
+
+After pain points are captured (or noted as none), you MUST update ALL THREE files to enable session recovery:
 
 ```
 <action silent="true">Update {structuredDataFile}:
@@ -143,6 +147,86 @@ These are issues that make the process difficult, slow, or error-prone.
   - Each pain point: id, name, description, severity, impact, links.process_steps, confidence
   - session.checkpoint.step = 6
   - session.last_updated = {{timestamp}}
+</action>
+
+<action silent="true" critical="RECOVERY">Update {mainDocumentFile} - APPEND Section 9:
+
+  APPEND the following content to the main document:
+
+  ---
+  ## 9. Pain Points and Improvement Opportunities
+
+  > **About this section:** Summary of pain points. For full analysis including root causes and improvement ideas, see [Pain Point Details](./pain-points-detail.md).
+
+  ### 9.1 Pain Points Summary
+
+  {{pain_points_summary_paragraph}}
+
+  ### 9.2 Pain Point Summary Table
+
+  | PP# | Pain Point | Category | Affected Steps | Impact | Frequency | Priority |
+  |-----|------------|----------|----------------|--------|-----------|----------|
+  {{Generate table row for each approved pain point}}
+
+  ### 9.3 Pain Point Statistics
+
+  | Metric | Value |
+  |--------|-------|
+  | Total Pain Points | {{total_pain_points}} |
+  | High-Impact | {{count high impact}} |
+  | Client-Facing | {{count client facing}} |
+  | Quick Win Opportunities | {{count quick wins}} |
+
+  > **Full Analysis:** [View Pain Point Details](./pain-points-detail.md)
+  >
+  > **Section Confidence:** {{assessed_confidence}} | **Basis:** SME-validated during elicitation
+
+  ---
+</action>
+
+<action silent="true" critical="RECOVERY">Update {painPointsDetailFile} - WRITE FULL CONTENT:
+
+  WRITE the full pain-points-detail.md file with ALL captured pain point data:
+
+  # Pain Points & Challenges: {{process_name}}
+
+  **Process ID:** {{process_id}}
+  **Document Type:** Pain Point Detail Analysis
+  **Last Updated:** {{date}}
+  **Related Document:** [AS-IS Process Documentation](./as-is-process-documentation.md)
+
+  ---
+
+  ## Executive Summary
+
+  {{pain_points_executive_summary}}
+
+  ---
+
+  ## Pain Point Summary Table
+
+  | PP# | Pain Point | Category | Affected Steps | Severity | Impact | Frequency |
+  |-----|------------|----------|----------------|----------|--------|-----------|
+  {{Generate full table}}
+
+  ---
+
+  ## Detailed Pain Point Analysis
+
+  {{For each pain point, generate full detail block with:
+    - Overview table (ID, Name, Category, Affected Steps, Severity, Impact, Frequency)
+    - Description
+    - Root Cause Analysis (if captured)
+    - Current Workarounds
+    - Improvement Opportunities
+  }}
+
+  ---
+
+  This incremental save ensures:
+  - If session aborts after Step 6, all pain points are recoverable
+  - Both summary (main doc) and detail (pain-points-detail.md) are saved
+  - SME work is never lost
 </action>
 ```
 
@@ -166,7 +250,9 @@ Proceeding to Step 7: Controls & Compliance...
 - Pain points captured with PP# IDs (or noted none exist)
 - Each pain point has severity and impact
 - Each pain point linked to relevant PS# IDs
-- Updated BOTH structured-data.json AND pain-points-detail.md
+- Updated structured-data.json
+- **APPENDED Section 9 to as-is-process-documentation.md (RECOVERY-SAFE)**
+- **WROTE full pain-points-detail.md (RECOVERY-SAFE)**
 - Ready to proceed to Step 7
 
 ### ❌ SYSTEM FAILURE:

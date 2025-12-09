@@ -1,0 +1,324 @@
+# Schema for Target State Documentation Template
+# Used by review-draft workflow for sync and confidence scoring
+
+schema_version: "1.0"
+template_name: "target-state-documentation"
+template_description: "TO-BE process transformation design with full AS-IS traceability, validation results, and implementation considerations"
+
+# Sections that have sync-enabled detail documents
+sections:
+  # Section 2: AS-IS to TO-BE Reconciliation
+  - title_pattern: "AS-IS to TO-BE Reconciliation"
+    section_number: 2
+    detail_document: null
+    structured_id_prefix: "TS"
+    sync_enabled: false
+    summary_table_header: "| AS-IS Ref | AS-IS Step Name | Change Type | TO-BE Ref | TO-BE Step Name | Rationale |"
+
+  # Section 3: TO-BE Process Design
+  - title_pattern: "TO-BE Process Design"
+    section_number: 3
+    detail_document: null
+    structured_id_prefix: "TS"
+    sync_enabled: false
+    summary_table_header: "| TS# | Step Name | Owner | System(s) | Automation | Rationale |"
+
+  # Section 4: Control Design
+  - title_pattern: "Control Design"
+    section_number: 4
+    detail_document: null
+    structured_id_prefix: "TC"
+    sync_enabled: false
+    summary_table_header: "| AS-IS Ref | Control Name | Disposition | TO-BE Ref | TO-BE Control | Change Rationale |"
+
+  # Section 5: Client Experience Design
+  - title_pattern: "Client Experience Design"
+    section_number: 5
+    detail_document: null
+    structured_id_prefix: "TJ"
+    sync_enabled: false
+    summary_table_header: "| AS-IS Ref | Touchpoint | Disposition | TO-BE Ref | TO-BE Touchpoint | CES Impact |"
+
+  # Section 6: Innovation Integration
+  - title_pattern: "Innovation Integration"
+    section_number: 6
+    detail_document: null
+    structured_id_prefix: "II"
+    sync_enabled: false
+    summary_table_header: "| II# | Innovation | Priority | Feasibility Score | Integration Point | Implementation Notes |"
+
+  # Section 7: Transformation Decisions
+  - title_pattern: "Transformation Decisions"
+    section_number: 7
+    detail_document: "transformation-decisions-detail.md"
+    structured_id_prefix: "TD"
+    sync_enabled: true
+    summary_table_header: "| TD# | Decision | Category | Alternatives Considered | Rationale | Impact |"
+
+  # Section 8: Validation Summary
+  - title_pattern: "Validation Summary"
+    section_number: 8
+    detail_document: null
+    sync_enabled: false
+
+  # Section 9: Validation Detail Control
+  - title_pattern: "Validation Detail: Control"
+    section_number: 9
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+    summary_table_header: "| VG# | Gap Description | Severity | Resolution Required |"
+
+  # Section 10: Validation Detail CX
+  - title_pattern: "Validation Detail: Client Experience"
+    section_number: 10
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+    summary_table_header: "| VG# | Gap Description | Severity | Resolution Required |"
+
+  # Section 11: Validation Detail Innovation
+  - title_pattern: "Validation Detail: Innovation"
+    section_number: 11
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+    summary_table_header: "| VG# | Gap Description | Severity | Resolution Required |"
+
+  # Section 12: Validation Detail Process
+  - title_pattern: "Validation Detail: Process"
+    section_number: 12
+    detail_document: null
+    structured_id_prefix: "VG"
+    sync_enabled: false
+    summary_table_header: "| VG# | Gap Description | Severity | Resolution Required |"
+
+  # Section 13: Gap Resolution Log
+  - title_pattern: "Gap Resolution Log"
+    section_number: 13
+    detail_document: "gap-resolution-log.md"
+    structured_id_prefix: "VG"
+    sync_enabled: true
+    summary_table_header: "| VG# | Source | Gap Description | Severity | Resolution | Status | Iteration |"
+
+  # Non-sync sections (review only)
+  - title_pattern: "Transformation Overview"
+    section_number: 1
+    sync_enabled: false
+
+  - title_pattern: "Impact Analysis"
+    section_number: 14
+    sync_enabled: false
+
+  - title_pattern: "Implementation Considerations"
+    section_number: 15
+    sync_enabled: false
+
+  - title_pattern: "Metrics & Success Criteria"
+    section_number: 16
+    sync_enabled: false
+
+# Confidence scoring rules
+confidence_rules:
+  high_threshold: 90
+  medium_threshold: 70
+
+  # Fields that indicate incomplete content
+  incomplete_markers:
+    - "[TBD]"
+    - "[Unknown]"
+    - "[TODO]"
+    - "{{.*}}"
+    - "..."
+
+  # Required cross-references by section
+  required_references:
+    2:  # AS-IS to TO-BE Reconciliation
+      - "PS#"
+      - "TS#"
+    3:  # TO-BE Process Design
+      - "TS#"
+    4:  # Control Design
+      - "CP#"
+      - "TC#"
+    5:  # Client Experience Design
+      - "JT#"
+      - "TJ#"
+      - "FP#"
+    6:  # Innovation Integration
+      - "II#"
+    7:  # Transformation Decisions
+      - "TD#"
+    9:  # Control Validation
+      - "VG#"
+      - "CP#"
+      - "TC#"
+    10: # CX Validation
+      - "VG#"
+      - "FP#"
+    11: # Innovation Validation
+      - "VG#"
+      - "II#"
+    12: # Process Validation
+      - "VG#"
+      - "TS#"
+    13: # Gap Resolution
+      - "VG#"
+
+# Structured ID patterns for validation
+# Format: {PREFIX}-{PROCESS_ABBREV}-{SEQ} (e.g., TS-ONB-001, TD-CRO-002)
+# Pattern matches: PREFIX, dash, 2-4 uppercase letters (process abbrev), dash, 3 digits
+id_patterns:
+  target_step: "TS-[A-Z]{2,4}-\\d{3}"
+  target_control: "TC-[A-Z]{2,4}-\\d{3}"
+  target_journey: "TJ-[A-Z]{2,4}-\\d{3}"
+  transformation_decision: "TD-[A-Z]{2,4}-\\d{3}"
+  validation_gap: "VG-[A-Z]{2,4}-\\d{3}"
+
+# Companion documents
+companion_documents:
+  - name: "Transformation Decisions Detail"
+    file: "transformation-decisions-detail.md"
+    sync_section: 7
+
+  - name: "Gap Resolution Log"
+    file: "gap-resolution-log.md"
+    sync_section: 13
+
+  - name: "AS-IS Process Documentation"
+    file: "as-is-process-documentation.md"
+    sync_section: null
+    relationship: "source"
+
+  - name: "CX Journey Documentation"
+    file: "cx-journey-documentation.md"
+    sync_section: null
+    relationship: "source"
+
+  - name: "Control Compliance Documentation"
+    file: "control-compliance-documentation.md"
+    sync_section: null
+    relationship: "source"
+
+  - name: "Innovation Analysis Documentation"
+    file: "innovation-analysis-documentation.md"
+    sync_section: null
+    relationship: "source"
+
+# Traceability configuration
+traceability:
+  # AS-IS to TO-BE mapping requirements
+  change_types:
+    - "Unchanged"
+    - "Modified"
+    - "Eliminated"
+    - "Automated"
+    - "Consolidated"
+    - "New"
+
+  # Required mappings
+  required_mappings:
+    process_steps:
+      source_prefix: "PS"
+      target_prefix: "TS"
+    controls:
+      source_prefix: "CP"
+      target_prefix: "TC"
+    touchpoints:
+      source_prefix: "JT"
+      target_prefix: "TJ"
+    exceptions:
+      source_prefix: "EX"
+      target_prefix: null  # Exceptions may be eliminated
+    pain_points:
+      source_prefix: "PP"
+      target_prefix: null  # Pain points should be resolved
+
+# Validation configuration
+validation:
+  specialists:
+    - id: "control"
+      name: "Control Analyst"
+      section: 9
+      focus_areas:
+        - "Control gap closure"
+        - "SOD preservation"
+        - "Regulatory compliance"
+        - "Audit trail"
+
+    - id: "cx"
+      name: "Client Journey Analyst"
+      section: 10
+      focus_areas:
+        - "CES reduction"
+        - "Friction resolution"
+        - "Moments that matter"
+        - "Exception handling"
+
+    - id: "innovation"
+      name: "Innovation Analyst"
+      section: 11
+      focus_areas:
+        - "MUST HAVE inclusion"
+        - "Feasibility alignment"
+        - "Future-proofing"
+
+    - id: "process"
+      name: "Process Documentation Analyst"
+      section: 12
+      focus_areas:
+        - "Traceability completeness"
+        - "Reference consistency"
+        - "Documentation alignment"
+
+  gap_severity_levels:
+    - level: "Critical"
+      description: "Blocks transformation approval, must be resolved"
+      resolution_required: true
+
+    - level: "High"
+      description: "Significant issue, should be resolved before approval"
+      resolution_required: true
+
+    - level: "Medium"
+      description: "Notable concern, resolution recommended"
+      resolution_required: false
+
+    - level: "Low"
+      description: "Minor issue, can be deferred with justification"
+      resolution_required: false
+
+# Metrics configuration
+metrics:
+  transformation_metrics:
+    - name: "Process Steps"
+      asis_field: "asis_total_steps"
+      tobe_field: "tobe_total_steps"
+      improvement_direction: "reduction"
+
+    - name: "Control Gaps"
+      asis_field: "asis_control_gaps"
+      tobe_field: "tobe_control_gaps"
+      improvement_direction: "reduction"
+      target: 0  # All gaps should be closed
+
+    - name: "Pain Points"
+      asis_field: "asis_pain_points"
+      tobe_field: "tobe_pain_points"
+      improvement_direction: "reduction"
+
+    - name: "Client Effort Score"
+      asis_field: "asis_ces_score"
+      tobe_field: "tobe_ces_score"
+      improvement_direction: "reduction"
+      target_reduction: 0.30  # 30% reduction standard
+
+    - name: "Automation Level"
+      asis_field: "asis_automation_pct"
+      tobe_field: "tobe_automation_pct"
+      improvement_direction: "increase"
+
+# Change log format
+change_log:
+  section_title: "Change Log"
+  table_format: "| Date | Contributor | Role | Changes |"

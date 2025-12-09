@@ -210,16 +210,59 @@ For each topic (Purpose, Trigger, Frequency, Volume):
 <action>Verify all topics approved: Purpose, Trigger, Frequency, Volume</action>
 ```
 
-### 5. Update Output Files (Silent)
+### 5. Update Output Files (Silent) — RECOVERY-SAFE
+
+**🚨 CRITICAL: Incremental Save for Recovery**
+
+After ALL 4 topics are approved, you MUST update BOTH files to enable session recovery:
 
 ```
 <action silent="true">Update {structuredDataFile}:
-  - metadata section with all 4 topics
+  - metadata section with all 4 topics (purpose, trigger, frequency, volume)
   - metadata.confidence = assess confidence level
   - session.checkpoint.step = 3
   - session.last_updated = {{timestamp}}
 </action>
-<action silent="true">Update {mainDocumentFile}: Section 1 (Process Overview)</action>
+
+<action silent="true" critical="RECOVERY">Update {mainDocumentFile} - APPEND Section 1:
+
+  APPEND the following content to the main document:
+
+  ---
+  ## 1. Process Overview
+
+  > **About this section:** Foundational context - what this process is, who owns it, and what business need it serves.
+
+  ### 1.1 Process Identification
+
+  | Attribute | Value |
+  |-----------|-------|
+  | **Process Name** | {{process_name}} |
+  | **Process ID** | {{process_id}} |
+  | **Process Category** | Banking Operations |
+  | **Process Owner** | {{from session or TBD}} |
+
+  ### 1.2 Purpose and Trigger
+
+  {{process_purpose - the approved content}}
+
+  {{process_trigger - the approved content}}
+
+  ### 1.3 Operational Characteristics
+
+  {{process_frequency - the approved content}}
+
+  {{process_volume - the approved content}}
+
+  > **Section Confidence:** {{assessed_confidence}} | **Basis:** SME-validated during elicitation
+
+  ---
+
+  This incremental save ensures:
+  - If session aborts after Step 3, Section 1 is recoverable from the MD file
+  - JSON and MD stay in sync
+  - SME work is never lost
+</action>
 ```
 
 ### 6. Proceed to Next Step
@@ -248,7 +291,7 @@ ONLY WHEN [all 4 topics approved] and [output files updated], will you then load
 - All 4 topics captured and approved
 - Used correct approach based on `documents_uploaded` flag
 - Updated structured-data.json with metadata
-- Updated main document Section 1
+- **APPENDED Section 1 to as-is-process-documentation.md (RECOVERY-SAFE)**
 - Ready to proceed to Step 4
 
 ### ❌ SYSTEM FAILURE:

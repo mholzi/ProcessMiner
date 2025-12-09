@@ -7,9 +7,12 @@
   "schema_path": "/Volumes/My Passport/ProcessMiner3/bmad-custom-modules-src/process-miner/templates/as-is-process-documentation.schema.yaml",
   "schema_mode": "template",
   "contributor": {
-    "name": "Markus",
-    "role": "CEO"
+    "name": "Peter",
+    "role": "SME"
   },
+  "previous_contributors": [
+    { "name": "Markus", "role": "CEO" }
+  ],
   "started": "2025-12-09T00:00:00Z",
   "last_updated": "2025-12-09T00:00:00Z",
   "completed_at": "2025-12-09T00:00:00Z",

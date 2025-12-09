@@ -1,0 +1,489 @@
+{
+  "$schema": "process-miner-structured-data-v1",
+  "schema_version": "1.0.0",
+
+  "session": {
+    "id": "session-20251209-001",
+    "started": "2025-12-09T00:00:00Z",
+    "last_updated": "2025-12-09T00:00:00Z",
+    "contributor": {
+      "name": "Markus",
+      "role": "CEO"
+    },
+    "process": {
+      "id": "COB-002",
+      "name": "Client Onboarding process"
+    },
+    "client_groups": ["BizBanking"],
+    "checkpoint": {
+      "step": 9,
+      "last_item_id": "PP-COB-008"
+    },
+    "documents_uploaded": true
+  },
+
+  "imported_documents": [
+    {
+      "filename": "DTP-BizBanking-Client-Onboarding-v2.3.pdf",
+      "type": "DTP",
+      "pages": 12,
+      "last_updated": "2024-08-15",
+      "imported_at": "2025-12-09T00:00:00Z"
+    }
+  ],
+
+  "metadata": {
+    "purpose": "The Client Onboarding process establishes the formal banking relationship between the organization and new BizBanking clients. Its primary purpose is to verify client identity, assess risk, and set up the appropriate accounts and products while ensuring full compliance with regulatory requirements including KYC and AML obligations. A secondary purpose is risk management — ensuring only clients meeting the bank's risk appetite are onboarded.",
+    "trigger": "The process is initiated when a prospective BizBanking client expresses intent to establish a banking relationship. Primary triggers include: direct client inquiry, RM-initiated acquisition, referrals from existing clients/partners, or product upgrades from retail to BizBanking segment. The formal process begins when the RM creates a new client record in the CRM.",
+    "frequency": "Continuous, demand-driven basis with no fixed schedule. Cases processed daily by Compliance and Operations teams. Approvals within SLA windows (same-day or next-day). Peak periods at month-end and quarter-end.",
+    "volume": "Monthly: 40-60 new onboardings. Weekly average: 10-15 cases in processing. Active pipeline: 25-35 cases at any time. Distribution: 70% standard, 25% enhanced due diligence, 5% complex/high-risk. Peak capacity: ~80 cases/month.",
+    "confidence": "HIGH",
+    "sla_target": "5 business days for standard onboarding"
+  },
+
+  "process_steps": [
+    {
+      "id": "PS-COB-001",
+      "name": "Initial Client Contact",
+      "owner": "Relationship Manager",
+      "systems": ["CRM"],
+      "rationale": "Capture client interest and basic information",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PS-COB-002",
+      "name": "Document Collection",
+      "owner": "Relationship Manager",
+      "systems": ["CRM"],
+      "rationale": "Gather required documentation for KYC",
+      "source": "imported",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "PS-COB-003",
+      "name": "KYC Verification",
+      "owner": "Compliance Officer",
+      "systems": ["KYC Platform"],
+      "rationale": "Verify client identity and documentation",
+      "source": "imported",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "PS-COB-004",
+      "name": "AML Screening",
+      "owner": "Compliance Officer",
+      "systems": ["KYC Platform"],
+      "rationale": "Screen against sanctions and PEP lists",
+      "source": "imported",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "PS-COB-005",
+      "name": "Risk Assessment",
+      "owner": "Compliance Officer",
+      "systems": ["KYC Platform"],
+      "rationale": "Determine client risk rating",
+      "source": "imported",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "PS-COB-006",
+      "name": "Account Setup",
+      "owner": "Operations",
+      "systems": ["Core Banking"],
+      "rationale": "Create accounts in core banking system",
+      "source": "imported",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "PS-COB-007",
+      "name": "Product Activation",
+      "owner": "Onboarding Specialist",
+      "systems": ["Core Banking", "CRM"],
+      "rationale": "Activate requested products and services",
+      "source": "imported",
+      "confidence": "MEDIUM"
+    },
+    {
+      "id": "PS-COB-008",
+      "name": "Welcome & Handover",
+      "owner": "Relationship Manager",
+      "systems": ["CRM"],
+      "rationale": "Complete onboarding and handover to BAU",
+      "source": "imported",
+      "confidence": "HIGH"
+    }
+  ],
+
+  "process_exceptions": [
+    {
+      "id": "EX-COB-001",
+      "name": "Incomplete Documentation",
+      "trigger": "Client unable to provide required documents",
+      "affected_steps": ["PS-COB-002", "PS-COB-003"],
+      "frequency": "MEDIUM",
+      "impact": "MEDIUM",
+      "handling": "RM follows up with client, provides checklist, sets deadline. If not resolved in 10 days, case is paused.",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "EX-COB-002",
+      "name": "Failed KYC Verification",
+      "trigger": "Identity verification fails or documents invalid",
+      "affected_steps": ["PS-COB-003"],
+      "frequency": "LOW",
+      "impact": "HIGH",
+      "handling": "Case returned to RM for re-collection. If repeated failure, escalate to Compliance Manager for decision.",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "EX-COB-003",
+      "name": "AML/Sanctions Hit",
+      "trigger": "Client matches sanctions list or PEP database",
+      "affected_steps": ["PS-COB-004"],
+      "frequency": "LOW",
+      "impact": "CRITICAL",
+      "handling": "Immediate escalation to Compliance Leadership. Case frozen pending investigation. Potential regulatory reporting required.",
+      "source": "elicited",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "EX-COB-004",
+      "name": "High-Risk Client Escalation",
+      "trigger": "Risk rating requires senior approval",
+      "affected_steps": ["PS-COB-005"],
+      "frequency": "MEDIUM",
+      "impact": "MEDIUM",
+      "handling": "Case routed to Senior Compliance Officer or Risk Committee based on rating. Enhanced due diligence documentation required.",
+      "source": "elicited",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "EX-COB-005",
+      "name": "System Downtime",
+      "trigger": "Core Banking or KYC Platform unavailable",
+      "affected_steps": ["PS-COB-003", "PS-COB-006"],
+      "frequency": "LOW",
+      "impact": "HIGH",
+      "handling": "Cases queued for processing when system restored. Client notified of delay. Manual workarounds for critical cases only.",
+      "source": "elicited",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "EX-COB-006",
+      "name": "Product Not Available",
+      "trigger": "Requested product not available for client type",
+      "affected_steps": ["PS-COB-007"],
+      "frequency": "LOW",
+      "impact": "LOW",
+      "handling": "Onboarding Specialist proposes alternatives. RM discusses with client. Proceed with available products or defer activation.",
+      "source": "elicited",
+      "confidence": "HIGH"
+    }
+  ],
+
+  "pain_points": [
+    {
+      "id": "PP-COB-001",
+      "name": "Document Chase",
+      "description": "RMs spend 30%+ of time chasing clients for documents, delaying onboarding and reducing capacity for new business acquisition.",
+      "category": "Efficiency",
+      "affected_steps": ["PS-COB-002"],
+      "severity": "HIGH",
+      "impact": "RMs spend 30%+ of time chasing clients for documents",
+      "frequency": "Daily",
+      "root_cause": "No automated document checklist or reminder system; reliance on manual follow-ups",
+      "quick_win": true,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PP-COB-002",
+      "name": "Manual Data Re-entry",
+      "description": "Same client data entered 3x across CRM, KYC Platform, and Core Banking with no system integration.",
+      "category": "Error-prone",
+      "affected_steps": ["PS-COB-001", "PS-COB-006"],
+      "severity": "HIGH",
+      "impact": "Triple data entry creates errors, delays, and staff frustration",
+      "frequency": "Every case",
+      "root_cause": "Systems not integrated; no master data management",
+      "quick_win": false,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PP-COB-003",
+      "name": "KYC Platform Slowness",
+      "description": "System response times of 10-15 seconds per screen impacting Compliance Officer productivity.",
+      "category": "Bottleneck",
+      "affected_steps": ["PS-COB-003", "PS-COB-004"],
+      "severity": "MEDIUM",
+      "impact": "Compliance processing takes 2x longer than necessary due to system lag",
+      "frequency": "Constant",
+      "root_cause": "Legacy infrastructure; database performance issues",
+      "quick_win": false,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PP-COB-004",
+      "name": "Unclear Handoff Points",
+      "description": "No formal handoff notification between RM and Compliance; Compliance checks queue manually.",
+      "category": "Communication",
+      "affected_steps": ["PS-COB-002", "PS-COB-003"],
+      "severity": "MEDIUM",
+      "impact": "Cases sit idle awaiting pickup; average 4-hour delay at handoff",
+      "frequency": "Every case",
+      "root_cause": "No workflow automation; manual queue management",
+      "quick_win": true,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PP-COB-005",
+      "name": "Risk Rating Subjectivity",
+      "description": "Different Compliance Officers rate the same client profile differently due to lack of standardized criteria.",
+      "category": "Consistency",
+      "affected_steps": ["PS-COB-005"],
+      "severity": "MEDIUM",
+      "impact": "Inconsistent risk decisions; potential compliance and audit issues",
+      "frequency": "Frequent",
+      "root_cause": "No standardized scoring matrix; reliance on individual judgment",
+      "quick_win": true,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PP-COB-006",
+      "name": "SLA Tracking Manual",
+      "description": "No automated SLA dashboard; Excel spreadsheet used for tracking case timelines.",
+      "category": "Visibility",
+      "affected_steps": ["PS-COB-001", "PS-COB-002", "PS-COB-003", "PS-COB-004", "PS-COB-005", "PS-COB-006", "PS-COB-007", "PS-COB-008"],
+      "severity": "HIGH",
+      "impact": "Unable to identify at-risk cases proactively; SLA breaches discovered late",
+      "frequency": "Daily",
+      "root_cause": "No workflow management system; manual tracking in spreadsheets",
+      "quick_win": true,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PP-COB-007",
+      "name": "Client Communication Gaps",
+      "description": "Clients not proactively updated on application status between milestones.",
+      "category": "Client Experience",
+      "affected_steps": ["PS-COB-002", "PS-COB-008"],
+      "severity": "MEDIUM",
+      "impact": "Client frustration; increased inbound inquiries to RMs",
+      "frequency": "Most cases",
+      "root_cause": "No automated status notifications; manual client updates only",
+      "quick_win": true,
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PP-COB-008",
+      "name": "No Client Portal",
+      "description": "Clients have no self-service portal to track their onboarding status, upload documents, or communicate with the bank. All interactions require manual coordination through email and phone calls with the Relationship Manager.",
+      "category": "Client Experience",
+      "affected_steps": ["PS-COB-001", "PS-COB-002", "PS-COB-008"],
+      "severity": "HIGH",
+      "impact": "Clients cannot self-serve for document uploads or status checks, resulting in high RM workload for routine inquiries, delayed document collection, poor client experience during onboarding, and competitive disadvantage against banks offering digital onboarding capabilities.",
+      "frequency": "Every case",
+      "root_cause": "No digital client-facing platform; reliance on manual email and phone interactions",
+      "quick_win": false,
+      "source": "elicited",
+      "confidence": "HIGH"
+    }
+  ],
+
+  "controls": [
+    {
+      "id": "CP-COB-001",
+      "name": "KYC Verification Check",
+      "type": "PREVENTIVE",
+      "regulation": "AML/KYC Regulations",
+      "process_step": "PS-COB-003",
+      "description": "Verify client identity against provided documentation and regulatory requirements",
+      "effectiveness": "HIGH",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-COB-002",
+      "name": "AML/Sanctions Screening",
+      "type": "PREVENTIVE",
+      "regulation": "AML Regulations",
+      "process_step": "PS-COB-004",
+      "description": "Screen client against global sanctions lists, PEP databases, and adverse media",
+      "effectiveness": "HIGH",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-COB-003",
+      "name": "Risk Rating Approval",
+      "type": "PREVENTIVE",
+      "regulation": "Internal Risk Policy",
+      "process_step": "PS-COB-005",
+      "description": "Assign and approve risk rating based on client profile and due diligence findings",
+      "effectiveness": "MEDIUM",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-COB-004",
+      "name": "Four-Eyes Account Setup",
+      "type": "DETECTIVE",
+      "regulation": "Internal Policy - Segregation of Duties",
+      "process_step": "PS-COB-006",
+      "description": "Require second person review/approval for account creation in Core Banking",
+      "effectiveness": "HIGH",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-COB-005",
+      "name": "Final Onboarding Approval",
+      "type": "PREVENTIVE",
+      "regulation": "Internal Policy",
+      "process_step": "PS-COB-007",
+      "description": "Management sign-off required before client activation and product enablement",
+      "effectiveness": "MEDIUM",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-COB-006",
+      "name": "Document Authenticity Check",
+      "type": "PREVENTIVE",
+      "regulation": "KYC Regulations",
+      "process_step": "PS-COB-003",
+      "description": "Verify authenticity of submitted documents using validation tools and manual review",
+      "effectiveness": "MEDIUM",
+      "source": "elicited",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-COB-007",
+      "name": "PEP Enhanced Due Diligence",
+      "type": "PREVENTIVE",
+      "regulation": "AML Regulations / FATF Guidelines",
+      "process_step": ["PS-COB-004", "PS-COB-005"],
+      "description": "Enhanced due diligence procedures for Politically Exposed Persons including source of wealth verification",
+      "effectiveness": "HIGH",
+      "source": "elicited",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-COB-008",
+      "name": "Audit Trail Logging",
+      "type": "DETECTIVE",
+      "regulation": "Data Protection / Internal Audit Policy",
+      "process_step": ["PS-COB-001", "PS-COB-002", "PS-COB-003", "PS-COB-004", "PS-COB-005", "PS-COB-006", "PS-COB-007", "PS-COB-008"],
+      "description": "Complete audit trail of all actions, decisions, and approvals throughout the onboarding process",
+      "effectiveness": "HIGH",
+      "source": "elicited",
+      "confidence": "HIGH"
+    }
+  ],
+
+  "systems": [
+    {
+      "id": "SYS-COB-001",
+      "name": "Core Banking",
+      "purpose": "Account creation and product management - system of record for client master data",
+      "type": "CORE",
+      "process_steps": ["PS-COB-006", "PS-COB-007"],
+      "integration_status": "MANUAL with CRM, PARTIAL with KYC Platform",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-COB-002",
+      "name": "CRM",
+      "purpose": "Client relationship tracking, pipeline management, onboarding case status",
+      "type": "SUPPORTING",
+      "process_steps": ["PS-COB-001", "PS-COB-002", "PS-COB-007", "PS-COB-008"],
+      "integration_status": "MANUAL with Core Banking and KYC Platform",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-COB-003",
+      "name": "KYC Platform",
+      "purpose": "Identity verification, AML screening, sanctions checks, and risk rating",
+      "type": "CORE",
+      "process_steps": ["PS-COB-003", "PS-COB-004", "PS-COB-005"],
+      "integration_status": "INTEGRATED with DMS, PARTIAL with Core Banking",
+      "source": "imported",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-COB-004",
+      "name": "Document Management System",
+      "purpose": "Centralized storage and retrieval of client documentation for KYC",
+      "type": "SUPPORTING",
+      "process_steps": ["PS-COB-002", "PS-COB-003"],
+      "integration_status": "INTEGRATED with KYC Platform",
+      "source": "elicited",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-COB-005",
+      "name": "Email/Outlook",
+      "purpose": "Client communication and notifications throughout onboarding",
+      "type": "EXTERNAL",
+      "process_steps": ["PS-COB-001", "PS-COB-002", "PS-COB-008"],
+      "integration_status": "MANUAL - no system integration",
+      "source": "elicited",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-COB-006",
+      "name": "Excel (SLA Tracker)",
+      "purpose": "Manual SLA and pipeline tracking spreadsheet",
+      "type": "EXTERNAL",
+      "process_steps": ["PS-COB-001", "PS-COB-002", "PS-COB-003", "PS-COB-004", "PS-COB-005", "PS-COB-006", "PS-COB-007", "PS-COB-008"],
+      "integration_status": "MANUAL - no system integration",
+      "linked_pain_point": "PP-COB-006",
+      "source": "elicited",
+      "confidence": "HIGH"
+    }
+  ],
+
+  "gap_analysis": {
+    "high_coverage": ["process_steps"],
+    "medium_coverage": ["exceptions", "controls", "systems"],
+    "low_coverage": ["pain_points"],
+    "gaps_identified": [
+      "Step handoffs unclear between RM and Operations",
+      "Pain points not documented - need SME input",
+      "Only 2 exceptions listed - likely more exist",
+      "Control effectiveness not assessed",
+      "System integration points not detailed"
+    ]
+  },
+
+  "validation": {
+    "status": "COMPLETE",
+    "completed_at": "2025-12-09T00:00:00Z",
+    "unknowns": [],
+    "overrides": [],
+    "element_counts": {
+      "process_steps": 8,
+      "exceptions": 6,
+      "pain_points": 8,
+      "controls": 8,
+      "systems": 6,
+      "total": 36
+    },
+    "confidence_summary": {
+      "overall": "HIGH",
+      "process_overview": "HIGH",
+      "process_steps": "HIGH",
+      "exceptions": "HIGH",
+      "pain_points": "HIGH",
+      "controls": "HIGH",
+      "systems": "HIGH"
+    },
+    "quick_wins_identified": 5,
+    "ai_review": "No critical gaps or inconsistencies found. Documentation is comprehensive and internally consistent."
+  }
+}

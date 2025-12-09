@@ -98,8 +98,11 @@ agent:
         template: 'innovation-analysis-documentation'
       section: 'Flow 1: Innovation Research'
 
-    - trigger: generate-outputs
+    - trigger: generate-summary-innovation
       workflow: '{module_root}/workflows/generate-outputs/workflow.md'
+      data:
+        primary_document: 'as-is-process-documentation.md'
+        template: 'management-summary-innovation'
       description: 'Create Innovation Management Summary'
       section: 'Outputs'
 

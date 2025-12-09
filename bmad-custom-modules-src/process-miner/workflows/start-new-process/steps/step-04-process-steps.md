@@ -161,7 +161,11 @@ Each step will have a unique PS# ID for cross-referencing.
 </approval-menu>
 ```
 
-### 5. Update Output Files (Silent)
+### 5. Update Output Files (Silent) — RECOVERY-SAFE
+
+**🚨 CRITICAL: Incremental Save for Recovery**
+
+After process steps are approved, you MUST update BOTH files to enable session recovery:
 
 ```
 <action silent="true">Update {structuredDataFile}:
@@ -171,9 +175,40 @@ Each step will have a unique PS# ID for cross-referencing.
   - session.last_updated = {{timestamp}}
 </action>
 
-<action silent="true">Update {mainDocumentFile}: Section 2
-- Insert process steps table (PS#, Name, Description, Owner, Rationale)
-- Generate Mermaid flowchart diagram from approved steps
+<action silent="true" critical="RECOVERY">Update {mainDocumentFile} - APPEND Section 2:
+
+  APPEND the following content to the main document:
+
+  ---
+  ## 2. Process Steps
+
+  > **About this section:** The step-by-step flow of this process from start to finish.
+
+  ### 2.1 Process Step Summary
+
+  | PS# | Step Name | Owner | System(s) | Rationale |
+  |-----|-----------|-------|-----------|-----------|
+  {{Generate table row for each approved step}}
+
+  ### 2.2 Process Flow Diagram
+
+  ```mermaid
+  graph TD
+      {{Generate Mermaid flowchart from approved steps}}
+  ```
+
+  ### 2.3 Step Details
+
+  {{Brief narrative describing the flow, key handoffs, and decision points}}
+
+  > **Section Confidence:** {{assessed_confidence}} | **Basis:** SME-validated during elicitation
+
+  ---
+
+  This incremental save ensures:
+  - If session aborts after Step 4, Section 2 is recoverable from the MD file
+  - Process steps preserved with Mermaid diagram
+  - SME work is never lost
 </action>
 ```
 
@@ -210,7 +245,8 @@ ONLY WHEN [process steps approved] and [Mermaid flowchart generated] and [output
 - Each step has name, description, owner, rationale
 - Steps approved using adaptive_approval protocol
 - Mermaid flowchart generated
-- Updated structured-data.json and main document
+- Updated structured-data.json
+- **APPENDED Section 2 to as-is-process-documentation.md (RECOVERY-SAFE)**
 - Ready to proceed to Step 5
 
 ### ❌ SYSTEM FAILURE:

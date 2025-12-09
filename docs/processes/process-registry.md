@@ -8,15 +8,16 @@ Central registry of all documented processes with sequential numbering.
 
 | # | Process ID | Process Name | Status | Created | Last Updated |
 |---|------------|--------------|--------|---------|--------------|
-| 001 | ONB-001 | Onboarding | COMPLETE | 2025-12-09 | 2025-12-09 |
+| 001 | ONB-001 | Onboarding | TRANSFORMATION COMPLETE | 2025-12-09 | 2025-12-09 |
+| 002 | COB-002 | Client Onboarding process | COMPLETE | 2025-12-09 | 2025-12-09 |
 
 ---
 
 ## Registry Notes
 
 - **Folder Pattern**: `{###}-{PROCESS_NAME}` (e.g., `001-onboarding`, `002-loan-origination`)
-- **Next Number**: 2
-- **Status Values**: `DRAFT`, `IN_PROGRESS`, `REVIEW`, `APPROVED`, `ARCHIVED`
+- **Next Number**: 3
+- **Status Values**: `DRAFT`, `IN_PROGRESS`, `REVIEW`, `COMPLETE`, `TRANSFORMATION COMPLETE`, `APPROVED`, `ARCHIVED`
 
 ---
 

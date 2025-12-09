@@ -134,7 +134,11 @@ These are alternative paths that happen when something unusual occurs.
 </loop>
 ```
 
-### 5. Update Output Files (Silent)
+### 5. Update Output Files (Silent) — RECOVERY-SAFE
+
+**🚨 CRITICAL: Incremental Save for Recovery**
+
+After exceptions are captured (or noted as none), you MUST update ALL THREE files to enable session recovery:
 
 ```
 <action silent="true">Update {structuredDataFile}:
@@ -142,6 +146,85 @@ These are alternative paths that happen when something unusual occurs.
   - Each exception: id, name, description, frequency, handling, links.process_steps, confidence
   - session.checkpoint.step = 5
   - session.last_updated = {{timestamp}}
+</action>
+
+<action silent="true" critical="RECOVERY">Update {mainDocumentFile} - APPEND Section 3:
+
+  APPEND the following content to the main document:
+
+  ---
+  ## 3. Exception Paths and Variations
+
+  > **About this section:** Summary of exceptions. For full details including root cause analysis and handling procedures, see [Exception Details](./exceptions-detail.md).
+
+  ### 3.1 Exception Summary
+
+  {{exceptions_summary_paragraph}}
+
+  ### 3.2 Exception Summary Table
+
+  | EX# | Exception | Trigger | Affected Steps | Frequency | Impact |
+  |-----|-----------|---------|----------------|-----------|--------|
+  {{Generate table row for each approved exception}}
+
+  ### 3.3 Exception Statistics
+
+  | Metric | Value |
+  |--------|-------|
+  | Total Exceptions | {{total_exceptions}} |
+  | High-Impact Exceptions | {{count high impact}} |
+  | Frequently Occurring | {{count frequent}} |
+
+  > **Full Analysis:** [View Exception Details](./exceptions-detail.md)
+  >
+  > **Section Confidence:** {{assessed_confidence}} | **Basis:** SME-validated during elicitation
+
+  ---
+</action>
+
+<action silent="true" critical="RECOVERY">Update {exceptionsDetailFile} - WRITE FULL CONTENT:
+
+  WRITE the full exceptions-detail.md file with ALL captured exception data:
+
+  # Exception Paths & Variations: {{process_name}}
+
+  **Process ID:** {{process_id}}
+  **Document Type:** Exception Detail Analysis
+  **Last Updated:** {{date}}
+  **Related Document:** [AS-IS Process Documentation](./as-is-process-documentation.md)
+
+  ---
+
+  ## Executive Summary
+
+  {{exceptions_executive_summary}}
+
+  ---
+
+  ## Exception Summary Table
+
+  | EX# | Exception Name | Trigger Condition | Affected Steps | Frequency | Business Impact | Handling Owner |
+  |-----|----------------|-------------------|----------------|-----------|-----------------|----------------|
+  {{Generate full table}}
+
+  ---
+
+  ## Detailed Exception Analysis
+
+  {{For each exception, generate full detail block with:
+    - Overview table (ID, Name, Category, Affected Steps, Frequency, Impact, Owner)
+    - Trigger Conditions
+    - Current Handling Procedure
+    - Root Cause Analysis (if captured)
+    - Improvement Opportunities (if captured)
+  }}
+
+  ---
+
+  This incremental save ensures:
+  - If session aborts after Step 5, all exceptions are recoverable
+  - Both summary (main doc) and detail (exceptions-detail.md) are saved
+  - SME work is never lost
 </action>
 ```
 
@@ -164,7 +247,9 @@ Proceeding to Step 6: Pain Points & Challenges...
 ### ✅ SUCCESS:
 - Exceptions captured with EX# IDs (or noted none exist)
 - Each exception linked to relevant PS# IDs
-- Updated BOTH structured-data.json AND exceptions-detail.md
+- Updated structured-data.json
+- **APPENDED Section 3 to as-is-process-documentation.md (RECOVERY-SAFE)**
+- **WROTE full exceptions-detail.md (RECOVERY-SAFE)**
 - Ready to proceed to Step 6
 
 ### ❌ SYSTEM FAILURE:

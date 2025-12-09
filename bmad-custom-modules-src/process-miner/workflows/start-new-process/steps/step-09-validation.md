@@ -101,7 +101,99 @@ Great work! Let me summarize what we've captured:
 - Systems linked to process steps: {{sys_ps_links}}
 ```
 
-### 2. AI-Driven Gap Analysis
+### 2. 🚨 MANDATORY: Output File Integrity Check
+
+**THIS CHECK IS NON-NEGOTIABLE — MUST BE PERFORMED BEFORE ANY OTHER VALIDATION**
+
+```
+<critical name="FILE_INTEGRITY_CHECK" blocking="true">
+Before proceeding with gap analysis, you MUST verify that all output files exist and contain content.
+This is a RECOVERY check to catch situations where previous steps failed to write to markdown files.
+</critical>
+
+<action name="verify_files" blocking="true">
+CHECK each of the following files:
+
+1. **{structuredDataFile}** (structured-data.json)
+   - File exists: YES/NO
+   - Contains process_steps array with data: YES/NO
+   - session.checkpoint.step >= 8: YES/NO
+
+2. **{mainDocumentFile}** (as-is-process-documentation.md)
+   - File exists: YES/NO
+   - Contains "## 1. Process Overview": YES/NO
+   - Contains "## 2. Process Steps": YES/NO
+   - Contains "## 3. Exception Paths": YES/NO (or note if no exceptions)
+   - Contains "## 4. Control Points": YES/NO
+   - Contains "## 5. System Dependencies": YES/NO
+   - File size > 1000 bytes: YES/NO
+
+3. **{exceptionsDetailFile}** (exceptions-detail.md)
+   - File exists: YES/NO
+   - Contains exception details OR note that no exceptions exist: YES/NO
+   - File size > 500 bytes (if exceptions exist): YES/NO
+
+4. **{painPointsDetailFile}** (pain-points-detail.md)
+   - File exists: YES/NO
+   - Contains pain point details OR note that no pain points exist: YES/NO
+   - File size > 500 bytes (if pain points exist): YES/NO
+
+5. **{controlPointsDetailFile}** (control-points-detail.md)
+   - File exists: YES/NO
+   - Contains control details OR note that standard controls only: YES/NO
+   - File size > 500 bytes (if controls exist): YES/NO
+</action>
+
+<check if="ANY file check fails">
+  🚨 **FILE INTEGRITY FAILURE DETECTED** 🚨
+
+  <display critical="true">
+  ---
+  ⚠️ **CRITICAL: Output Files Missing or Incomplete**
+
+  I've detected that one or more output files were not properly written during previous steps.
+  This means SME work may not have been saved to the markdown files.
+
+  **Files with issues:**
+  {{list_failed_checks}}
+
+  **Recovery Action Required:**
+  I will now generate the missing content from the structured-data.json and write it to the
+  missing/incomplete files.
+
+  This ensures your work is not lost.
+  ---
+  </display>
+
+  <action name="recovery_write" critical="true">
+  For each missing/incomplete file:
+
+  1. Read all data from {structuredDataFile}
+  2. Generate the appropriate markdown content using templates
+  3. WRITE the complete content to the file
+  4. Verify the write was successful
+
+  **Recovery writes:**
+  - If {mainDocumentFile} incomplete → Generate full document from JSON data
+  - If {exceptionsDetailFile} incomplete → Generate from process_exceptions array
+  - If {painPointsDetailFile} incomplete → Generate from pain_points array
+  - If {controlPointsDetailFile} incomplete → Generate from controls array
+  </action>
+
+  <action>After recovery, RE-RUN the file integrity check to confirm all files now pass</action>
+</check>
+
+<check if="ALL file checks pass">
+  ✅ **File Integrity Check PASSED**
+
+  All 5 output files exist and contain expected content.
+  Proceeding to gap analysis...
+</check>
+```
+
+---
+
+### 3. AI-Driven Gap Analysis
 
 ```
 <critical name="AI_ASSESSMENT">
@@ -120,7 +212,7 @@ and identify any gaps, ambiguities, or inconsistencies that need clarification.
 <action>Generate list of clarification questions (0 to N items)</action>
 ```
 
-### 3. Handle Clarification Questions (if any)
+### 4. Handle Clarification Questions (if any)
 
 ```
 <check if="clarification_questions.length > 0">
@@ -151,7 +243,7 @@ and identify any gaps, ambiguities, or inconsistencies that need clarification.
 </check>
 ```
 
-### 4. User Additions
+### 5. User Additions
 
 ```
 <ask response="user_additions">
@@ -162,7 +254,7 @@ Anything you'd like to add or correct?
 </ask>
 ```
 
-### 5. Finalize All Output Files
+### 6. Finalize All Output Files
 
 ```
 <action>Mark session as complete</action>
@@ -182,7 +274,7 @@ Anything you'd like to add or correct?
 <action silent="true">Finalize {controlPointsDetailFile} with completion info</action>
 ```
 
-### 6. Completion Message
+### 7. Completion Message
 
 ```
 **Documentation Complete!**
@@ -224,6 +316,8 @@ This is the FINAL step. ONLY WHEN [AI gap analysis complete] and [clarifications
 ## 🚨 SYSTEM SUCCESS/FAILURE METRICS
 
 ### ✅ SUCCESS:
+- **FILE INTEGRITY CHECK PASSED** (all 5 files exist with expected content)
+- If recovery was needed, all missing content was generated and written
 - AI performed gap analysis
 - Clarification questions addressed
 - User confirmed completeness
@@ -232,6 +326,9 @@ This is the FINAL step. ONLY WHEN [AI gap analysis complete] and [clarifications
 - Next steps communicated
 
 ### ❌ SYSTEM FAILURE:
+- **Skipped file integrity check** ← CRITICAL FAILURE
+- File integrity failed and recovery was not attempted
+- Recovery attempted but files still incomplete
 - Skipped AI gap analysis
 - Did not address clarification questions
 - Did not finalize output files

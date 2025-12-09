@@ -266,7 +266,7 @@ When consistency_confidence >= 90%:
 | Inconsistencies Resolved | [n] |
 | Inconsistencies Skipped | [n] |
 
-Proceeding to review summary...
+Proceeding to content coherence check...
 ---
 ```
 
@@ -284,7 +284,316 @@ Update review-state.json:
 }
 ```
 
-### 2. Calculate Review Statistics
+### 2. Content Coherence Check
+
+**CRITICAL:** After ID consistency is verified, perform a semantic analysis to detect content that no longer fits together logically.
+
+#### 2a. Reload All Documents
+
+Load the latest version of all documents:
+- Main process documentation (as-is-process-documentation.md)
+- All detail documents (control-points-detail.md, exceptions-detail.md, pain-points-detail.md, etc.)
+- structured-data.json
+
+#### 2b. Semantic Coherence Analysis
+
+Analyze the full document set for content coherence issues:
+
+**Coherence Check Categories:**
+
+| Category | What to Check | Example Issue |
+|----------|---------------|---------------|
+| **Terminology Drift** | Same concept described with different terms across sections | "approval workflow" in Section 2 vs "authorization process" in Section 4 |
+| **Contradictory Statements** | Facts that conflict between sections | Section 2 says "3 approvers required" but Section 4 says "single approval sufficient" |
+| **Orphaned Context** | References to content that was edited/removed elsewhere | "As described in the exception handling above..." but that exception was deleted |
+| **Temporal Inconsistency** | Timeline/sequence mismatches | Step 3 says "after manager approval" but Step 2 doesn't mention manager approval |
+| **Scope Mismatch** | Detail doc has more/fewer items than main doc describes | Main doc says "5 control points" but detail doc lists 7 |
+| **Role Inconsistency** | Different roles assigned to same responsibility | Section 2: "HR Manager approves" vs Section 5: "Team Lead approves" |
+| **System Dependency Gaps** | Systems mentioned in steps but not in system dependencies | Process step mentions "SAP" but SYS# section doesn't include it |
+| **Metric/KPI Misalignment** | KPIs that don't match the process as documented | KPI measures "approval time" but process has no approval step |
+
+#### 2c. Build Coherence Issue List
+
+For each coherence issue found, record:
+
+```json
+{
+  "coherence_issues": [
+    {
+      "id": "COH-001",
+      "category": "contradictory_statements",
+      "severity": "high",
+      "locations": [
+        {"section": "Section 2: Process Steps", "text": "Requires 3 approvers..."},
+        {"section": "Section 4: Control Points", "text": "Single approval sufficient..."}
+      ],
+      "issue": "Conflicting approval requirements between process steps and control points",
+      "impact": "Users may follow incorrect procedure; audit risk",
+      "clarification_question": "Which approval requirement is correct: 3 approvers or single approval? Has this changed recently?"
+    }
+  ]
+}
+```
+
+#### 2d. Calculate Coherence Confidence
+
+```
+total_coherence_checks = count of semantic checks performed
+issues_found = count of coherence issues detected
+coherence_confidence = 100 - (issues_found * weight_factor)
+```
+
+**Weight factors by severity:**
+- High severity: -15% each
+- Medium severity: -8% each
+- Low severity: -3% each
+
+**Target:** >= 85% coherence confidence
+
+#### 2e. Display Coherence Summary
+
+```
+---
+**Content Coherence Check**
+
+| Metric | Value |
+|--------|-------|
+| Coherence Checks Performed | [n] |
+| Issues Found | [n] (High: [n], Medium: [n], Low: [n]) |
+| **Coherence Confidence** | [X]% |
+
+Target: 85%
+```
+
+#### 2f. Coherence Resolution Loop (if < 85%)
+
+**CRITICAL:** User should address coherence issues before proceeding. The loop continues until either:
+- Coherence reaches >= 85%
+- User chooses to skip coherence check (mark as "coherence not verified")
+
+If coherence_confidence < 85%:
+
+```
+Coherence: [X]% (target: 85%)
+
+I found [N] content coherence issue(s) that need attention.
+
+---
+**Coherence Issue [1] of [N]:**
+
+| Field | Value |
+|-------|-------|
+| Category | [terminology_drift / contradictory_statements / etc.] |
+| Severity | [high / medium / low] |
+| Impact | [description of potential impact] |
+
+**Locations:**
+
+**Location 1:** [Section/Document name]
+> [quoted text]
+
+**Location 2:** [Section/Document name]
+> [quoted text]
+
+**Issue:** [description of the coherence problem]
+
+---
+
+| # | Action |
+|---|--------|
+| a | AI suggests resolution (show proposed changes) |
+| c | Custom correction - provide your own fix |
+| q | Add to clarification questions for SME |
+| s | Skip this issue |
+| x | Skip coherence check - proceed without verification |
+
+Select:
+```
+
+**Handle response:**
+
+- If 'a' (AI suggests):
+  - Generate proposed resolution for both/all locations
+  - Show before/after for each affected location
+  - Get user confirmation (y/n)
+  - Apply fixes to all affected documents
+  - Recalculate coherence confidence
+  - Continue loop if < 85%
+
+- If 'c' (custom correction):
+  - Ask user which location(s) to update
+  - Collect correction(s)
+  - Show before/after
+  - Apply corrections
+  - Recalculate coherence confidence
+  - Continue loop if < 85%
+
+- If 'q' (add to clarification questions):
+  - Add the auto-generated clarification_question to pending questions list
+  - Mark issue as "pending clarification"
+  - Move to next issue
+  - Questions will be presented in Section 3
+
+- If 's' (skip issue):
+  - Mark as "skipped - unresolved"
+  - Move to next issue
+
+- If 'x' (skip coherence check):
+  - Warn user: "Proceeding without coherence verification. Document may contain logical inconsistencies."
+  - Mark coherence_check as "skipped"
+  - Proceed to clarification questions
+
+#### 2g. Coherence Check Complete
+
+When coherence_confidence >= 85% (or user skips):
+
+```
+---
+**Coherence Check Complete**
+
+| Metric | Value |
+|--------|-------|
+| Coherence Confidence | [X]% |
+| Issues Resolved | [n] |
+| Issues Skipped | [n] |
+| Pending Clarifications | [n] |
+
+Proceeding to clarification questions...
+---
+```
+
+Update review-state.json:
+```json
+{
+  "coherence_check": {
+    "completed": true,
+    "confidence": X,
+    "issues_found": N,
+    "resolved": N,
+    "skipped": N,
+    "pending_clarifications": N
+  }
+}
+```
+
+### 3. Clarification Questions for SME
+
+**Purpose:** Present any unresolved questions that require human domain expertise to answer.
+
+#### 3a. Compile Clarification Questions
+
+Gather questions from:
+1. Coherence issues marked "pending clarification" (from Section 2)
+2. AI-generated questions based on document analysis
+3. Low-confidence sections that weren't fully resolved in Step 3
+
+**AI-Generated Question Categories:**
+
+| Category | Trigger | Example Question |
+|----------|---------|------------------|
+| **Missing Context** | Vague or incomplete descriptions | "The document mentions 'standard approval process' - can you describe what this entails?" |
+| **Assumed Knowledge** | References to undocumented procedures | "Step 4 says 'follow escalation procedure' - is this documented elsewhere or should we capture it here?" |
+| **Edge Cases** | Process paths not covered | "What happens if the manager is unavailable for more than 5 days?" |
+| **Outdated Indicators** | Content that may be stale | "This section mentions 'legacy system X' - is this still in use?" |
+| **Validation Needs** | Critical facts requiring confirmation | "The 72-hour SLA mentioned - is this still the current requirement?" |
+
+#### 3b. Display Clarification Questions
+
+If there are pending clarification questions:
+
+```
+---
+**Clarification Questions**
+
+The following questions require your input to ensure document accuracy:
+
+**Question [1] of [N]:**
+
+| Source | [coherence_issue / ai_analysis / low_confidence_section] |
+|--------|----------------------------------------------------------|
+| Related Section | [Section name] |
+| Priority | [high / medium / low] |
+
+**Question:**
+[The clarification question text]
+
+**Context:**
+> [relevant excerpt from document]
+
+**Why this matters:**
+[Explanation of impact if not clarified]
+
+---
+
+| # | Action |
+|---|--------|
+| a | Answer this question |
+| d | Defer - answer later (will be logged) |
+| n | Not applicable - remove question |
+| e | Elicitation options for complex answer |
+
+Select:
+```
+
+**Handle response:**
+
+- If 'a' (answer):
+  - Collect user's answer
+  - AI incorporates answer into relevant document section(s)
+  - Show before/after preview
+  - Get confirmation
+  - Apply changes
+  - Mark question as resolved
+  - Move to next question
+
+- If 'd' (defer):
+  - Log question in review-state.json as "deferred"
+  - Add to "Attention Needed" section of summary
+  - Move to next question
+
+- If 'n' (not applicable):
+  - Remove question from list
+  - Move to next question
+
+- If 'e' (elicitation):
+  - Show elicitation sub-menu (Advanced Elicitation, Party Mode, Brainstorming)
+  - Execute selected technique with question context
+  - Present resulting answer/content
+  - Get user validation
+  - Apply if approved
+
+#### 3c. Clarification Complete
+
+After all questions processed:
+
+```
+---
+**Clarification Complete**
+
+| Metric | Value |
+|--------|-------|
+| Questions Answered | [n] |
+| Questions Deferred | [n] |
+| Questions Removed | [n] |
+
+Proceeding to review statistics...
+---
+```
+
+Update review-state.json:
+```json
+{
+  "clarification_questions": {
+    "completed": true,
+    "total": N,
+    "answered": N,
+    "deferred": N,
+    "removed": N
+  }
+}
+```
+
+### 4. Calculate Review Statistics
 
 From review-state.json, calculate:
 
@@ -565,23 +874,34 @@ No next step file to load - workflow ends here or loops back.
 ### SUCCESS:
 
 - **Cross-section consistency check performed FIRST**
-- **Consistency confidence >= 90% achieved before proceeding to summary**
+- **Consistency confidence >= 90% achieved before proceeding to coherence check**
 - **Inconsistencies flagged one-by-one with resolution options**
+- **Content coherence check performed AFTER consistency check**
+- **Coherence confidence >= 85% achieved before proceeding to clarification questions**
+- **Coherence issues flagged one-by-one with resolution options (including "add to clarification questions")**
+- **Clarification questions compiled from coherence issues, AI analysis, and low-confidence sections**
+- **Clarification questions presented one-by-one with answer/defer/remove options**
+- **All documents reloaded before coherence check to ensure latest versions analyzed**
 - Accurate statistics calculated from review-state.json
 - Confidence changes correctly compared (before vs after)
 - **Confidence synced to structured-data.json (H/M/L mapped from numeric score)**
 - Professional change log entry generated
 - Document saved with all updates
-- review-state.json marked as completed (including consistency_check data and confidence_sync_result)
+- review-state.json marked as completed (including consistency_check, coherence_check, clarification_questions, and confidence_sync_result data)
 - User given clear next action options
 - Proceeds directly to next actions without export prompt
 
 ### SYSTEM FAILURE:
 
 - **Skipping cross-section consistency check**
-- **Proceeding to summary with consistency confidence < 90% (unless user explicitly skips)**
-- **Not checking detail documents (control-points-detail.md, etc.) for consistency**
-- **Showing all inconsistencies at once instead of one-by-one**
+- **Proceeding to coherence check with consistency confidence < 90% (unless user explicitly skips)**
+- **Skipping content coherence check**
+- **Proceeding to clarification questions with coherence confidence < 85% (unless user explicitly skips)**
+- **Not reloading all documents before coherence check (analyzing stale content)**
+- **Not generating clarification questions from coherence issues marked "pending clarification"**
+- **Showing all coherence issues at once instead of one-by-one**
+- **Showing all clarification questions at once instead of one-by-one**
+- **Not checking detail documents (control-points-detail.md, etc.) for consistency and coherence**
 - **Not syncing confidence to structured-data.json (leaving JSON and markdown out of sync)**
 - Incorrect statistics or confidence calculations
 - Not offering change log entry
