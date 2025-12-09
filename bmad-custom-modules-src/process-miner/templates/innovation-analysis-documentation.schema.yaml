@@ -1,0 +1,168 @@
+# Schema for Innovation Analysis Documentation Template
+# Used by review-draft workflow for sync and confidence scoring
+
+schema_version: "1.0"
+template_name: "innovation-analysis-documentation"
+template_description: "Innovation analysis with market trends, innovation backlog, feasibility matrix, and prioritized roadmap"
+
+# Sections that have sync-enabled detail documents
+sections:
+  # Section 1: Executive Summary
+  - title_pattern: "Executive Summary"
+    section_number: 1
+    sync_enabled: false
+
+  # Section 2: Innovation Overview
+  - title_pattern: "Innovation Overview"
+    section_number: 2
+    sync_enabled: false
+
+  # Section 3: Market Trends
+  - title_pattern: "Market Trends"
+    section_number: 3
+    detail_document: "market-trends-detail.md"
+    structured_id_prefix: "TR"
+    sync_enabled: true
+    summary_table_header: "| TR ID | Trend Name | Category | Maturity | Relevance | Impact Potential |"
+
+  # Section 4: Innovation Backlog
+  - title_pattern: "Innovation Backlog"
+    section_number: 4
+    detail_document: "innovation-ideas-detail.md"
+    structured_id_prefix: "II"
+    sync_enabled: true
+    summary_table_header: "| II ID | Innovation Idea | Category | Source | Status | Strategic Fit |"
+
+  # Section 5: Feasibility Matrix
+  - title_pattern: "Feasibility Matrix"
+    section_number: 5
+    detail_document: null
+    structured_id_prefix: "II"
+    sync_enabled: false
+    summary_table_header: "| II ID | Technical | Business | Strategic | Resource | Risk | Customer | Total Score |"
+
+  # Section 6: Innovation Deep Dives
+  - title_pattern: "Innovation Deep Dives"
+    section_number: 6
+    sync_enabled: false
+
+  # Section 7: Prioritized Roadmap
+  - title_pattern: "Prioritized Roadmap"
+    section_number: 7
+    sync_enabled: false
+
+  # Section 8: Strategic Recommendations
+  - title_pattern: "Strategic Recommendations"
+    section_number: 8
+    sync_enabled: false
+
+  # Section 9: Investment Analysis
+  - title_pattern: "Investment Analysis"
+    section_number: 9
+    detail_document: null
+    structured_id_prefix: "II"
+    sync_enabled: false
+    summary_table_header: "| II ID | Development Cost | Infrastructure Cost | Ongoing Cost | Total TCO |"
+
+  # Section 10: Risk & Mitigation
+  - title_pattern: "Risk & Mitigation"
+    section_number: 10
+    detail_document: null
+    structured_id_prefix: "IR"
+    sync_enabled: false
+    summary_table_header: "| Risk ID | Risk Description | Likelihood | Impact | Mitigation Strategy |"
+
+  # Section 11: Success Metrics
+  - title_pattern: "Success Metrics"
+    section_number: 11
+    sync_enabled: false
+
+  # Section 12: Appendices
+  - title_pattern: "Appendices"
+    section_number: 12
+    sync_enabled: false
+
+# Confidence scoring rules
+confidence_rules:
+  high_threshold: 90
+  medium_threshold: 70
+
+  # Fields that indicate incomplete content
+  incomplete_markers:
+    - "[TBD]"
+    - "[Unknown]"
+    - "[TODO]"
+    - "{{.*}}"
+    - "{.*_placeholder}"
+    - "..."
+
+  # Required cross-references by section
+  required_references:
+    3:  # Market Trends
+      - "TR"
+    4:  # Innovation Backlog
+      - "II"
+    5:  # Feasibility Matrix
+      - "II"
+    6:  # Innovation Deep Dives
+      - "II"
+    9:  # Investment Analysis
+      - "II"
+    10: # Risk & Mitigation
+      - "IR"
+      - "II"
+
+# Structured ID patterns for validation
+# Format: {PREFIX}-{PROCESS_ABBREV}-{SEQ} (e.g., TR-ONB-001, II-CRO-002)
+# Pattern matches: PREFIX, dash, 2-4 uppercase letters (process abbrev), dash, 3 digits
+id_patterns:
+  market_trend: "TR-[A-Z]{2,4}-\\d{3}"
+  innovation_idea: "II-[A-Z]{2,4}-\\d{3}"
+  innovation_risk: "IR-[A-Z]{2,4}-\\d{3}"
+
+# Companion documents
+companion_documents:
+  - name: "Market Trends Detail"
+    file: "market-trends-detail.md"
+    sync_section: 3
+
+  - name: "Innovation Ideas Detail"
+    file: "innovation-ideas-detail.md"
+    sync_section: 4
+
+  - name: "AS-IS Process Documentation"
+    file: "as-is-process-documentation.md"
+    sync_section: null
+
+# Feasibility scoring configuration
+feasibility_scoring:
+  dimensions:
+    - name: "Technical Feasibility"
+      weight: 1.0
+      scale: "1-5"
+    - name: "Business Value"
+      weight: 1.5
+      scale: "1-5"
+    - name: "Strategic Alignment"
+      weight: 1.2
+      scale: "1-5"
+    - name: "Resource Availability"
+      weight: 1.0
+      scale: "1-5"
+    - name: "Risk Level"
+      weight: 1.0
+      scale: "1-5 (inverted)"
+    - name: "Customer Impact"
+      weight: 1.3
+      scale: "1-5"
+
+  priority_classification:
+    must_have_threshold: 24  # Total score >= 24 out of 30
+    should_have_threshold: 18
+    could_have_threshold: 12
+    wont_have_threshold: 0
+
+# Change log format
+change_log:
+  section_title: "Change Log"
+  table_format: "| Version | Date | Author | Changes |"

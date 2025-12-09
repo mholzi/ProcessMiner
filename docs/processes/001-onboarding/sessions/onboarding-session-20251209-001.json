@@ -1,0 +1,14 @@
+{
+  "session_id": "20251209-001",
+  "process_id": "ONB-001",
+  "process_name": "Onboarding",
+  "started": "2025-12-09T00:00:00Z",
+  "last_updated": "2025-12-09T00:00:00Z",
+  "contributor": {
+    "name": "Markus",
+    "role": "CEO"
+  },
+  "current_step": 1,
+  "steps_completed": ["step-01-init"],
+  "status": "IN_PROGRESS"
+}

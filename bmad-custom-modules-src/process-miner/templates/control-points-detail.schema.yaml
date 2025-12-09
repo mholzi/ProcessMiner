@@ -1,0 +1,205 @@
+# Schema for Control Points Detail Template
+# Used by review-draft workflow for sync and confidence scoring
+
+schema_version: "1.0"
+template_name: "control-points-detail"
+template_description: "Detailed control point analysis with compliance mapping, effectiveness assessment, and audit readiness"
+
+# This is a detail document that syncs with parent documents
+detail_document_info:
+  parent_documents:
+    - "as-is-process-documentation.md"
+    - "compliance-control-assessment.md"
+  sync_section_in_parent: 4
+  structured_id_prefix: "CP"
+
+# Sections within this detail document
+sections:
+  # Control Point Summary Table
+  - title_pattern: "Control Point Summary Table"
+    section_type: "summary_table"
+    structured_id_prefix: "CP"
+    summary_table_header: "| CP# | Control Name | Type | Regulation/Policy | Process Step | Effectiveness | Risk Level |"
+
+  # Regulatory Coverage Matrix
+  - title_pattern: "Regulatory Coverage Matrix"
+    section_type: "matrix"
+    structured_id_prefix: "REG"
+
+  # Control Type Breakdown
+  - title_pattern: "Control Type Breakdown"
+    section_type: "statistics"
+
+  # Detailed Control Point Analysis
+  - title_pattern: "Detailed Control Point Analysis"
+    section_type: "detail_entries"
+    structured_id_prefix: "CP"
+    entry_template: true
+
+  # Control Framework Analysis
+  - title_pattern: "Control Framework Analysis"
+    section_type: "analysis"
+
+  # Segregation of Duties Matrix
+  - title_pattern: "Segregation of Duties Matrix"
+    section_type: "matrix"
+    structured_id_prefix: "SOD"
+
+  # Audit Readiness Assessment
+  - title_pattern: "Audit Readiness Assessment"
+    section_type: "assessment"
+
+  # Recommendations
+  - title_pattern: "Recommendations"
+    section_type: "recommendations"
+
+  # Input for Downstream Agents
+  - title_pattern: "Input for Downstream Agents"
+    section_type: "handoff"
+
+  # Regulatory Quick Reference
+  - title_pattern: "Regulatory Quick Reference"
+    section_type: "reference"
+
+# Control entry structure (for each control in the detail section)
+control_entry_fields:
+  overview:
+    - control_id
+    - control_name
+    - control_type
+    - category
+    - process_steps
+    - control_owner
+    - execution_type
+    - frequency
+    - effectiveness_rating
+    - last_audit_date
+
+  sections:
+    - control_description
+    - regulatory_requirement
+    - control_objective
+    - risk_addressed
+    - control_activity
+    - timing_and_frequency
+    - execution_details
+    - evidence_and_audit_trail
+    - effectiveness_assessment
+    - control_gaps_weaknesses
+    - segregation_of_duties
+    - dependencies
+    - exception_handling
+    - related_controls
+    - improvement_recommendations
+    - transformation_considerations
+
+# Confidence scoring rules
+confidence_rules:
+  high_threshold: 90
+  medium_threshold: 70
+
+  # Fields that indicate incomplete content
+  incomplete_markers:
+    - "[TBD]"
+    - "[Unknown]"
+    - "[TODO]"
+    - "{{.*}}"
+    - "..."
+
+  # Required fields for each control entry
+  required_control_fields:
+    - control_id
+    - control_name
+    - control_type
+    - regulation
+    - effectiveness
+    - control_activity
+    - evidence_captured
+
+  # Required cross-references
+  required_references:
+    - "CP#"
+    - "PS#"
+    - "REG#"
+
+# Structured ID patterns for validation
+# Format: {PREFIX}-{PROCESS_ABBREV}-{SEQ} (e.g., CP-ONB-001, PS-CRO-002)
+# Pattern matches: PREFIX, dash, 2-4 uppercase letters (process abbrev), dash, 3 digits
+id_patterns:
+  control_point: "CP-[A-Z]{2,4}-\\d{3}"
+  process_step: "PS-[A-Z]{2,4}-\\d{3}"
+  regulation: "REG-[A-Z]{2,4}-\\d{3}"
+  system: "SYS-[A-Z]{2,4}-\\d{3}"
+
+# Control type classifications
+control_types:
+  by_purpose:
+    - Preventive
+    - Detective
+    - Corrective
+
+  by_execution:
+    - Automated
+    - Manual
+    - Semi-Automated
+
+  by_source:
+    - Regulatory
+    - Internal Policy
+    - Best Practice
+
+# Effectiveness rating scale
+effectiveness_ratings:
+  - rating: "Highly Effective"
+    score: 5
+    description: "Control consistently operates as designed with strong evidence"
+  - rating: "Effective"
+    score: 4
+    description: "Control operates as designed with minor variations"
+  - rating: "Partially Effective"
+    score: 3
+    description: "Control operates but with notable deficiencies"
+  - rating: "Ineffective"
+    score: 2
+    description: "Control does not reliably achieve its objective"
+  - rating: "Not Operating"
+    score: 1
+    description: "Control is not being performed"
+
+# Risk levels
+risk_levels:
+  - level: "Critical"
+    score_range: "9-10"
+    color: "red"
+  - level: "High"
+    score_range: "7-8"
+    color: "orange"
+  - level: "Medium"
+    score_range: "4-6"
+    color: "yellow"
+  - level: "Low"
+    score_range: "1-3"
+    color: "green"
+
+# Companion documents
+companion_documents:
+  - name: "AS-IS Process Documentation"
+    file: "as-is-process-documentation.md"
+    relationship: "parent"
+
+  - name: "Compliance Control Assessment"
+    file: "compliance-control-assessment.md"
+    relationship: "parent"
+
+  - name: "Exceptions Detail"
+    file: "exceptions-detail.md"
+    relationship: "sibling"
+
+  - name: "Pain Points Detail"
+    file: "pain-points-detail.md"
+    relationship: "sibling"
+
+# Change log format
+change_log:
+  section_title: "Change Log"
+  table_format: "| Date | Contributor | Role | Changes |"

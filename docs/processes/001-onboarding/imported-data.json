@@ -1,0 +1,109 @@
+{
+  "import_source": {
+    "filename": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+    "type": "flowchart_image",
+    "imported_at": "2025-12-09T00:00:00Z",
+    "imported_by": "Markus"
+  },
+  "extracted_data": {
+    "process_title": "Customer Onboarding Process for Bank",
+    "description": "Customer onboarding process which can be used by bank managers to continue communications with their new customers. Key elements covered are activation, continuous communication, demo video, bank check-in call, feedback and follow up.",
+    "phases": [
+      {
+        "name": "Activation",
+        "day_range": "1-2",
+        "activities": [
+          "Sign in",
+          "Mobile SMS",
+          "E-mail campaigns",
+          "Pre-approved offer",
+          "Demo video and presentation of bank process",
+          "Introductory video",
+          "Welcome email"
+        ]
+      },
+      {
+        "name": "Continuous Communication",
+        "day_range": "5-180",
+        "activities": [
+          "Follow up with customer (Day 5)",
+          "Bank check-in call (Day 7-30)",
+          "Day 14 e-mail",
+          "Targeted digital campaign",
+          "Day 30 activation notification",
+          "Day 45 activation notification",
+          "Branch engagement call (Day 30-60)",
+          "Call centre feedback and engagement call (Day 60-90)",
+          "Social media campaign",
+          "Call centre follow up (Day 180)"
+        ]
+      }
+    ],
+    "timeline_milestones": [
+      {"day": 1, "milestone": "Sign In"},
+      {"day": 2, "milestone": "Activation communications begin"},
+      {"day": 5, "milestone": "First follow-up"},
+      {"day": 7, "milestone": "Check-in call period starts"},
+      {"day": 14, "milestone": "Email touchpoint"},
+      {"day": 30, "milestone": "Activation notification"},
+      {"day": 45, "milestone": "Second activation notification"},
+      {"day": 60, "milestone": "Branch engagement"},
+      {"day": 90, "milestone": "Feedback and engagement call"},
+      {"day": 180, "milestone": "Final follow-up / End"}
+    ],
+    "channels_identified": [
+      "Mobile SMS",
+      "Email",
+      "Video",
+      "Phone (Call centre)",
+      "Branch",
+      "Social media",
+      "Digital campaigns"
+    ]
+  },
+  "gap_analysis": {
+    "coverage_score": 25,
+    "gaps": [
+      {
+        "area": "Process Steps",
+        "status": "PARTIAL",
+        "details": "High-level timeline exists, detailed step-by-step actions missing"
+      },
+      {
+        "area": "Roles/Owners",
+        "status": "MISSING",
+        "details": "Who performs each activity not specified"
+      },
+      {
+        "area": "Systems/Tools",
+        "status": "MISSING",
+        "details": "Systems supporting SMS, email, calls not documented"
+      },
+      {
+        "area": "Controls",
+        "status": "MISSING",
+        "details": "No compliance or control points documented"
+      },
+      {
+        "area": "Exceptions",
+        "status": "MISSING",
+        "details": "Exception handling not documented"
+      },
+      {
+        "area": "Pain Points",
+        "status": "MISSING",
+        "details": "No issues or pain points documented"
+      },
+      {
+        "area": "KPIs/Metrics",
+        "status": "MISSING",
+        "details": "Success criteria not defined"
+      },
+      {
+        "area": "Triggers",
+        "status": "PARTIAL",
+        "details": "Sign-in implied as trigger, formal trigger not defined"
+      }
+    ]
+  }
+}

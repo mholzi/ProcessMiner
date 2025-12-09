@@ -1,0 +1,144 @@
+{
+  "process_id": "ONB-001",
+  "process_name": "Onboarding",
+  "process_folder": "/Volumes/My Passport/ProcessMiner3/docs/processes/001-onboarding",
+  "document_path": "/Volumes/My Passport/ProcessMiner3/docs/processes/001-onboarding/as-is-process-documentation.md",
+  "document_name": "as-is-process-documentation.md",
+  "schema_path": "/Volumes/My Passport/ProcessMiner3/bmad-custom-modules-src/process-miner/templates/as-is-process-documentation.schema.yaml",
+  "schema_mode": "template",
+  "contributor": {
+    "name": "Markus",
+    "role": "CEO"
+  },
+  "started": "2025-12-09T00:00:00Z",
+  "last_updated": "2025-12-09T00:00:00Z",
+  "completed_at": "2025-12-09T00:00:00Z",
+  "status": "completed",
+  "sections": [
+    {
+      "id": 1,
+      "title": "Process Overview",
+      "line_number": 53,
+      "completeness": "partial",
+      "gaps": ["TBD markers in Process Category, Process Owner, Region", "Key Stakeholders empty"],
+      "has_sync": false,
+      "sync_status": null,
+      "review_status": "pending"
+    },
+    {
+      "id": 2,
+      "title": "Process Steps",
+      "line_number": 111,
+      "completeness": "complete",
+      "gaps": ["Owner TBD for all steps"],
+      "has_sync": false,
+      "sync_status": null,
+      "review_status": "pending"
+    },
+    {
+      "id": 3,
+      "title": "Exception Paths and Variations",
+      "line_number": 186,
+      "completeness": "complete",
+      "gaps": [],
+      "has_sync": true,
+      "sync_status": {
+        "main_count": 1,
+        "detail_count": 1,
+        "pending_sync": 0
+      },
+      "review_status": "pending"
+    },
+    {
+      "id": 4,
+      "title": "Control Points and Compliance",
+      "line_number": 213,
+      "completeness": "complete",
+      "gaps": ["Effectiveness TBD"],
+      "has_sync": true,
+      "sync_status": {
+        "main_count": 1,
+        "detail_count": 1,
+        "pending_sync": 0
+      },
+      "review_status": "pending"
+    },
+    {
+      "id": 5,
+      "title": "System Dependencies",
+      "line_number": 249,
+      "completeness": "complete",
+      "gaps": [],
+      "has_sync": false,
+      "sync_status": null,
+      "review_status": "pending"
+    },
+    {
+      "id": 6,
+      "title": "Organizational Mapping",
+      "line_number": 285,
+      "completeness": "empty",
+      "gaps": ["Entire section empty - awaiting elicitation"],
+      "has_sync": false,
+      "sync_status": null,
+      "review_status": "pending"
+    },
+    {
+      "id": 7,
+      "title": "Existing Documentation References",
+      "line_number": 293,
+      "completeness": "empty",
+      "gaps": ["Entire section empty - awaiting Step 2 capture"],
+      "has_sync": false,
+      "sync_status": null,
+      "review_status": "pending"
+    },
+    {
+      "id": 8,
+      "title": "Process Gaps and Issues",
+      "line_number": 301,
+      "completeness": "complete",
+      "gaps": [],
+      "has_sync": false,
+      "sync_status": null,
+      "review_status": "approved",
+      "subsections": [
+        { "id": "8.1", "title": "Identified Gaps", "status": "approved", "confidence": 85 },
+        { "id": "8.2", "title": "Gap Details", "status": "approved", "confidence": 85 }
+      ],
+      "corrections": [
+        {
+          "timestamp": "2025-12-09T00:00:00Z",
+          "contributor": "Markus",
+          "description": "Added GAP-ONB-001: Missing Desktop Procedure (DTP)"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Pain Points and Improvement Opportunities",
+      "line_number": 309,
+      "completeness": "complete",
+      "gaps": [],
+      "has_sync": true,
+      "sync_status": {
+        "main_count": 0,
+        "detail_count": 0,
+        "pending_sync": 0
+      },
+      "review_status": "pending"
+    }
+  ],
+  "summary": {
+    "approved": 1,
+    "corrected": 0,
+    "skipped": 0,
+    "pending": 8,
+    "completion_percentage": 11
+  },
+  "review_mode": "pick",
+  "recommended_section": 1,
+  "recommendation_reason": "Contains TBD markers that need resolution",
+  "current_section": null,
+  "sync_completed": true
+}

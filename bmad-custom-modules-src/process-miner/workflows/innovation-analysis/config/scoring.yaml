@@ -1,0 +1,289 @@
+# Innovation Analysis - Scoring & Priority Configuration
+# Externalized from workflow.md for maintainability and file size optimization
+
+# ═══════════════════════════════════════════════════════════════════════════
+# WEIGHTED SCORING FORMULA
+# ═══════════════════════════════════════════════════════════════════════════
+
+scoring:
+  formula: "(Technical × 0.20) + (Regulatory × 0.25) + (ROI × 0.20) + (Complexity × 0.10) + (Adoption × 0.15) + (Competitive × 0.10)"
+  scale: 4  # 1-4 scoring
+
+  thresholds:
+    high: 3.0
+    medium: 2.0
+    low: 0.0
+
+  weights:
+    technical: 0.20      # Can we build it?
+    regulatory: 0.25     # HIGHEST - potential blocker
+    roi: 0.20            # Is it worth it?
+    complexity: 0.10     # How hard to implement?
+    adoption: 0.15       # Will clients use it?
+    competitive: 0.10    # Does it differentiate us?
+
+  dimension_scales:
+    technical:
+      4: "Ready to go - existing capabilities"
+      3: "Needs some work - minor gaps"
+      2: "Significant effort - major build"
+      1: "Not feasible - beyond capability"
+
+    regulatory:
+      4: "No issues - fully compliant"
+      3: "Minor considerations - low risk"
+      2: "Needs approval - regulatory review required"
+      1: "Blocked - regulatory barrier"
+
+    roi:
+      4: "Strong ROI - clear business case"
+      3: "Positive ROI - good return"
+      2: "Break-even - marginal value"
+      1: "Negative ROI - value unclear"
+
+    complexity:
+      4: "Simple - quick implementation"
+      3: "Moderate - manageable effort"
+      2: "Complex - significant work"
+      1: "Very Complex - major undertaking"
+
+    adoption:
+      4: "High adoption - client demand exists"
+      3: "Moderate adoption - likely uptake"
+      2: "Uncertain - needs validation"
+      1: "Low adoption - resistance expected"
+
+    competitive:
+      4: "First mover - market leadership"
+      3: "Fast follower - competitive parity"
+      2: "Table stakes - catch-up"
+      1: "No advantage - commoditized"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PRIORITY CRITERIA (MoSCoW)
+# ═══════════════════════════════════════════════════════════════════════════
+
+priority_criteria:
+  must_have:
+    feasibility: ">= 3.0"
+    impact: "High"
+    strategic_alignment: "Yes"
+    special_conditions:
+      - "Addresses critical pain point"
+      - "Required for regulatory compliance"
+      - "First mover competitive advantage"
+      - "Foundation for other innovations"
+
+  should_have:
+    feasibility: ">= 2.5"
+    impact: "High or Medium"
+    strategic_alignment: "Yes or Partial"
+
+  could_have:
+    feasibility: ">= 2.0"
+    impact: "Medium or Low"
+    strategic_alignment: "Partial or TBD"
+
+  defer:
+    conditions:
+      - "Feasibility < 2.0"
+      - "Dependencies not met"
+      - "Beyond transformation scope"
+      - "Requires proof of concept"
+      - "Regulatory not yet in place"
+    phases:
+      phase_2: "0-12 months post TO-BE"
+      phase_3: "12-24 months"
+      future: "24+ months"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# INNOVATION CATEGORIES
+# ═══════════════════════════════════════════════════════════════════════════
+
+innovation_categories:
+  process: "Process Innovation - improve how work gets done"
+  technology: "Technology Innovation - new tools or platforms"
+  business_model: "Business Model Innovation - new revenue or delivery models"
+  customer_experience: "Customer Experience Innovation - improve client journey"
+
+innovation_types:
+  incremental: "Incremental - improve existing capability"
+  adjacent: "Adjacent - extend to new area"
+  transformational: "Transformational - create new capability"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# WEB RESEARCH CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════
+
+web_research:
+  categories:
+    bank_specific:
+      queries:
+        - "{bank_name} {process_name} innovation digital transformation"
+        - "{bank_name} technology strategy fintech partnerships"
+        - "{bank_name} annual report innovation strategy"
+      purpose: "Understand bank's current innovation position"
+
+    competitors:
+      queries:
+        - "{process_name} innovation banking competitors {region}"
+        - "best {process_name} banks digital leaders {region}"
+        - "{process_name} banking awards {region} 2024 2025"
+      purpose: "Identify competitive landscape and leaders"
+
+    fintech:
+      queries:
+        - "{process_name} fintech startups disrupting banking"
+        - "{process_name} neobank challenger bank"
+        - "{process_name} fintech funding 2024 2025"
+      purpose: "Identify emerging disruptors and threats"
+
+    best_practices:
+      queries:
+        - "{process_name} best practices banking 2024 2025"
+        - "{process_name} automation AI banking case study"
+        - "{process_name} Gartner Forrester McKinsey banking"
+      purpose: "Identify industry best practices"
+
+    technology_trends:
+      queries:
+        - "{process_name} emerging technology banking"
+        - "{process_name} AI ML banking applications"
+        - "{process_name} RPA automation banking"
+      purpose: "Identify applicable technology trends"
+
+    regulatory_horizon:
+      queries:
+        - "banking regulation 2025 2026 {region} {process_name}"
+        - "PSD3 digital euro DORA impact {process_name}"
+        - "{region} banking compliance upcoming requirements"
+      purpose: "Identify upcoming regulatory changes"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# VALIDATION CHECKLIST (20 Points)
+# ═══════════════════════════════════════════════════════════════════════════
+
+validation_checklist:
+  structural:
+    - id: S1
+      check: "ID Format"
+      criteria: "All IDs follow TR-/II-/COMP-/FIN- patterns"
+    - id: S2
+      check: "ID Consistency"
+      criteria: "Same IDs used across all sections"
+    - id: S3
+      check: "Section Complete"
+      criteria: "All required sections present"
+    - id: S4
+      check: "No Orphans"
+      criteria: "No IDs mentioned but not defined"
+
+  completeness:
+    - id: C1
+      check: "Market Research"
+      criteria: "All 6 research categories complete"
+    - id: C2
+      check: "Backlog Feasibility"
+      criteria: "All innovations have 6 feasibility dimensions"
+    - id: C3
+      check: "Backlog Dependencies"
+      criteria: "All innovations have dependencies captured"
+    - id: C4
+      check: "Priorities Handoffs"
+      criteria: "All MUST HAVEs have transformation handoffs"
+    - id: C5
+      check: "Priorities Metrics"
+      criteria: "All MUST HAVEs have SMART success metrics"
+    - id: C6
+      check: "Priorities Risks"
+      criteria: "All MUST HAVEs have risk mitigation"
+    - id: C7
+      check: "DEFER Phases"
+      criteria: "All DEFERs have phase assignment"
+    - id: C8
+      check: "Pain Point Links"
+      criteria: "Innovations linked to pain points"
+
+  quality:
+    - id: Q1
+      check: "No TBD"
+      criteria: "No TBD, TODO, or placeholder text"
+    - id: Q2
+      check: "No Ambiguity"
+      criteria: "No vague terms without specifics"
+    - id: Q3
+      check: "SMART Metrics"
+      criteria: "All metrics are Specific, Measurable, with Timeline"
+    - id: Q4
+      check: "Actionable"
+      criteria: "Transformation Agent can act without clarifying questions"
+
+  actionability:
+    - id: A1
+      check: "Clear Boundaries"
+      criteria: "MUST vs SHOULD clearly distinguished"
+    - id: A2
+      check: "Dependencies Clear"
+      criteria: "All dependencies explicitly stated"
+    - id: A3
+      check: "Constraints Clear"
+      criteria: "All constraints explicitly stated"
+    - id: A4
+      check: "Integration Points"
+      criteria: "All integration requirements defined"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# WORKFLOW CONTINUATION
+# ═══════════════════════════════════════════════════════════════════════════
+
+continuation:
+  enabled: true
+  state_file: "{current_process_folder}/innovation-workflow-state.yaml"
+
+  step_outputs:
+    step-1: "{current_process_folder}/.workflow/innovation-step-1-output.json"
+    step-2: "{current_process_folder}/.workflow/innovation-step-2-output.json"
+    step-3: "{current_process_folder}/.workflow/innovation-step-3-output.json"
+    step-4: "{current_process_folder}/.workflow/innovation-step-4-output.json"
+    step-5: "{current_process_folder}/.workflow/innovation-step-5-output.json"
+
+  entry_options:
+    - id: continue
+      name: "Continue"
+      label: "Resume from where you left off"
+      condition: "state_exists AND status == 'in_progress'"
+
+    - id: review-continue
+      name: "Review & Continue"
+      label: "Review completed steps, then continue"
+      condition: "state_exists AND completed_steps > 0"
+
+    - id: start-fresh
+      name: "Start Fresh"
+      label: "Discard progress and begin new analysis"
+      condition: "always"
+      confirm_message: "This will archive existing progress. Continue?"
+
+    - id: jump-to-step
+      name: "Jump to Step"
+      label: "Go to a specific step (re-run or skip ahead)"
+      condition: "state_exists"
+      warning: "Steps after selected step may need re-running"
+
+  backup:
+    enabled: true
+    on_start_fresh: true
+    location: "{current_process_folder}/.workflow/backups/"
+    naming: "innovation-backup-{timestamp}"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# EXECUTION RULES
+# ═══════════════════════════════════════════════════════════════════════════
+
+execution:
+  sequence: "strict"                    # Steps must complete in order
+  approval_gates: true                  # Each step requires approval before next
+  incremental_document_build: true      # Append to document after each step
+  auto_save: false                      # Don't save until user approves
+
+standalone: false  # Requires process-miner module context and agent activation

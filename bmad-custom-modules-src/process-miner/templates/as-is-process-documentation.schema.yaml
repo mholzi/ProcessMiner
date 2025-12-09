@@ -1,0 +1,100 @@
+# Schema for As-Is Process Documentation Template
+# Used by review-draft workflow for sync and confidence scoring
+
+schema_version: "1.0"
+template_name: "as-is-process-documentation"
+template_description: "Banking process documentation with exceptions, controls, and pain points"
+
+# Sections that have sync-enabled detail documents
+sections:
+  # Section 3: Exception Paths and Variations
+  - title_pattern: "Exception Paths"
+    section_number: 3
+    detail_document: "exceptions-detail.md"
+    structured_id_prefix: "EX"
+    sync_enabled: true
+    summary_table_header: "| EX# | Exception | Trigger | Affected Steps | Frequency | Impact |"
+
+  # Section 4: Control Points and Compliance
+  - title_pattern: "Control Points"
+    section_number: 4
+    detail_document: "control-points-detail.md"
+    structured_id_prefix: "CP"
+    sync_enabled: true
+    summary_table_header: "| CP# | Control Name | Type | Regulation | Process Step | Effectiveness |"
+
+  # Section 9: Pain Points and Improvement Opportunities
+  - title_pattern: "Pain Points"
+    section_number: 9
+    detail_document: "pain-points-detail.md"
+    structured_id_prefix: "PP"
+    sync_enabled: true
+    summary_table_header: "| PP# | Pain Point | Category | Affected Steps | Impact | Frequency | Priority |"
+
+  # Non-sync sections (review only)
+  - title_pattern: "Process Overview"
+    section_number: 1
+    sync_enabled: false
+
+  - title_pattern: "Process Steps"
+    section_number: 2
+    sync_enabled: false
+
+  - title_pattern: "System Dependencies"
+    section_number: 5
+    sync_enabled: false
+
+  - title_pattern: "Organizational Mapping"
+    section_number: 6
+    sync_enabled: false
+
+  - title_pattern: "Existing Documentation"
+    section_number: 7
+    sync_enabled: false
+
+  - title_pattern: "Process Gaps"
+    section_number: 8
+    sync_enabled: false
+
+# Confidence scoring rules
+confidence_rules:
+  high_threshold: 90
+  medium_threshold: 70
+
+  # Fields that indicate incomplete content
+  incomplete_markers:
+    - "[TBD]"
+    - "[Unknown]"
+    - "[TODO]"
+    - "{{.*}}"
+    - "..."
+
+  # Required cross-references by section
+  required_references:
+    2:  # Process Steps
+      - "PS#"
+      - "SYS#"
+    3:  # Exceptions
+      - "EX#"
+      - "PS#"
+    4:  # Control Points
+      - "CP#"
+      - "PS#"
+    9:  # Pain Points
+      - "PP#"
+      - "PS#"
+
+# Structured ID patterns for validation
+# Format: {PREFIX}-{PROCESS_ABBREV}-{SEQ} (e.g., PS-ONB-001, EX-CRO-002)
+# Pattern matches: PREFIX, dash, 2-4 uppercase letters (process abbrev), dash, 3 digits
+id_patterns:
+  process_step: "PS-[A-Z]{2,4}-\\d{3}"
+  exception: "EX-[A-Z]{2,4}-\\d{3}"
+  control_point: "CP-[A-Z]{2,4}-\\d{3}"
+  pain_point: "PP-[A-Z]{2,4}-\\d{3}"
+  system: "SYS-[A-Z]{2,4}-\\d{3}"
+
+# Change log format
+change_log:
+  section_title: "Change Log"
+  table_format: "| Date | Contributor | Role | Changes |"

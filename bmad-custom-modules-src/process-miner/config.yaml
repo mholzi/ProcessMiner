@@ -1,0 +1,144 @@
+# ProcessMiner Module Runtime Configuration
+# This file contains runtime configuration values used by workflows and agents
+#
+# NOTE: This config is populated during BMAD installation or can be manually configured.
+# Values marked with {inherit} are inherited from BMAD Core config at runtime.
+
+# ============================================================================
+# INHERITED FROM BMAD CORE (populated during installation)
+# ============================================================================
+
+# User identification
+user_name: "{inherit:user_name}"
+
+# Language settings
+communication_language: "{inherit:communication_language}"
+document_output_language: "{inherit:document_output_language}"
+
+# Base output folder from BMAD Core
+bmad_output_folder: "{inherit:output_folder}"
+
+# ============================================================================
+# MODULE-SPECIFIC CONFIGURATION
+# ============================================================================
+
+# ProcessMiner output folder (relative to project root)
+# This is where all process documentation will be saved
+output_folder: "{project-root}/docs/processes"
+
+# Process registry location
+process_registry: "{output_folder}/process-registry.md"
+
+# Discontinued processes archive
+discontinued_folder: "{output_folder}/discontinued"
+
+# Data storage for session state and user memory
+data_path: "{project-root}/.bmad-user-memory/process-miner"
+
+# ============================================================================
+# STRUCTURED ID SYSTEM
+# ============================================================================
+
+structured_id_system:
+  # ID prefixes for different element types
+  prefixes:
+    process_step: "PS"
+    exception: "EX"
+    pain_point: "PP"
+    control_point: "CP"
+    system: "SYS"
+    touchpoint: "TP"
+    friction_point: "FP"
+    enhancement: "EN"
+    innovation: "IN"
+
+  # ID format: {prefix}-{process_abbrev}-{sequence}
+  # Example: PS-CRO-001, EX-CRO-002, PP-CRO-001
+  format: "{prefix}-{process_abbrev}-{sequence}"
+  sequence_padding: 3
+
+# ============================================================================
+# EXPORT SETTINGS
+# ============================================================================
+
+# Default export format (yaml, json, or both)
+export_format: "yaml"
+
+# Detail level for documentation (minimal, standard, detailed)
+detail_level: "standard"
+
+# ============================================================================
+# TEMPLATE PATHS
+# ============================================================================
+
+templates:
+  as_is_process: "{module_root}/templates/as-is-process-documentation.md"
+  exceptions_detail: "{module_root}/templates/exceptions-detail.md"
+  pain_points_detail: "{module_root}/templates/pain-points-detail.md"
+  control_points_detail: "{module_root}/templates/control-points-detail.md"
+  cx_journey: "{module_root}/templates/cx-journey-documentation.md"
+  compliance_assessment: "{module_root}/templates/compliance-control-assessment.md"
+  innovation_analysis: "{module_root}/templates/innovation-analysis-template.md"
+
+# ============================================================================
+# SCHEMA PATHS
+# ============================================================================
+
+schemas:
+  as_is_process: "{module_root}/templates/as-is-process-documentation.schema.yaml"
+  cx_journey: "{module_root}/templates/cx-journey-documentation.schema.yaml"
+  control_points: "{module_root}/templates/control-points-detail.schema.yaml"
+  compliance_assessment: "{module_root}/templates/compliance-control-assessment.schema.yaml"
+  innovation: "{module_root}/schemas/innovation-schema.yaml"
+
+# ============================================================================
+# VALIDATION RULES
+# ============================================================================
+
+validation:
+  innovation_viability: "{module_root}/validation-rules/innovation-viability-rules.yaml"
+
+# ============================================================================
+# AGENT WORKFLOW DEFAULTS
+# ============================================================================
+
+defaults:
+  # Minimum number of process steps expected
+  min_process_steps: 5
+  max_process_steps: 15
+
+  # Confidence levels
+  confidence_levels:
+    - HIGH
+    - MEDIUM
+    - LOW
+
+  # Severity levels for pain points
+  severity_levels:
+    - HIGH
+    - MEDIUM
+    - LOW
+
+  # Control types
+  control_types:
+    - PREVENTIVE
+    - DETECTIVE
+    - CORRECTIVE
+
+  # System types
+  system_types:
+    - CORE
+    - SUPPORTING
+    - EXTERNAL
+
+  # Integration status options
+  integration_status:
+    - INTEGRATED
+    - MANUAL
+    - HYBRID
+
+# ============================================================================
+# MODULE VERSION
+# ============================================================================
+
+module_version: "1.0.0"

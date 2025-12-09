@@ -1,0 +1,599 @@
+{
+  "$schema": "process-miner-structured-data-v1",
+  "schema_version": "1.0.0",
+
+  "session": {
+    "id": "20251209-001",
+    "started": "2025-12-09T00:00:00Z",
+    "last_updated": "2025-12-09T00:00:00Z",
+    "contributor": {
+      "name": "Markus",
+      "role": "CEO"
+    },
+    "process": {
+      "id": "ONB-001",
+      "name": "Onboarding"
+    },
+    "client_groups": ["BizBanking"],
+    "checkpoint": {
+      "step": 9,
+      "last_item_id": null
+    },
+    "documents_uploaded": true
+  },
+
+  "metadata": {
+    "region": "EMEA",
+    "process_category": "Customer Lifecycle Management",
+    "process_owner": "Sarah Mitchell (Head of Customer Experience)",
+    "purpose": "The Onboarding process serves to establish and maintain systematic communication with new BizBanking customers from their initial sign-in through the first 180 days of the banking relationship. The primary objectives are: (1) Activation - Ensure customers activate their accounts and understand available banking services through welcome communications, demo videos, and pre-approved offers. (2) Engagement - Maintain continuous touchpoints via multiple channels (SMS, email, phone, branch, social media) to build relationship depth and prevent early attrition. (3) Education - Guide customers through bank processes and available products through structured communication at key milestones.",
+    "trigger": "The Onboarding process is triggered when a new BizBanking customer completes their initial Sign In to the banking platform. This is the Day 1 event that initiates the 180-day onboarding journey. The sign-in event indicates that account opening has been completed, customer credentials have been provisioned, and the customer is ready to begin their banking relationship.",
+    "frequency": "The Onboarding process runs continuously - each new BizBanking customer sign-in initiates an individual 180-day onboarding journey. Multiple customer journeys run in parallel at any given time. The process follows a structured cadence: Activation (Day 1-2) with multiple simultaneous touchpoints, Early Engagement (Day 5-14) with 2-3 touchpoints, Mid-Journey (Day 30-60) with 3-4 touchpoints, Late Journey (Day 60-90) with 2 touchpoints, and Close-Out (Day 180) with final follow-up.",
+    "volume": "Per Customer Journey: 10-15 touchpoints across 180 days, multiple channels engaged (SMS, email, phone, branch, social media), estimated 5-7 system interactions per customer. Operational volume metrics (new customer sign-ins per month, concurrent onboarding journeys, total communications sent) to be confirmed with SME input.",
+    "confidence": "HIGH"
+  },
+
+  "stakeholders": [
+    {
+      "name": "Sarah Mitchell",
+      "role": "Head of Customer Experience",
+      "responsibility": "Process Owner - overall accountability"
+    },
+    {
+      "name": "James Chen",
+      "role": "Digital Marketing Manager",
+      "responsibility": "Email and digital campaign execution"
+    },
+    {
+      "name": "Linda Torres",
+      "role": "Call Centre Manager",
+      "responsibility": "Customer calls, check-ins, feedback collection"
+    },
+    {
+      "name": "David Okonkwo",
+      "role": "Branch Network Lead",
+      "responsibility": "Branch engagement activities"
+    },
+    {
+      "name": "Emma Schultz",
+      "role": "Compliance Officer",
+      "responsibility": "KYC screening oversight"
+    },
+    {
+      "name": "Michael Andersen",
+      "role": "IT Operations",
+      "responsibility": "System integration and support"
+    }
+  ],
+
+  "imported_data": {
+    "source": "customer_onboarding_process_flowchart_for_bank_slide01.jpg",
+    "process_title": "Customer Onboarding Process for Bank",
+    "description": "Customer onboarding process for bank managers to continue communications with new customers",
+    "timeline_days": 180,
+    "phases": ["Activation", "Continuous Communication"],
+    "channels": ["Mobile SMS", "Email", "Video", "Phone", "Branch", "Social media", "Digital campaigns"]
+  },
+
+  "process_steps": [
+    {
+      "id": "PS-ONB-001",
+      "sequence": 1,
+      "name": "Customer Sign In",
+      "description": "New BizBanking customer completes initial sign-in to banking platform, triggering onboarding journey",
+      "owner": "Digital Banking Team",
+      "rationale": "Entry point - initiates 180-day journey",
+      "timeline": "Day 1",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PS-ONB-002",
+      "sequence": 2,
+      "name": "Activation Communications",
+      "description": "Send Day 2 communications: Mobile SMS, email campaigns, pre-approved offers",
+      "owner": "Marketing Operations",
+      "rationale": "Drive early engagement and awareness",
+      "timeline": "Day 2",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PS-ONB-003",
+      "sequence": 3,
+      "name": "Welcome Content Delivery",
+      "description": "Deliver demo video, presentation of bank process, introductory video, welcome email",
+      "owner": "Marketing Operations",
+      "rationale": "Educate customer on banking services",
+      "timeline": "Day 2",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PS-ONB-004",
+      "sequence": 4,
+      "name": "First Follow-Up",
+      "description": "Day 5 follow-up contact with customer",
+      "owner": "Call Centre Team",
+      "rationale": "Check activation status, early intervention",
+      "timeline": "Day 5",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PS-ONB-005",
+      "sequence": 5,
+      "name": "Bank Check-In Call",
+      "description": "Day 7-30 check-in call and Day 14 email, targeted digital campaign",
+      "owner": "Call Centre Team",
+      "rationale": "Relationship building, needs assessment",
+      "timeline": "Day 7-30",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PS-ONB-006",
+      "sequence": 6,
+      "name": "Activation Notifications",
+      "description": "Day 30 and Day 45 activation notifications, branch engagement call",
+      "owner": "Branch Network",
+      "rationale": "Ensure account activation, deepen relationship",
+      "timeline": "Day 30-60",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PS-ONB-007",
+      "sequence": 7,
+      "name": "Feedback Collection",
+      "description": "Day 60-90 call centre feedback and engagement call, social media campaign",
+      "owner": "Call Centre Team",
+      "rationale": "Gather feedback, measure satisfaction",
+      "timeline": "Day 60-90",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PS-ONB-008",
+      "sequence": 8,
+      "name": "Final Follow-Up",
+      "description": "Day 180 call centre follow-up - process conclusion",
+      "owner": "Call Centre Team",
+      "rationale": "Close onboarding journey, transition to BAU",
+      "timeline": "Day 180",
+      "confidence": "HIGH"
+    }
+  ],
+
+  "process_exceptions": [
+    {
+      "id": "EX-ONB-001",
+      "name": "KYC Check Defence Industry",
+      "description": "During the activation phase (Day 2), if the KYC (Know Your Customer) check identifies that the customer operates in the defence industry, the standard onboarding flow is terminated. A decline email is sent to the customer, and the onboarding journey does not proceed further.",
+      "trigger": "KYC check identifies customer is in defence industry",
+      "handling": "Send decline email to customer",
+      "handling_owner": "Compliance Team",
+      "frequency": "Rare",
+      "links": {
+        "process_steps": ["PS-ONB-002"]
+      },
+      "confidence": "HIGH"
+    }
+  ],
+
+  "pain_points": [],
+
+  "gaps": [
+    {
+      "id": "GAP-ONB-001",
+      "name": "Missing Desktop Procedure (DTP)",
+      "description": "The Onboarding process does not have a documented Desktop Procedure. No step-by-step operational guide exists for staff executing the process.",
+      "impact": "Staff lack standardised reference for process execution; new team members lack reference document; process consistency may vary",
+      "priority": "HIGH",
+      "recommendation": "Create a DTP document covering day-by-day activities, system navigation, and decision points for the 180-day onboarding journey."
+    }
+  ],
+
+  "controls": [
+    {
+      "id": "CP-ONB-001",
+      "name": "KYC Defence Industry Screening",
+      "description": "This preventive control screens new BizBanking customers during the activation phase to identify those operating in the defence industry. When detected, the control prevents onboarding from proceeding by terminating the journey and sending a decline notification.",
+      "control_type": "PREVENTIVE",
+      "automation": "Automated",
+      "requirement_source": "AMLD 4/5/6, FATF",
+      "how_performed": "Automated KYC screening checks customer industry classification against restricted industries list; defence industry triggers process termination and decline email",
+      "control_owner": "Emma Schultz (Compliance Officer)",
+      "effectiveness": "HIGH",
+      "evidence": ["KYC screening logs", "decline notifications"],
+      "links": {
+        "process_steps": ["PS-ONB-002"],
+        "exceptions": ["EX-ONB-001"],
+        "regulations": ["REG-ONB-001", "REG-ONB-002", "REG-ONB-003", "REG-ONB-009"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-ONB-002",
+      "name": "Customer Identity Verification (CDD)",
+      "description": "Verifies customer identity documents and information before account activation proceeds. Core CDD requirement under AML regulations.",
+      "control_type": "PREVENTIVE",
+      "automation": "Automated",
+      "requirement_source": "AMLD 4 (Art.13), FATF R10",
+      "how_performed": "Automated document verification via KYC Screening System; ID documents matched against customer-provided information",
+      "control_owner": "Emma Schultz (Compliance Officer)",
+      "effectiveness": "HIGH",
+      "evidence": ["Identity verification records", "document images", "verification timestamps"],
+      "links": {
+        "process_steps": ["PS-ONB-001"],
+        "regulations": ["REG-ONB-001", "REG-ONB-009"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-ONB-003",
+      "name": "Beneficial Ownership Identification",
+      "description": "Identifies and verifies beneficial owners (>25% ownership) for corporate/business customers. Required for legal persons and arrangements.",
+      "control_type": "PREVENTIVE",
+      "automation": "Semi-Automated",
+      "requirement_source": "AMLD 4 (Art.14), AMLD 5, FATF R24",
+      "how_performed": "Semi-automated - system prompts for BO information; manual review for complex ownership structures",
+      "control_owner": "Emma Schultz (Compliance Officer)",
+      "effectiveness": "MEDIUM",
+      "evidence": ["BO declaration forms", "corporate registry checks", "ownership charts"],
+      "links": {
+        "process_steps": ["PS-ONB-001"],
+        "regulations": ["REG-ONB-001", "REG-ONB-002", "REG-ONB-009"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-ONB-004",
+      "name": "PEP Screening",
+      "description": "Screens customers and beneficial owners against Politically Exposed Persons databases. Triggers enhanced due diligence when matches found.",
+      "control_type": "PREVENTIVE",
+      "automation": "Automated",
+      "requirement_source": "FATF R12",
+      "how_performed": "Automated screening against global PEP databases; manual escalation for positive matches",
+      "control_owner": "Emma Schultz (Compliance Officer)",
+      "effectiveness": "HIGH",
+      "evidence": ["PEP screening results", "escalation records", "EDD documentation"],
+      "links": {
+        "process_steps": ["PS-ONB-001", "PS-ONB-002"],
+        "regulations": ["REG-ONB-009"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-ONB-005",
+      "name": "High-Risk Country Screening",
+      "description": "Screens customers with connections to high-risk third countries (per EU/FATF lists). Triggers enhanced due diligence requirements.",
+      "control_type": "PREVENTIVE",
+      "automation": "Automated",
+      "requirement_source": "AMLD 5",
+      "how_performed": "Automated country risk screening based on customer nationality, residence, and business operations",
+      "control_owner": "Emma Schultz (Compliance Officer)",
+      "effectiveness": "HIGH",
+      "evidence": ["Country risk screening logs", "EDD records for high-risk matches"],
+      "links": {
+        "process_steps": ["PS-ONB-001", "PS-ONB-002"],
+        "regulations": ["REG-ONB-002"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-ONB-006",
+      "name": "Data Processing Consent Capture",
+      "description": "Captures explicit, informed consent for personal data processing at customer sign-in. Ensures lawful basis for data processing under GDPR.",
+      "control_type": "PREVENTIVE",
+      "automation": "Automated",
+      "requirement_source": "GDPR Art.7",
+      "how_performed": "Automated consent capture integrated into digital sign-in flow; granular consent options presented",
+      "control_owner": "Data Protection Officer",
+      "effectiveness": "HIGH",
+      "evidence": ["Consent records with timestamps", "consent text versions", "withdrawal logs"],
+      "links": {
+        "process_steps": ["PS-ONB-001"],
+        "regulations": ["REG-ONB-010"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-ONB-007",
+      "name": "Communication Opt-In Verification",
+      "description": "Verifies customer has provided consent before sending marketing/promotional communications. Checks opt-in status before each communication.",
+      "control_type": "DETECTIVE",
+      "automation": "Automated",
+      "requirement_source": "GDPR Art.7",
+      "how_performed": "Automated check in Email Marketing Platform against consent database before campaign dispatch",
+      "control_owner": "James Chen (Marketing Operations)",
+      "effectiveness": "MEDIUM",
+      "evidence": ["Communication logs", "opt-in verification records", "suppression list logs"],
+      "links": {
+        "process_steps": ["PS-ONB-002", "PS-ONB-003"],
+        "regulations": ["REG-ONB-010"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "CP-ONB-008",
+      "name": "Customer Data Retention Compliance",
+      "description": "Ensures customer data is retained per regulatory requirements (5 years for AML) while respecting GDPR data minimisation principles.",
+      "control_type": "PREVENTIVE",
+      "automation": "Manual",
+      "requirement_source": "AMLD 4, GDPR",
+      "how_performed": "Manual review at journey close-out to ensure retention policies applied; data categorised for appropriate retention periods",
+      "control_owner": "Data Protection Officer",
+      "effectiveness": "MEDIUM",
+      "evidence": ["Retention policy documentation", "data classification records", "deletion logs"],
+      "links": {
+        "process_steps": ["PS-ONB-008"],
+        "regulations": ["REG-ONB-001", "REG-ONB-010"]
+      },
+      "confidence": "HIGH"
+    }
+  ],
+
+  "systems": [
+    {
+      "id": "SYS-ONB-001",
+      "name": "SMS Gateway",
+      "description": "Send mobile SMS communications to customers",
+      "system_type": "SUPPORTING",
+      "integration_status": "INTEGRATED",
+      "links": {
+        "process_steps": ["PS-ONB-002"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-ONB-002",
+      "name": "Email Marketing Platform",
+      "description": "Manage email campaigns, welcome emails, targeted campaigns",
+      "system_type": "CORE",
+      "integration_status": "INTEGRATED",
+      "links": {
+        "process_steps": ["PS-ONB-002", "PS-ONB-003", "PS-ONB-005", "PS-ONB-006"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-ONB-003",
+      "name": "Video Content Platform",
+      "description": "Host and deliver demo/introductory videos",
+      "system_type": "SUPPORTING",
+      "integration_status": "INTEGRATED",
+      "links": {
+        "process_steps": ["PS-ONB-003"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-ONB-004",
+      "name": "Call Centre System",
+      "description": "Manage customer calls, check-ins, feedback collection",
+      "system_type": "CORE",
+      "integration_status": "INTEGRATED",
+      "links": {
+        "process_steps": ["PS-ONB-005", "PS-ONB-006", "PS-ONB-007", "PS-ONB-008"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-ONB-005",
+      "name": "KYC Screening System",
+      "description": "Perform KYC checks, industry screening",
+      "system_type": "CORE",
+      "integration_status": "INTEGRATED",
+      "links": {
+        "process_steps": ["PS-ONB-002"],
+        "controls": ["CP-ONB-001"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-ONB-006",
+      "name": "Social Media Management",
+      "description": "Execute social media campaigns",
+      "system_type": "SUPPORTING",
+      "integration_status": "INTEGRATED",
+      "links": {
+        "process_steps": ["PS-ONB-007"]
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "SYS-ONB-007",
+      "name": "Digital Campaign Manager",
+      "description": "Manage targeted digital campaigns",
+      "system_type": "SUPPORTING",
+      "integration_status": "INTEGRATED",
+      "links": {
+        "process_steps": ["PS-ONB-005"]
+      },
+      "confidence": "HIGH"
+    }
+  ],
+
+  "documentation_references": [
+    {
+      "name": "Customer Onboarding Flowchart",
+      "type": "Process Diagram",
+      "location": "SharePoint/CX/Processes",
+      "last_updated": "2024-06-15",
+      "owner": "Marketing Ops"
+    },
+    {
+      "name": "BizBanking Welcome Pack",
+      "type": "Customer Material",
+      "location": "CMS/Templates",
+      "last_updated": "2024-09-01",
+      "owner": "Marketing Ops"
+    },
+    {
+      "name": "KYC Screening Guidelines",
+      "type": "Policy Document",
+      "location": "Compliance Portal",
+      "last_updated": "2024-11-20",
+      "owner": "Compliance"
+    },
+    {
+      "name": "Call Centre Scripts - Onboarding",
+      "type": "Operational Guide",
+      "location": "Call Centre KB",
+      "last_updated": "2024-08-10",
+      "owner": "Call Centre"
+    },
+    {
+      "name": "Email Campaign Templates",
+      "type": "Marketing Asset",
+      "location": "Marketing Hub",
+      "last_updated": "2024-10-05",
+      "owner": "Marketing Ops"
+    }
+  ],
+
+  "kpis": [
+    {
+      "name": "Activation Rate",
+      "definition": "% customers completing activation within Day 30",
+      "target": "85%",
+      "current": "78%",
+      "source": "CRM Dashboard"
+    },
+    {
+      "name": "Day 5 Contact Rate",
+      "definition": "% customers contacted by Day 5",
+      "target": "95%",
+      "current": "92%",
+      "source": "Call Centre Reports"
+    },
+    {
+      "name": "NPS Score (Day 90)",
+      "definition": "Net Promoter Score at Day 90",
+      "target": "+40",
+      "current": "+35",
+      "source": "Survey System"
+    },
+    {
+      "name": "Journey Completion Rate",
+      "definition": "% completing full 180-day journey",
+      "target": "70%",
+      "current": "65%",
+      "source": "Analytics"
+    },
+    {
+      "name": "KYC Decline Rate",
+      "definition": "% declined due to KYC screening",
+      "target": "<2%",
+      "current": "0.8%",
+      "source": "Compliance Reports"
+    }
+  ],
+
+  "validation": {
+    "status": "COMPLETE",
+    "completed_at": "2025-12-09T00:00:00Z",
+    "unknowns": [],
+    "overrides": []
+  },
+
+  "regulations": [
+    {
+      "id": "REG-ONB-001",
+      "name": "AMLD 4 (4th Anti-Money Laundering Directive)",
+      "jurisdiction": "EU",
+      "applicability": "Fully applicable",
+      "specific_requirements": ["Customer Due Diligence (CDD) requirements", "Beneficial ownership identification"],
+      "compliance_status": "Compliant"
+    },
+    {
+      "id": "REG-ONB-002",
+      "name": "AMLD 5 (5th Anti-Money Laundering Directive)",
+      "jurisdiction": "EU",
+      "applicability": "Fully applicable",
+      "specific_requirements": ["Enhanced CDD for high-risk third countries", "Beneficial ownership register access"],
+      "compliance_status": "Compliant"
+    },
+    {
+      "id": "REG-ONB-003",
+      "name": "AMLD 6 (6th Anti-Money Laundering Directive)",
+      "jurisdiction": "EU",
+      "applicability": "Fully applicable",
+      "specific_requirements": ["Harmonised list of 22 predicate offences"],
+      "compliance_status": "Compliant"
+    },
+    {
+      "id": "REG-ONB-004",
+      "name": "MLR 2017 (Money Laundering Regulations)",
+      "jurisdiction": "UK",
+      "applicability": "Reference only",
+      "specific_requirements": ["UK AML framework guidance"],
+      "compliance_status": "N/A"
+    },
+    {
+      "id": "REG-ONB-005",
+      "name": "JMLSG Guidance",
+      "jurisdiction": "UK",
+      "applicability": "Reference only",
+      "specific_requirements": ["UK industry AML guidance"],
+      "compliance_status": "N/A"
+    },
+    {
+      "id": "REG-ONB-006",
+      "name": "BSA (Bank Secrecy Act)",
+      "jurisdiction": "US",
+      "applicability": "Reference only",
+      "specific_requirements": ["US AML framework guidance"],
+      "compliance_status": "N/A"
+    },
+    {
+      "id": "REG-ONB-007",
+      "name": "USA PATRIOT Act",
+      "jurisdiction": "US",
+      "applicability": "Reference only",
+      "specific_requirements": ["US anti-terrorism financing guidance"],
+      "compliance_status": "N/A"
+    },
+    {
+      "id": "REG-ONB-008",
+      "name": "FinCEN Regulations",
+      "jurisdiction": "US",
+      "applicability": "Reference only",
+      "specific_requirements": ["US financial crimes guidance"],
+      "compliance_status": "N/A"
+    },
+    {
+      "id": "REG-ONB-009",
+      "name": "FATF Recommendations",
+      "jurisdiction": "Global",
+      "applicability": "Fully applicable",
+      "specific_requirements": ["Recommendation 10: Customer Due Diligence", "Recommendation 12: Politically Exposed Persons (PEPs)"],
+      "compliance_status": "Compliant"
+    },
+    {
+      "id": "REG-ONB-010",
+      "name": "GDPR (General Data Protection Regulation)",
+      "jurisdiction": "EU",
+      "applicability": "Fully applicable",
+      "specific_requirements": ["Article 7: Consent requirements"],
+      "compliance_status": "Compliant"
+    }
+  ],
+
+  "compliance_analysis": {
+    "region": "Global",
+    "business_unit": "Corporate Bank",
+    "analyst": "Markus",
+    "analyst_role": "COO",
+    "confidence_basis": "Legal review"
+  },
+
+  "summary": {
+    "total_process_steps": 8,
+    "total_exceptions": 1,
+    "total_pain_points": 0,
+    "total_gaps": 1,
+    "total_controls": 8,
+    "total_regulations": 10,
+    "regulations_fully_applicable": 5,
+    "regulations_reference_only": 5,
+    "total_systems": 7,
+    "overall_confidence": "HIGH",
+    "documentation_method": "Progressive Elicitation via ProcessMiner",
+    "imported_documents": 1
+  }
+}

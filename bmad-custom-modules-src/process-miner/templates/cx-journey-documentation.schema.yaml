@@ -1,0 +1,144 @@
+# Schema for CX Journey Documentation Template
+# Used by review-draft workflow for sync and confidence scoring
+
+schema_version: "1.0"
+template_name: "cx-journey-documentation"
+template_description: "Client experience journey documentation with touchpoints, friction analysis, and CES scoring"
+
+# Sections that have sync-enabled detail documents
+sections:
+  # Section 2: Client Touchpoints
+  - title_pattern: "Client Touchpoints"
+    section_number: 2
+    detail_document: "client-touchpoints-detail.md"
+    structured_id_prefix: "JT"
+    sync_enabled: true
+    summary_table_header: "| JT# | Touchpoint Name | Stage | Channel | What Client SEES | What Client DOES | CES Contribution |"
+
+  # Section 4: Friction Point Analysis
+  - title_pattern: "Friction Point Analysis"
+    section_number: 4
+    detail_document: "friction-points-detail.md"
+    structured_id_prefix: "FP"
+    sync_enabled: true
+    summary_table_header: "| FP# | Friction Point | Stage | Touchpoint | Severity | CES Impact | Client Emotion |"
+
+  # Section 6: Channel Analysis
+  - title_pattern: "Channel Analysis"
+    section_number: 6
+    detail_document: null
+    structured_id_prefix: "CH"
+    sync_enabled: false
+    summary_table_header: "| CH# | Channel | Touchpoints Using | Primary Purpose | Client Preference |"
+
+  # Section 7: Enhancement Ideas
+  - title_pattern: "Enhancement Ideas"
+    section_number: 7
+    detail_document: null
+    structured_id_prefix: "EI"
+    sync_enabled: false
+    summary_table_header: "| EI# | Target Friction | Enhancement Idea | Est. CES Reduction | Complexity | Priority |"
+
+  # Non-sync sections (review only)
+  - title_pattern: "Journey Overview"
+    section_number: 1
+    sync_enabled: false
+
+  - title_pattern: "Moments That Matter"
+    section_number: 3
+    sync_enabled: false
+
+  - title_pattern: "Client Effort Score"
+    section_number: 5
+    sync_enabled: false
+
+  - title_pattern: "Industry Research"
+    section_number: 8
+    sync_enabled: false
+
+  - title_pattern: "Inputs for TO-BE Design"
+    section_number: 9
+    sync_enabled: false
+
+  - title_pattern: "Discovery Logging Summary"
+    section_number: 10
+    sync_enabled: false
+
+# Confidence scoring rules
+confidence_rules:
+  high_threshold: 90
+  medium_threshold: 70
+
+  # Fields that indicate incomplete content
+  incomplete_markers:
+    - "[TBD]"
+    - "[Unknown]"
+    - "[TODO]"
+    - "{{.*}}"
+    - "..."
+
+  # Required cross-references by section
+  required_references:
+    2:  # Client Touchpoints
+      - "JT#"
+      - "CH#"
+    3:  # Moments That Matter
+      - "JT#"
+    4:  # Friction Points
+      - "FP#"
+      - "JT#"
+    5:  # CES Analysis
+      - "JT#"
+    6:  # Channel Analysis
+      - "CH#"
+      - "JT#"
+    7:  # Enhancement Ideas
+      - "EI#"
+      - "FP#"
+
+# Structured ID patterns for validation
+# Format: {PREFIX}-{PROCESS_ABBREV}-{SEQ} (e.g., JT-ONB-001, FP-CRO-002)
+# Pattern matches: PREFIX, dash, 2-4 uppercase letters (process abbrev), dash, 3 digits
+id_patterns:
+  journey_touchpoint: "JT-[A-Z]{2,4}-\\d{3}"
+  friction_point: "FP-[A-Z]{2,4}-\\d{3}"
+  channel: "CH-[A-Z]{2,4}-\\d{3}"
+  enhancement_idea: "EI-[A-Z]{2,4}-\\d{3}"
+
+# Companion documents
+companion_documents:
+  - name: "Client Touchpoints Detail"
+    file: "client-touchpoints-detail.md"
+    sync_section: 2
+
+  - name: "Friction Points Detail"
+    file: "friction-points-detail.md"
+    sync_section: 4
+
+  - name: "AS-IS Process Documentation"
+    file: "as-is-process-documentation.md"
+    sync_section: null
+
+# CES scoring configuration
+ces_scoring:
+  weights:
+    client_actions: 1.0
+    documents_required: 1.5
+    information_requests: 1.0
+    follow_ups: 2.0
+    channel_switches: 1.5
+    active_time_minutes: 0.5
+
+  interpretation:
+    low_threshold: 20
+    low_label: "Excellent client experience, minimal effort"
+    medium_threshold: 40
+    medium_label: "Acceptable experience, improvement opportunities exist"
+    high_label: "Poor experience, significant transformation required"
+
+  transformation_target: 0.30  # 30% reduction standard
+
+# Change log format
+change_log:
+  section_title: "Change Log"
+  table_format: "| Date | Contributor | Role | Changes |"

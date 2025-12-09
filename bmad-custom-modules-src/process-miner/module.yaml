@@ -1,0 +1,61 @@
+# ProcessMiner Module Configuration
+# This file defines installation questions and module configuration values
+
+code: process-miner
+name: "ProcessMiner: Banking Process Documentation"
+version: "1.0.0"
+default_selected: false
+type: module
+
+header: "ProcessMiner™: Banking Process Documentation"
+subheader: "SME knowledge extraction and multi-agent workflow coordination for banking processes"
+
+# Core config values are automatically inherited from installer:
+## user_name
+## communication_language
+## document_output_language
+## output_folder
+
+# ============================================================================
+# CONFIGURATION FIELDS
+# ============================================================================
+
+# Data storage location
+data_path:
+  result: "{project-root}/.bmad-user-memory/process-miner"
+
+# Process documentation output
+process_output_path:
+  prompt: "Where should ProcessMiner save process documentation?"
+  default: "docs/processes"
+  result: "{project-root}/{value}"
+
+# Export format preference
+export_format:
+  prompt: "Preferred export format for process data?"
+  default: "yaml"
+  result: "{value}"
+  single-select:
+    - value: "yaml"
+      label: "YAML - Structured data format"
+    - value: "json"
+      label: "JSON - Web-compatible format"
+    - value: "both"
+      label: "Both - Generate YAML and JSON"
+
+# Detail level for documentation
+detail_level:
+  prompt: "How detailed should process documentation be?"
+  default: "standard"
+  result: "{value}"
+  single-select:
+    - value: "minimal"
+      label: "Minimal - Executive summaries only"
+    - value: "standard"
+      label: "Standard - Balanced detail with summaries"
+    - value: "detailed"
+      label: "Detailed - Comprehensive specifications"
+
+# Module version (static)
+module_version:
+  result: "1.0.0"
