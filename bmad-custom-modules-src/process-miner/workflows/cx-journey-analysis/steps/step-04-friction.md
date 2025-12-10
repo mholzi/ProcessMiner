@@ -81,6 +81,293 @@ Identify every point where clients experience friction — struggle, confusion, 
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 4: Friction Point Analysis. The AI MUST follow these specifications when generating content.
+
+### 4.1 Friction Summary (Narrative)
+
+**Format:**
+- **Structure**: 2+ paragraphs minimum
+- **Paragraph 1**: Total friction points identified, severity distribution (P1/P2/P3/P4 counts)
+- **Paragraph 2**: Key friction themes and patterns identified
+- **Paragraph 3+**: Which stages/touchpoints have most friction, overall impact
+
+**Example - Friction Summary:**
+```
+The client journey analysis identified 12 friction points across the account opening journey. The severity distribution shows 2 critical (P1), 4 high (P2), 5 medium (P3), and 1 low (P4) friction points. The total CES impact from friction is estimated at 34 points, with 4 opportunities identified as quick wins.
+
+Three dominant friction themes emerged from the analysis. First, documentation requirements create significant effort friction, with clients required to provide the same information multiple times across different forms. Second, communication gaps during the review and approval stages leave clients uncertain about status and next steps. Third, channel switching between digital application and branch requirements disrupts the journey flow.
+
+The Documentation stage accounts for 45% of total friction, with FP-ONB-003 (repeated data entry) and FP-ONB-004 (unclear document requirements) being the highest impact items. The Review & Approval stage contributes another 30% of friction, primarily from wait times and lack of proactive status updates. Quick win opportunities are concentrated in communication friction, where automated status notifications could address 3 friction points with minimal implementation effort.
+```
+
+### 4.2 Friction Point Summary Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **FP#** | Friction point ID | Format: FP-{abbrev}-### (e.g., FP-ONB-001) |
+| **Friction Point** | Description | Client-perspective name, 5-10 words |
+| **Stage** | Journey stage | Stage name from touchpoint mapping |
+| **Touchpoint** | Linked JT# IDs | Multiple IDs if applicable (e.g., "JT-ONB-003, JT-ONB-004") |
+| **Severity** | Priority level | Label with description: "P1 - Critical", "P2 - High", "P3 - Medium", "P4 - Low" |
+| **CES Impact** | Effort score | Number with ranking: "8 (Rank #1)", "6 (Rank #2)" |
+| **Client Emotion** | Emotional impact | Emotion with intensity: "Frustrated (High)", "Confused (Medium)" |
+
+**Example - Friction Point Summary Table:**
+```
+| FP# | Friction Point | Stage | Touchpoint | Severity | CES Impact | Client Emotion |
+|-----|----------------|-------|------------|----------|------------|----------------|
+| FP-ONB-001 | Multiple form submissions with repeated data | Documentation | JT-ONB-003, JT-ONB-004 | P2 - High | 8 (Rank #1) | Frustrated (High) |
+| FP-ONB-002 | No visibility into application status | Review | JT-ONB-005 | P1 - Critical | 7 (Rank #2) | Anxious (High) |
+| FP-ONB-003 | Unclear document requirements | Documentation | JT-ONB-003 | P2 - High | 6 (Rank #3) | Confused (Medium) |
+| FP-ONB-004 | Forced branch visit for verification | Verification | JT-ONB-006, JT-ONB-007 | P3 - Medium | 5 (Rank #4) | Annoyed (Medium) |
+```
+
+### 4.3 Friction by Type
+
+**Format:**
+- **Structure**: Summary table with Priority Items column, plus 1-2 sentence explanation per friction type that has significant friction
+
+**Table Columns:**
+| Column | Content |
+|--------|---------|
+| **Friction Type** | Type name from reference list |
+| **Count** | Number of friction points of this type |
+| **Combined CES Impact** | Sum of CES impact for this type |
+| **Priority Items** | FP# with brief name (e.g., "FP-ONB-001 - Repeated data entry") |
+
+**After Table**: Add 1-2 sentence explanation for each friction type with significant friction (count > 0 and CES impact > 5)
+
+**Example - Friction by Type:**
+```
+| Friction Type | Count | Combined CES Impact | Priority Items |
+|---------------|-------|---------------------|----------------|
+| Effort Friction | 4 | 18 | FP-ONB-001 - Repeated data entry, FP-ONB-003 - Unclear requirements |
+| Wait Friction | 3 | 12 | FP-ONB-002 - Status uncertainty, FP-ONB-008 - Processing delays |
+| Communication Friction | 3 | 10 | FP-ONB-005 - No proactive updates, FP-ONB-009 - Jargon in notifications |
+| Channel Friction | 2 | 8 | FP-ONB-004 - Forced branch visit, FP-ONB-010 - No mobile option |
+| Exception Friction | 0 | 0 | — |
+| Information Friction | 0 | 0 | — |
+
+**Effort Friction** dominates this journey with 4 friction points totaling 18 CES impact. The repeated data entry requirement (FP-ONB-001) is the single highest-impact friction point, requiring clients to enter the same business details across 3 different forms.
+
+**Wait Friction** creates significant anxiety during the review stage. Clients have no visibility into where their application is in the process, leading to unnecessary follow-up calls that create additional effort.
+
+**Communication Friction** is concentrated in automated notifications that use banking jargon and fail to provide clear next steps or expected timelines.
+
+**Channel Friction** forces digital-first clients to visit a branch for identity verification, disrupting the otherwise digital journey.
+```
+
+### 4.4 Friction Statistics
+
+**Format**: Table with Metric | Value columns (keep as-is in template)
+
+**Required Metrics:**
+- Total Friction Points
+- High-Severity (P1)
+- Medium-Severity (P2)
+- Low-Severity (P3)
+- Quick Win Opportunities
+
+**Example - Friction Statistics:**
+```
+| Metric | Value |
+|--------|-------|
+| Total Friction Points | 12 |
+| High-Severity (P1) | 2 |
+| Medium-Severity (P2) | 4 |
+| Low-Severity (P3) | 5 |
+| Low-Severity (P4) | 1 |
+| Quick Win Opportunities | 4 |
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+- **Confidence**: AI-inferred percentage (0-100%)
+- **Basis**: AI-inferred assessment explaining the confidence level
+
+**Example:**
+```
+> **Section Confidence:** 80% | **Basis:** Friction points derived from AS-IS pain point analysis with SME validation. Severity assessments based on SME expertise. CES impact estimates require further quantitative validation.
+```
+
+### Friction Points Detail Document Specification
+
+The detail document (`friction-points-detail.md`) MUST include ALL of the following sections for each friction point:
+
+#### Per Friction Point Structure
+
+```markdown
+### FP-XXX-###: [Friction Point Name]
+
+#### Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Friction Point ID** | FP-XXX-### |
+| **Friction Point Name** | [Client-perspective name] |
+| **Friction Type** | [Effort/Wait/Communication/Channel/Exception/Information] |
+| **Journey Stage** | [Stage name] |
+| **Linked Touchpoint(s)** | [JT# IDs, comma-separated] |
+| **Severity** | [P1-Critical/P2-High/P3-Medium/P4-Low] |
+| **CES Impact** | [0-10 score] |
+| **Quick Win Potential** | [Yes/No] |
+
+#### Client Experience Description
+
+[2-3 sentences describing what the client actually experiences — what they see, feel, struggle with. Written from client perspective.]
+
+#### Impact Analysis
+
+**Emotional Impact:**
+[1-2 sentences describing the emotional impact — frustration, confusion, anxiety, etc. Include intensity level.]
+
+**Effort Impact:**
+| Component | Additional Effort | CES Contribution |
+|-----------|------------------|------------------|
+| Additional Actions | [number] | [CES points] |
+| Additional Documents | [number] | [CES points] |
+| Additional Time (mins) | [minutes] | [CES points] |
+| Channel Switches | [number] | [CES points] |
+| Follow-ups Required | [number] | [CES points] |
+| **Total CES Impact** | | **[total]** |
+
+**Behavioral Impact:**
+[1-2 sentences on behavioral consequences — complaints, abandonment risk, workarounds used]
+
+**Business Impact:**
+- Churn Risk: [Low/Medium/High]
+- NPS Impact: [Estimated impact, e.g., "-5 to -10 points"]
+- Complaint Likelihood: [Low/Medium/High]
+
+#### Frequency & Scope
+
+| Attribute | Value |
+|-----------|-------|
+| **Frequency** | [Always/Often/Sometimes/Rarely] |
+| **% of Clients Affected** | [percentage] |
+| **Client Segments Most Affected** | [segment names] |
+
+#### Root Cause Analysis
+
+**What the Client Sees/Experiences:**
+[2-3 sentences describing the visible symptoms from the client perspective]
+
+**Underlying Operational Cause:**
+[2-3 sentences explaining the operational or process issue that creates this friction. Reference process steps or systems where relevant.]
+
+**Linked Pain Points (PP#):**
+| PP# | Pain Point | Connection |
+|-----|------------|------------|
+| [PP-XXX-###] | [Pain point name] | [How this PP causes or relates to this friction] |
+
+#### Enhancement Ideas
+
+**[EI-XXX-###]: [Enhancement Title]**
+
+| Attribute | Value |
+|-----------|-------|
+| **Description** | [2-3 sentences describing the enhancement] |
+| **Est. CES Reduction** | [0-10, how much CES this would reduce] |
+| **Complexity** | [Low/Medium/High — without specific time/cost estimates] |
+| **Quick Win?** | [Yes/No] |
+```
+
+**Example - Full Friction Point Detail:**
+```markdown
+### FP-ONB-001: Multiple form submissions with repeated data entry
+
+#### Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Friction Point ID** | FP-ONB-001 |
+| **Friction Point Name** | Multiple form submissions with repeated data entry |
+| **Friction Type** | Effort Friction |
+| **Journey Stage** | Documentation |
+| **Linked Touchpoint(s)** | JT-ONB-003, JT-ONB-004 |
+| **Severity** | P2 - High |
+| **CES Impact** | 8 |
+| **Quick Win Potential** | No |
+
+#### Client Experience Description
+
+The client is asked to provide their business name, registration number, and address on the initial application form, then again on the KYC form, and a third time on the account preferences form. Each form looks different and has slightly different field labels, making the client question whether they should enter exactly the same information or something different. The repetition feels like a waste of time and signals that the bank's systems are not connected.
+
+#### Impact Analysis
+
+**Emotional Impact:**
+Clients experience high frustration at having to re-enter the same information multiple times. This frustration intensifies with each subsequent form, often leading to verbal complaints to branch staff or negative feedback in post-onboarding surveys.
+
+**Effort Impact:**
+| Component | Additional Effort | CES Contribution |
+|-----------|------------------|------------------|
+| Additional Actions | 24 (8 fields × 3 forms) | 4 |
+| Additional Documents | 0 | 0 |
+| Additional Time (mins) | 15 | 2 |
+| Channel Switches | 0 | 0 |
+| Follow-ups Required | 2 | 2 |
+| **Total CES Impact** | | **8** |
+
+**Behavioral Impact:**
+Some clients save partial forms and abandon the process to complete later, increasing drop-off rates. Others call customer service to ask if they "really need to fill this in again," creating unnecessary support volume.
+
+**Business Impact:**
+- Churn Risk: Medium
+- NPS Impact: -5 to -8 points
+- Complaint Likelihood: High
+
+#### Frequency & Scope
+
+| Attribute | Value |
+|-----------|-------|
+| **Frequency** | Always |
+| **% of Clients Affected** | 100% |
+| **Client Segments Most Affected** | All segments equally affected |
+
+#### Root Cause Analysis
+
+**What the Client Sees/Experiences:**
+The client sees three separate forms that each request their business name, registration number, and registered address. The field labels are slightly different ("Business Name" vs "Company Name" vs "Legal Entity Name"), creating confusion about whether identical information should be entered. No explanation is provided for why the information is needed again.
+
+**Underlying Operational Cause:**
+The three forms are owned by different departments (Sales, Compliance, Operations) and feed into different backend systems that do not share data. Each system was implemented independently, and integration was deemed too expensive during initial implementation. The forms have never been consolidated because each department considers their specific field labels to be required for their downstream processing.
+
+**Linked Pain Points (PP#):**
+| PP# | Pain Point | Connection |
+|-----|------------|------------|
+| PP-ONB-012 | Disconnected departmental systems | Root cause — systems don't share customer data |
+| PP-ONB-015 | Manual data reconciliation | Effect — staff must reconcile data across systems |
+
+#### Enhancement Ideas
+
+**EI-ONB-001: Pre-populate forms from initial application**
+
+| Attribute | Value |
+|-----------|-------|
+| **Description** | Implement data pass-through so that business information entered on the initial application form is pre-populated on subsequent KYC and account preferences forms. Client can review and confirm rather than re-enter. |
+| **Est. CES Reduction** | 6 |
+| **Complexity** | High — requires integration between three departmental systems |
+| **Quick Win?** | No |
+
+**EI-ONB-002: Consolidate forms into single multi-section form**
+
+| Attribute | Value |
+|-----------|-------|
+| **Description** | Redesign the three separate forms into a single multi-section form with clear progress indicator. Business information entered once at the top, then referenced throughout. |
+| **Est. CES Reduction** | 7 |
+| **Complexity** | Medium — requires form redesign and stakeholder alignment |
+| **Quick Win?** | No |
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

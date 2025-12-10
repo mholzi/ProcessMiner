@@ -103,6 +103,332 @@ Final quality assurance and approval including 20-point validation checklist wit
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 1 (Executive Summary), Section 10 (Risk & Mitigation), Section 11 (Success Metrics), and Section 12 (Appendices). The AI MUST follow these specifications when generating content.
+
+**NOTE:** Section 9 (Investment Analysis) has been removed from this workflow — no cost estimates or ROI projections are included.
+
+### Section 1: Executive Summary
+
+**Format:**
+- **Structure**: Narrative paragraphs + embedded key metrics table
+- **Content**: 3-4 paragraphs summarizing key findings and recommendations with metrics table
+
+**Paragraph Structure:**
+1. **Context & Scope**: What was analyzed and why
+2. **Key Findings**: Major discoveries from market research and innovation identification
+3. **Priorities**: MUST HAVE innovations and their strategic importance
+4. **Recommendation**: Clear call to action
+
+**Key Metrics Table:**
+| Metric | Value |
+|--------|-------|
+| Innovations Identified | [count] |
+| MUST HAVE | [count] |
+| SHOULD HAVE | [count] |
+| COULD HAVE | [count] |
+| DEFER | [count] |
+| Market Trends Analyzed | [count] |
+| Competitors Assessed | [count] |
+
+**Example - Executive Summary:**
+```
+## 1. Executive Summary
+
+This innovation analysis examined the SME Onboarding process at Example Bank, identifying opportunities to transform the client experience and operational efficiency. The analysis encompassed market research across 5 competitors and 7 fintech disruptors, assessment of 12 technology trends, and generation of 15 innovation ideas with feasibility scoring.
+
+| Metric | Value |
+|--------|-------|
+| Innovations Identified | 15 |
+| MUST HAVE | 3 |
+| SHOULD HAVE | 4 |
+| COULD HAVE | 5 |
+| DEFER | 3 |
+| Market Trends Analyzed | 12 |
+| Competitors Assessed | 12 |
+
+The analysis reveals that Example Bank has significant opportunity to improve competitive positioning through three MUST HAVE innovations: AI-powered document extraction (II-ONB-001), automated decisioning for simple structures (II-ONB-004), and real-time status notifications (II-ONB-005). Together, these innovations address the top client pain points and enable same-day processing for 60% of applications — matching the best-in-class fintech experience.
+
+The recommendation is to proceed with transformation planning incorporating all three MUST HAVE innovations as core requirements. The SHOULD HAVE innovations (video verification, mobile application) should be included if feasible, with regulatory engagement initiated immediately for video verification. Deferred items should be monitored against their trigger conditions for future inclusion.
+```
+
+### Section 10: Risk & Mitigation
+
+#### 10.1 Innovation Risks Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Risk ID** | Risk identifier | Format: RISK-### |
+| **Risk Description** | What could go wrong | 1-2 sentences |
+| **Likelihood** | Probability of occurrence | High / Medium / Low |
+| **Impact** | Severity if occurs | High / Medium / Low |
+| **Mitigation Strategy** | How to prevent or reduce | 1-2 sentences |
+
+**Example - Innovation Risks Table:**
+```
+| Risk ID | Risk Description | Likelihood | Impact | Mitigation Strategy |
+|---------|------------------|------------|--------|---------------------|
+| RISK-001 | AI document extraction accuracy below 95% threshold | Medium | High | Extensive testing with diverse document samples; parallel running before cutover |
+| RISK-002 | Regulatory rejection of automated decisioning | Low | High | Early engagement with compliance; document audit trail requirements |
+| RISK-003 | Client adoption of video verification lower than expected | Medium | Medium | A/B testing with client segments; maintain branch option as fallback |
+| RISK-004 | Integration complexity exceeds estimates | Medium | Medium | Proof of concept phase before commitment; vendor technical assessment |
+| RISK-005 | Resource constraints delay implementation | High | Medium | Prioritize MUST HAVEs; phase implementations to match capacity |
+```
+
+#### 10.2 Risk Mitigation Plan
+
+**Format:**
+- **Structure**: Overall narrative + per-risk detail blocks + grouped by risk category
+- **Overall Narrative**: 1-2 paragraphs on risk management approach
+- **Per-Risk Blocks**: Key risks get detailed mitigation sections
+- **Category Grouping**: Risks grouped by type (Technical, Regulatory, Adoption, Resource, etc.)
+
+**Example - Risk Mitigation Plan:**
+```
+### 10.2 Risk Mitigation Plan
+
+The risk mitigation strategy focuses on early validation and phased deployment. Rather than big-bang implementations, each MUST HAVE innovation will follow a proof-of-concept approach, validating key assumptions before full commitment. This approach reduces the impact of risks materializing by catching issues early when course correction is cheaper.
+
+For high-impact risks, specific mitigation actions are assigned with clear ownership. The compliance team is engaged from project initiation for regulatory risks, while technical risks are addressed through vendor assessments and proof-of-concept phases.
+
+#### Technical Risks
+
+**RISK-001: AI document extraction accuracy below 95% threshold**
+
+This is the highest-impact technical risk as it directly affects the value proposition of same-day processing. Mitigation approach:
+- **Pre-commitment validation**: Test with 500+ historical documents across all document types before vendor selection
+- **Accuracy monitoring**: Implement real-time accuracy dashboards with alerts below threshold
+- **Fallback process**: Maintain manual review capability for documents below confidence threshold
+- **Contingency**: If no vendor achieves 95%, adjust threshold with compensating controls (human review for lower-confidence extractions)
+
+**RISK-004: Integration complexity exceeds estimates**
+
+Integration risk is inherent in any transformation involving legacy systems. Mitigation approach:
+- **Technical discovery**: Conduct API assessment for all integration points before design
+- **Proof of concept**: Build end-to-end integration prototype before commitment
+- **Vendor support**: Include integration support in vendor contracts
+- **Contingency**: If integration proves infeasible, consider middleware or data replication approaches
+
+#### Regulatory Risks
+
+**RISK-002: Regulatory rejection of automated decisioning**
+
+Automated decisioning without human oversight could face regulatory challenge. Mitigation approach:
+- **Early engagement**: Brief compliance team in week 1; request formal opinion before design
+- **Audit trail**: Design comprehensive audit trail exceeding current requirements
+- **Human oversight**: Include human review for edge cases and random sampling
+- **Contingency**: If full automation rejected, implement "human-in-the-loop" with staff approval for automated recommendations
+
+#### Adoption Risks
+
+**RISK-003: Client adoption of video verification lower than expected**
+
+Client adoption is critical for realizing the benefit of removing branch visits. Mitigation approach:
+- **Client research**: Validate client appetite through survey before build
+- **A/B testing**: Pilot with early adopter segment before broad rollout
+- **Client communication**: Clear messaging on benefits and security
+- **Contingency**: Maintain branch verification option; monitor adoption and adjust messaging
+```
+
+### Section 11: Success Metrics
+
+#### 11.1 KPI Framework
+
+**Format:**
+- **Structure**: Introductory narrative paragraph + KPI table
+- **Narrative**: 1-2 paragraphs explaining the measurement framework
+- **Table Columns**: KPI | Definition | Target | Measurement Method
+
+**Example - KPI Framework:**
+```
+### 11.1 KPI Framework
+
+Success will be measured across four dimensions: client experience, operational efficiency, competitive positioning, and innovation adoption. Each MUST HAVE innovation has specific KPIs that define success, with targets set based on current baseline performance and industry benchmarks.
+
+The KPI framework is designed to be measurable from day one of implementation, using data sources that already exist or can be readily created. Leading indicators (like processing time) will be monitored continuously, while lagging indicators (like client satisfaction) will be measured quarterly.
+
+| KPI | Definition | Target | Measurement Method |
+|-----|------------|--------|-------------------|
+| Document Processing Time | Average time from document upload to data extraction complete | < 5 minutes (from 45 mins) | System timestamp logs |
+| Same-Day Decision Rate | % of applications receiving decision within 24 hours | > 60% (from 15%) | Application status tracking |
+| Client Effort Score (CES) | Survey-based effort score for onboarding journey | 30% reduction | Post-onboarding survey |
+| Application Abandonment | % of applications started but not completed | < 15% (from 25%) | Application funnel analytics |
+| Digital Completion Rate | % of onboardings completed without branch visit | > 70% (from 30%) | Channel tracking |
+| Status Inquiry Calls | Inbound calls asking about application status | 50% reduction | Call center categorization |
+```
+
+#### 11.2 Measurement Plan
+
+**Format:**
+- **Structure**: Narrative overview + measurement table
+- **Narrative**: 1-2 paragraphs on how and when metrics will be measured
+- **Table Columns**: KPI | Data Source | Frequency | Owner | Baseline
+
+**Example - Measurement Plan:**
+```
+### 11.2 Measurement Plan
+
+Metrics will be captured through a combination of system logs, analytics, and surveys. System-based metrics (processing time, completion rates) will be automated and available in real-time dashboards. Survey-based metrics (CES, satisfaction) will be collected through post-onboarding surveys sent 7 days after account activation.
+
+A baseline measurement will be established in the first month of the project, capturing current performance across all KPIs. This baseline will serve as the comparison point for measuring improvement. Monthly reviews will track progress, with quarterly deep-dives examining trends and identifying improvement opportunities.
+
+| KPI | Data Source | Frequency | Owner | Baseline |
+|-----|-------------|-----------|-------|----------|
+| Document Processing Time | Document management system logs | Real-time | Operations | 45 minutes avg |
+| Same-Day Decision Rate | Application workflow system | Daily | Operations | 15% |
+| Client Effort Score | Post-onboarding survey | Quarterly | Client Experience | TBD (survey to establish) |
+| Application Abandonment | Web/mobile analytics | Weekly | Digital | 25% |
+| Digital Completion Rate | Channel tracking | Weekly | Digital | 30% |
+| Status Inquiry Calls | Call center system | Weekly | Customer Service | 450 calls/week |
+```
+
+#### 11.3 Target Outcomes
+
+**Format:**
+- **Structure**: Table + narrative explanation
+- **Table Columns**: Outcome | Success Criteria | Linked II#
+- **Narrative**: 1-2 paragraphs explaining how outcomes link to innovations
+
+**Example - Target Outcomes:**
+```
+### 11.3 Target Outcomes
+
+| Outcome | Success Criteria | Linked II# |
+|---------|------------------|------------|
+| Same-day processing capability | 60%+ applications decided within 24 hours | II-ONB-001, II-ONB-004 |
+| Reduced client effort | CES reduction of 30%+ | II-ONB-005, II-ONB-001 |
+| Digital-first journey | 70%+ onboardings without branch visit | II-ONB-002, II-ONB-006 |
+| Competitive parity | Feature match with top 3 competitors | II-ONB-001, II-ONB-002 |
+| Operational efficiency | 50% reduction in processing staff time | II-ONB-001, II-ONB-004 |
+
+The target outcomes represent the strategic objectives of the transformation, with each outcome enabled by one or more innovations. Same-day processing requires both AI document extraction (II-ONB-001) to accelerate data capture AND automated decisioning (II-ONB-004) to remove the decision bottleneck. Neither innovation alone achieves the outcome.
+
+Similarly, the digital-first journey outcome depends on video verification (II-ONB-002) to eliminate the branch requirement. If video verification is not implemented (SHOULD HAVE), this outcome will not be achieved, and the 70% target should be adjusted downward.
+```
+
+### Section 12: Appendices
+
+#### 12.1 Research Sources
+
+**Format:**
+- **Structure**: Table listing all sources used in the analysis
+- **Table Columns**: Source | Type | Date | Relevance
+
+**Source Types:**
+- Industry Report
+- Competitor Analysis
+- Regulatory Document
+- Internal Document
+- Web Research
+- SME Interview
+
+**Example - Research Sources:**
+```
+### 12.1 Research Sources
+
+| Source | Type | Date | Relevance |
+|--------|------|------|-----------|
+| Forrester Banking Digital Transformation Report | Industry Report | Q3 2024 | Market trends, best practices |
+| McKinsey Banking Operations Benchmarks | Industry Report | 2024 | Efficiency benchmarks |
+| Bank A Annual Report | Competitor Analysis | 2024 | Competitor strategy |
+| Fintech X Product Demo | Competitor Analysis | Nov 2024 | Feature comparison |
+| PSD3 Draft Regulation | Regulatory Document | 2024 | Regulatory horizon |
+| Example Bank Digital Strategy | Internal Document | 2024 | Strategic alignment |
+| SME Onboarding Pain Points Analysis | Internal Document | 2024 | Pain point input |
+| Industry onboarding trends search | Web Research | Dec 2024 | Current trends |
+```
+
+#### 12.2 Market Data
+
+**Format:**
+- **Structure**: Table with key market data points
+- **Table Columns**: Data Point | Value | Source | Relevance
+
+**Example - Market Data:**
+```
+### 12.2 Market Data
+
+| Data Point | Value | Source | Relevance |
+|------------|-------|--------|-----------|
+| Average SME onboarding time (industry) | 5-7 days | Forrester 2024 | Benchmark |
+| Best-in-class onboarding time | < 1 day | Fintech analysis | Target benchmark |
+| SME digital banking adoption | 78% | Industry survey | Digital priority justification |
+| Mobile banking preference (SME) | 62% | Internal survey | Mobile innovation priority |
+| Video verification adoption (early movers) | 45% | Competitor analysis | Adoption expectation |
+| AI document processing accuracy (leaders) | 95%+ | Vendor assessments | Technical threshold |
+```
+
+#### 12.3 Technical Specifications
+
+**Format:**
+- **Structure**: Table with technical requirements per innovation
+- **Table Columns**: Innovation | Technology | Integration Points | Technical Requirements
+
+**Example - Technical Specifications:**
+```
+### 12.3 Technical Specifications
+
+| Innovation | Technology | Integration Points | Technical Requirements |
+|------------|------------|-------------------|----------------------|
+| II-ONB-001 | AI/ML Document Processing | DMS, Core Banking, Workflow | Cloud deployment, 95% accuracy, < 30s processing |
+| II-ONB-002 | Video Verification | Mobile SDK, Web SDK, ID Database | Real-time streaming, liveness detection, secure storage |
+| II-ONB-004 | Rules Engine | Core Banking, Risk System | Decision audit trail, policy version control |
+| II-ONB-005 | Notification Service | Workflow, CRM, Mobile Push | Real-time triggers, multi-channel delivery |
+```
+
+#### 12.4 Change Log
+
+**Format:**
+- **Structure**: Table tracking document versions
+- **Table Columns**: Version | Date | Author | Changes
+
+**Example - Change Log:**
+```
+### 12.4 Change Log
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 0.1 | 2024-12-01 | J. Smith | Initial draft - market research |
+| 0.2 | 2024-12-05 | J. Smith | Added innovation backlog |
+| 0.3 | 2024-12-08 | J. Smith | Added priorities and recommendations |
+| 1.0 | 2024-12-10 | J. Smith | Final version after SME validation |
+```
+
+#### 12.5 Glossary
+
+**Format:**
+- **Structure**: Simple list with Term: Definition format
+
+**Example - Glossary:**
+```
+### 12.5 Glossary
+
+- **CES (Client Effort Score)**: A metric measuring how much effort a client must expend to complete a process. Lower is better.
+- **COMP#**: Identifier for competitors analyzed in this document (e.g., COMP-ONB-001).
+- **FIN#**: Identifier for fintech disruptors analyzed in this document (e.g., FIN-ONB-001).
+- **II#**: Identifier for innovation ideas captured in this document (e.g., II-ONB-001).
+- **MoSCoW**: Prioritization method categorizing items as Must Have, Should Have, Could Have, or Won't Have (Defer).
+- **PP#**: Identifier for pain points from AS-IS documentation (e.g., PP-ONB-001).
+- **TR#**: Identifier for market trends analyzed in this document (e.g., TR-ONB-001).
+- **Same-day decisioning**: Providing an application decision within 24 hours of submission.
+- **Straight-through processing**: Automated processing without human intervention.
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 90% | **Basis:** All 20 validation checklist items passed. Executive summary validated by SME. Risk and metrics sections based on SME input.
+```
+
+---
+
 ## PHASE A: ANALYZE [AUTO - NO USER INTERRUPTION]
 
 ### A.1 Load Complete Document

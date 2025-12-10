@@ -8,7 +8,7 @@ workflow_path: '{module_root}/workflows/control-compliance-analysis'
 
 # File References
 thisStepFile: '{workflow_path}/steps/step-08-regulatory-change.md'
-nextStepFile: '{workflow_path}/steps/step-09-recommendations.md'
+nextStepFile: '{workflow_path}/steps/step-09-audit-findings.md'
 workflowFile: '{workflow_path}/workflow.md'
 
 # Output Files
@@ -37,7 +37,46 @@ Identify upcoming regulatory changes and assess their impact on the process. Ass
 - Each regulatory change gets RCI# ID: RCI-{process_abbreviation}-###
 - MUST link to REG# regulations affected
 - Assess impact and action required
-- **FORBIDDEN** to start recommendations in this step (that's Step 9)
+- **FORBIDDEN** to start audit findings capture in this step (that's Step 9)
+
+---
+
+## CONTENT FORMAT SPECIFICATION
+
+This step produces **Section 7: Regulatory Change Impact** of the compliance-control-assessment template.
+
+### Section 7: Regulatory Change Impact
+**Format:** Narrative intro + table + per-change detail blocks + horizon scanning
+
+**Structure:**
+1. **Narrative Introduction** (2-3 paragraphs):
+   - Overview of the regulatory change landscape
+   - Why tracking regulatory changes matters for this process
+   - Summary of upcoming impacts for non-specialists
+
+2. **Regulatory Change Summary Table:**
+   | RCI# | Regulation (REG#) | Change Description | Effective Date | Impact Level | Status |
+   |------|-------------------|-------------------|----------------|--------------|--------|
+
+3. **Per-Change Detail Blocks** (for High and Medium impact changes):
+   Each block includes 1-2 paragraphs covering:
+   - What is changing and why
+   - How it affects this process specifically
+   - Which controls (CP#) will need modification
+   - Actions required to achieve compliance
+   - Current implementation status
+
+4. **Horizon Scanning Narrative** (1-2 paragraphs):
+   - Regulations on the horizon that may affect this process
+   - Emerging regulatory themes to watch
+   - Implications for TO-BE transformation design
+
+### Writing Guidelines for Section 7:
+- Explain regulatory changes in plain language, not legal jargon
+- Focus on practical implications for the process
+- Be specific about what actions are required
+- Connect changes to existing controls that will be affected
+- Emphasize the importance for TO-BE design consideration
 
 ---
 
@@ -138,9 +177,9 @@ Section Confidence: {{section_7_confidence}}
 
 Display:
 ```
-**Progress: Step 8 of 10 - Regulatory Change Assessment Complete**
+**Progress: Step 8 of 11 - Regulatory Change Assessment Complete**
 
-Now let's consolidate recommendations for control improvement.
+Now let's capture any open audit findings that affect this process.
 ```
 
 ```

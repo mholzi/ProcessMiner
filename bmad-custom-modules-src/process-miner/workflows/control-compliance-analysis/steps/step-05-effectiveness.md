@@ -85,6 +85,84 @@ Assess the effectiveness of each control point. Rate consistency, detection capa
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This step produces **Section 4: Control Effectiveness Assessment** of the compliance-control-assessment template.
+
+### Section 4.1: Control Strengths
+**Format:** Narrative intro + table + brief highlights
+
+**Structure:**
+1. **Narrative Introduction** (2-3 paragraphs):
+   - Overview of what's working well in the control environment
+   - Patterns observed in highly effective controls
+   - Why these strengths matter for compliance and risk management
+
+2. **Strengths Table:**
+   | CP# | Control Name | Effectiveness Rating | Key Strength |
+   |-----|--------------|---------------------|--------------|
+
+3. **Highlight Narratives** (1 paragraph each for top 3-5 controls):
+   - What makes this control particularly effective
+   - Lessons that could be applied to other controls
+
+### Section 4.2: Control Weaknesses
+**Format:** Narrative intro + table + per-control detail blocks
+
+**Structure:**
+1. **Narrative Introduction** (2-3 paragraphs):
+   - Overview of control weaknesses identified
+   - Common patterns or themes in weak controls
+   - Implications for compliance and risk
+
+2. **Weaknesses Table:**
+   | CP# | Control Name | Rating | Key Issue | Dimension Most Affected |
+   |-----|--------------|--------|-----------|------------------------|
+
+3. **Per-Control Detail Blocks** (1-2 paragraphs each):
+   - What is the control supposed to do
+   - Where and why it's falling short
+   - Impact of the weakness
+   - Initial thoughts on improvement
+
+### Section 4.3: Improvement Opportunities
+**Format:** Narrative intro + prioritized list
+
+**Structure:**
+1. **Narrative Introduction** (1-2 paragraphs):
+   - Overview of improvement themes
+   - Prioritization approach
+
+2. **Improvement List** (grouped by priority):
+   For each opportunity:
+   - Control reference (CP#)
+   - Improvement description
+   - Expected benefit
+   - Effort level indication
+
+### Control Points Detail Document Updates
+For each CP# in control-points-detail.md, update effectiveness assessment section:
+- **Dimension Ratings Table:**
+  | Dimension | Rating (1-5) | Notes |
+  |-----------|--------------|-------|
+  | Consistency | X | ... |
+  | Detection | X | ... |
+  | Evidence Quality | X | ... |
+  | Accountability | X | ... |
+  | Timeliness | X | ... |
+  | **Overall** | X | ... |
+
+- **Assessment Narrative** (1 paragraph): Plain-language summary of effectiveness
+
+### Writing Guidelines for Section 4:
+- Be honest about weaknesses - "having a control doesn't mean it works"
+- Explain effectiveness in practical terms, not just ratings
+- Make dimension ratings meaningful with clear explanations
+- Focus on actionable insights, not just observations
+- Celebrate strengths while being direct about weaknesses
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

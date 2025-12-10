@@ -123,8 +123,9 @@ This workflow uses **step-file architecture** for disciplined execution:
 | 6 | step-06-audit-trail.md | Audit trail requirements | Section 5 |
 | 7 | step-07-risk-matrix.md | Risk & compliance matrix | Section 6 |
 | 8 | step-08-regulatory-change.md | Regulatory change impact assessment | Section 7 |
-| 9 | step-09-recommendations.md | Control improvement recommendations | Section 8 |
-| 10 | step-10-validation.md | Final review, gap analysis, and document generation | - |
+| 9 | step-09-audit-findings.md | Open audit findings capture | Section 8 |
+| 10 | step-10-recommendations.md | Control improvement recommendations | Section 9 |
+| 11 | step-11-validation.md | Final review, gap analysis, and document generation | - |
 
 ## SCHEMA REFERENCE
 
@@ -140,6 +141,7 @@ This workflow produces output aligned with:
 - Audit Trail Requirements: `ATR-{ABBREV}-###` (e.g., ATR-ONB-001)
 - Risk & Compliance Matrix: `RCM-{ABBREV}-###` (e.g., RCM-ONB-001)
 - Regulatory Change Impact: `RCI-{ABBREV}-###` (e.g., RCI-ONB-001)
+- Open Audit Findings: `OAF-{ABBREV}-###` (e.g., OAF-ONB-001)
 - Control Improvement Recommendations: `CIR-{ABBREV}-###` (e.g., CIR-ONB-001)
 
 **Process Abbreviation**: Derived from process name (e.g., "Onboarding" → "ONB", "Credit Origination" → "CRO")
@@ -209,6 +211,7 @@ This workflow PRODUCES new compliance-focused data:
 - Audit Trail Requirements (ATR#) - evidence and retention needs
 - Risk & Compliance Matrix (RCM#) - risk-control mapping
 - Regulatory Change Impact (RCI#) - upcoming regulatory changes
+- Open Audit Findings (OAF#) - unresolved audit findings affecting the process
 - Control Improvement Recommendations (CIR#) - improvement opportunities
 
 ---
@@ -221,6 +224,7 @@ All compliance elements must be linked:
 - Each GAP# gap links to REG# requirement and affected CP# controls
 - Each CEA# assessment links to CP# control
 - Each RCM# entry links to risks, REG# regulations, and CP# controls
+- Each OAF# audit finding links to affected CP# controls
 - Each CIR# recommendation links to CP# control it improves
 
 This ensures full regulatory traceability from requirements to controls to evidence.

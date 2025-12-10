@@ -80,6 +80,209 @@ Capture all compliance controls and regulatory requirements with unique CP# IDs,
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 4: Control Points and Compliance. The AI MUST follow these specifications when generating content.
+
+### 4.1 Control Summary
+
+**Format:**
+- **Structure**: 2+ paragraphs minimum
+- **Content**: Overview of control landscape (count, types, key regulations) + compliance posture/gaps
+
+**Example:**
+```
+The Client Onboarding process has 8 documented control points ensuring regulatory compliance and operational integrity. Controls are distributed across preventive (5), detective (2), and corrective (1) categories, with the majority implemented as manual controls requiring human judgment.
+
+The process addresses requirements from multiple regulatory frameworks including AML/KYC regulations, GDPR data protection requirements, and internal credit policy standards. Current coverage is comprehensive for AML/KYC requirements, with one identified gap in automated sanctions screening refresh frequency. All controls have been mapped to specific process steps and assigned clear ownership.
+```
+
+### 4.2 Control Point Summary Table
+
+**Table Format:**
+| CP# | Control Name | Type | Regulation | Process Step | Effectiveness |
+|-----|--------------|------|------------|--------------|---------------|
+
+**Column Specifications:**
+
+| Column | Format | Example |
+|--------|--------|---------|
+| **CP#** | `CP-{{abbrev}}-###` where abbrev is 2-3 characters | CP-CRO-001, CP-ONB-002 |
+| **Control Name** | Descriptive phrase | "Four-eyes verification of client data", "Automated sanctions screening" |
+| **Type** | Type + execution method | "PREVENTIVE - MANUAL", "DETECTIVE - AUTOMATED", "CORRECTIVE - HYBRID" |
+| **Regulation** | Regulatory code OR internal policy (context-dependent) | "AML/KYC Reg 4.2", "Credit Policy 3.1", "GDPR Art. 17" |
+| **Process Step** | PS# + step name | "PS-002: Verify ID" |
+| **Effectiveness** | Label + brief note | "HIGH — No breaches in 12 months", "MEDIUM — Manual process prone to error" |
+
+**Example Table:**
+| CP# | Control Name | Type | Regulation | Process Step | Effectiveness |
+|-----|--------------|------|------------|--------------|---------------|
+| CP-CRO-001 | Four-eyes verification of client data | PREVENTIVE - MANUAL | AML/KYC Reg 4.2 | PS-002: Verify ID | HIGH — No breaches in 12 months |
+| CP-CRO-002 | Automated sanctions screening | DETECTIVE - AUTOMATED | AML Directive Art. 13 | PS-002: Verify ID | HIGH — Real-time screening with 99.9% uptime |
+| CP-CRO-003 | Risk classification review | PREVENTIVE - MANUAL | Credit Policy 3.1 | PS-004: Risk assessment | MEDIUM — Subjective criteria, inconsistent application |
+
+**Per-Control Detail (below table):**
+
+For each control point, include 2-3 paragraphs covering:
+- Background on the control — what it does and why it exists
+- Impact — what happens if this control fails or is bypassed
+
+**Example - Per-Control Detail:**
+```markdown
+#### CP-CRO-001: Four-eyes verification of client data
+
+The four-eyes principle requires that all client data entered during onboarding be reviewed and approved by a second qualified staff member before the application can proceed. This control exists to prevent data entry errors and detect potential fraud attempts where a single staff member might collude with a client to bypass verification requirements.
+
+This control is mandated by AML/KYC regulations which require independent verification of client identity data. Failure of this control could result in incorrect client records being established, potential sanctions breaches if client details are inaccurate, and regulatory penalties during audit. The bank has invested in training to ensure all KYC Operations staff understand the importance of thorough secondary review.
+```
+
+### 4.3 Regulatory Coverage
+
+**Table Format:**
+| Regulation | Controls Mapped | Coverage Status |
+|------------|-----------------|-----------------|
+
+**Column Specifications:**
+
+| Column | Format | Example |
+|--------|--------|---------|
+| **Regulation** | Flexible — whatever is relevant to the process | "AML/KYC Directive", "GDPR", "Internal Credit Policy" |
+| **Controls Mapped** | Count + CP# references | "3 (CP-001, CP-002, CP-005)" |
+| **Coverage Status** | Label + note if gaps exist | "FULL", "PARTIAL — 1 gap identified", "GAP — No controls mapped" |
+
+**Example Table:**
+| Regulation | Controls Mapped | Coverage Status |
+|------------|-----------------|-----------------|
+| AML/KYC Directive | 4 (CP-001, CP-002, CP-003, CP-005) | FULL |
+| GDPR Data Protection | 2 (CP-004, CP-006) | FULL |
+| Internal Credit Policy | 2 (CP-003, CP-007) | PARTIAL — Risk appetite documentation gap |
+
+**Per-Regulation Detail (below table):**
+
+For each regulation, include 2-3 paragraphs covering:
+- Background on the regulation — what it requires and why it matters
+- Impact on this process — how it shapes control requirements
+
+**Example - Per-Regulation Detail:**
+```markdown
+#### AML/KYC Directive
+
+The Anti-Money Laundering and Know Your Customer Directive establishes requirements for financial institutions to verify client identity, assess money laundering risk, and maintain ongoing monitoring of client relationships. These requirements apply to all new client onboarding and periodic reviews of existing relationships.
+
+For the Client Onboarding process, AML/KYC requirements drive the majority of verification activities including identity document validation, beneficial ownership identification, sanctions screening, and risk classification. Non-compliance can result in significant regulatory penalties, reputational damage, and potential criminal liability for responsible officers. The bank's compliance framework treats AML/KYC as the highest priority control domain.
+```
+
+### 4.4 Control Statistics
+
+**Table Format:**
+| Metric | Value |
+|--------|-------|
+| Total Control Points | {{total_control_points}} |
+| Regulatory Controls | {{regulatory_controls}} |
+| Internal Controls | {{internal_controls}} |
+| Automated Controls | {{automated_controls}} |
+
+### Control Detail Document (control-points-detail.md)
+
+**Per-Control Detail Block Format:**
+
+```markdown
+## CP-XXX-###: [Control Name]
+
+| Attribute | Value |
+|-----------|-------|
+| **Control ID** | CP-XXX-### |
+| **Type** | [PREVENTIVE / DETECTIVE / CORRECTIVE] - [MANUAL / AUTOMATED / HYBRID] |
+| **Regulation** | [Regulatory reference or internal policy] |
+| **Process Step** | [PS# + step name] |
+| **Effectiveness** | [Label + description] |
+| **Owner** | [Business Unit / Role] |
+
+### Description
+
+[1-2 paragraphs describing the control — what it does, how it works, who performs it]
+
+### Control Activities
+
+[Narrative paragraph describing the specific activities performed as part of this control]
+
+### Testing/Validation Approach
+
+[Paragraph describing how this control is tested, validated, or audited]
+
+### Regulatory Requirement Source
+
+[Paragraph identifying the specific regulatory requirement this control addresses, with citation]
+
+### Gap Analysis
+
+[Paragraph identifying any gaps in control design or operation, or stating "No gaps identified"]
+
+### Improvement Recommendations
+
+[Bullet list or paragraph describing potential improvements to control effectiveness]
+```
+
+**Example - Control Detail:**
+```markdown
+## CP-CRO-002: Automated sanctions screening
+
+| Attribute | Value |
+|-----------|-------|
+| **Control ID** | CP-CRO-002 |
+| **Type** | DETECTIVE - AUTOMATED |
+| **Regulation** | AML Directive Art. 13, OFAC Requirements |
+| **Process Step** | PS-002: Verify ID |
+| **Effectiveness** | HIGH — Real-time screening with 99.9% uptime |
+| **Owner** | Compliance / AML Team |
+
+### Description
+
+All client applications are automatically screened against global sanctions lists, PEP databases, and adverse media sources before proceeding past the verification stage. The screening is performed by the WorldCheck system integrated with the CRM, providing real-time results within seconds of application submission.
+
+Positive matches are flagged for manual review by the AML team, while clear results allow the application to proceed automatically. The system screens client names, beneficial owners, and connected parties against continuously updated watchlists.
+
+### Control Activities
+
+Upon application submission, the CRM triggers an API call to WorldCheck containing client identification data. The system performs fuzzy matching against sanctions lists (OFAC, EU, UN), PEP databases, and adverse media sources. Results are returned with match scores and supporting evidence. Matches above the 80% threshold are queued for AML analyst review, while lower scores are logged but allow processing to continue.
+
+### Testing/Validation Approach
+
+The control is tested quarterly through the submission of known test cases including names on sanctions lists and known PEP individuals. System uptime and response times are monitored continuously with alerts for degradation. Annual penetration testing validates that the integration cannot be bypassed. Internal Audit reviews screening effectiveness annually as part of the AML control assessment.
+
+### Regulatory Requirement Source
+
+AML Directive Article 13 requires credit institutions to apply customer due diligence measures including identification and verification of the customer's identity. OFAC regulations require US-connected institutions to screen all parties against the SDN list. The bank's AML Policy Section 4.2 mandates automated screening for all new client relationships.
+
+### Gap Analysis
+
+Current gap: Sanctions lists are refreshed daily, but regulatory guidance suggests real-time refresh for high-risk clients. Additionally, the current system does not screen against all regional sanctions lists, specifically missing coverage for certain Asian jurisdictions where the bank has growing exposure.
+
+### Improvement Recommendations
+
+- Implement real-time sanctions list refresh for high-risk client categories
+- Expand screening coverage to include additional regional sanctions lists
+- Enhance matching algorithms to reduce false positive rate (currently ~15%)
+- Add automated re-screening trigger when client data is modified
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+- **Confidence**: AI-inferred percentage (0-100%)
+- **Basis**: AI-inferred assessment explaining the confidence level
+
+**Example:**
+```
+> **Section Confidence:** 88% | **Basis:** All controls mapped to regulatory requirements with clear ownership. Effectiveness assessments based on SME input. Gap analysis for 2 controls requires validation with Compliance team.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress

@@ -11,6 +11,16 @@
 
 {{innovation_executive_summary}}
 
+### Key Metrics
+
+| Metric | Value |
+|--------|-------|
+| Total Innovation Ideas | {{total_innovations}} |
+| High Priority (MUST HAVE) | {{must_have_count}} |
+| Medium Priority (SHOULD HAVE) | {{should_have_count}} |
+| Low Priority (COULD HAVE) | {{could_have_count}} |
+| Deferred | {{defer_count}} |
+
 ---
 
 ## Innovation Ideas Summary Table
@@ -99,16 +109,6 @@
 **Target Outcomes:**
 {{this.target_outcomes}}
 
-#### Strategic Alignment
-
-> *How does this align with organizational strategy?*
-
-**Strategic Objective:** {{this.strategic_objective}}
-
-**Alignment Notes:** {{this.alignment_notes}}
-
-**Priority Level:** {{this.priority_level}}
-
 #### Feasibility Assessment
 
 > *Six-dimension feasibility scoring*
@@ -122,31 +122,6 @@
 | Risk Level | {{this.risk_score}} | {{this.risk_notes}} |
 | Customer Impact | {{this.customer_score}} | {{this.customer_notes}} |
 | **Total Score** | **{{this.total_score}}** | |
-
-#### Implementation Considerations
-
-> *What would it take to implement this?*
-
-**Estimated Effort:** {{this.estimated_effort}}
-
-**Key Dependencies:**
-{{this.dependencies}}
-
-**Required Capabilities:**
-{{this.required_capabilities}}
-
-**Potential Risks:**
-{{this.potential_risks}}
-
-#### Market Context
-
-> *External validation and market relevance*
-
-**Industry Adoption:** {{this.industry_adoption}}
-
-**Competitor Status:** {{this.competitor_status}}
-
-**Market Trends Supporting:** {{this.supporting_trends}}
 
 #### Related Items
 
@@ -166,9 +141,7 @@
 
 **Recommended Action:** {{this.recommended_action}}
 
-**Priority:** {{this.priority}}
-
-**Target Timeline:** {{this.target_timeline}}
+**MoSCoW Priority:** {{this.moscow_priority}}
 
 ---
 
@@ -176,29 +149,37 @@
 
 ## Priority Matrix
 
-### Quick Wins (High Fit + Low Complexity)
+### Quick Wins (High Feasibility + High Impact)
 
-> *Innovations to implement first - immediate value, low effort*
+> *Innovations to implement first - immediate value, low complexity*
 
-{{quick_wins}}
+| II# | Innovation Name | Total Score | Recommendation |
+|-----|-----------------|-------------|----------------|
+{{quick_wins_table}}
 
-### Strategic Bets (High Fit + High Complexity)
+### Strategic Bets (Low Feasibility + High Impact)
 
-> *Significant innovations requiring investment - high value, high effort*
+> *Significant innovations requiring investment - high value, higher complexity*
 
-{{strategic_bets}}
+| II# | Innovation Name | Total Score | Recommendation |
+|-----|-----------------|-------------|----------------|
+{{strategic_bets_table}}
 
-### Fill-Ins (Low Fit + Low Complexity)
+### Fill-Ins (High Feasibility + Low Impact)
 
 > *Nice-to-haves if resources permit*
 
-{{fill_ins}}
+| II# | Innovation Name | Total Score | Recommendation |
+|-----|-----------------|-------------|----------------|
+{{fill_ins_table}}
 
-### Reconsider (Low Fit + High Complexity)
+### Reconsider (Low Feasibility + Low Impact)
 
 > *May not be worth the investment at this time*
 
-{{reconsider}}
+| II# | Innovation Name | Total Score | Recommendation |
+|-----|-----------------|-------------|----------------|
+{{reconsider_table}}
 
 ---
 
@@ -220,39 +201,23 @@
 
 ## Recommendations
 
-### Immediate Actions (0-3 months)
+### Low Complexity / High Value
 
-{{immediate_recommendations}}
+> *Innovations recommended for immediate pursuit*
 
-### Short-Term Initiatives (3-6 months)
+{{low_complexity_high_value}}
 
-{{short_term_recommendations}}
+### Strategic Bets
 
-### Long-Term Roadmap (6-12 months)
+> *Significant innovations requiring investment and commitment*
 
-{{long_term_recommendations}}
+{{strategic_bets_recommendations}}
 
----
+### Future Consideration
 
-## Input for Downstream Agents
+> *Innovations to revisit when conditions change*
 
-### For Transformation Agent
-
-> *Innovations that should influence TO-BE design*
-
-{{transformation_input}}
-
-### For IT Architect
-
-> *Technology innovations requiring architecture consideration*
-
-{{it_architect_input}}
-
-### For Product Owner
-
-> *Innovations for product backlog consideration*
-
-{{product_owner_input}}
+{{future_consideration}}
 
 ---
 

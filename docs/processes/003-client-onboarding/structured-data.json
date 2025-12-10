@@ -1,0 +1,96 @@
+{
+  "$schema": "process-miner-structured-data-v1",
+  "schema_version": "1.0.0",
+
+  "session": {
+    "id": "session-20251209-001",
+    "started": "2025-12-09T00:00:00Z",
+    "last_updated": "2025-12-09T00:00:00Z",
+    "contributor": {
+      "name": "Markus",
+      "role": "RTM"
+    },
+    "process": {
+      "id": "COB-003",
+      "name": "Client Onboarding"
+    },
+    "client_groups": ["BizBanking"],
+    "checkpoint": {
+      "step": 2,
+      "last_item_id": null
+    },
+    "documents_uploaded": true,
+    "import_source": "DTP-BB-ONB-001 v2.3"
+  },
+
+  "metadata": {
+    "purpose": "The BizBanking Client Onboarding process establishes new banking relationships with business clients (annual turnover up to €10M) by collecting, validating, and processing client information to create fully operational accounts. This includes identity verification through KYC checks, regulatory compliance screening (AML, PEP, Sanctions), risk assessment, and where requested, credit facility assessment for overdraft products. This process is critical for revenue generation and regulatory compliance.",
+    "trigger": "Process triggered via four channels: (1) online submission via Business Portal, (2) RM paper application, (3) branch network referral, (4) partner channel submission. Formally initiates when application enters CRM queue with minimum required documentation.",
+    "frequency": "Continuous during business hours, real-time processing. Peak periods at month-end, quarter-end, January, and September.",
+    "volume": "80-120 applications/month (60% of total bank volume). 70% Standard, 30% Complex. 12-15% YoY growth. 4-6 hours average processing time.",
+    "confidence": "HIGH"
+  },
+
+  "process_steps": [
+    {"id": "PS-COB-001", "sequence": 1, "name": "Application Receipt & Initial Triage", "owner": "Operations Officer", "systems": ["CRM", "DMS", "OWS"], "rationale": "Ensure complete applications enter pipeline, reject incomplete early", "sla": "Same business day", "status": "VALIDATED"},
+    {"id": "PS-COB-002", "sequence": 2, "name": "KYC & Identity Verification", "owner": "KYC Analyst", "systems": ["Fenergo", "World-Check", "CRO Portal", "Jumio"], "rationale": "Regulatory compliance (CDD, AML), risk mitigation", "sla": "2-5 business days", "status": "VALIDATED"},
+    {"id": "PS-COB-003", "sequence": 3, "name": "Credit Assessment", "owner": "Credit Analyst", "systems": ["CDS", "Bureau Link"], "rationale": "Credit risk management, responsible lending", "sla": "3 business days", "condition": "If overdraft requested", "status": "VALIDATED"},
+    {"id": "PS-COB-004", "sequence": 4, "name": "Account Setup & Configuration", "owner": "Operations Officer", "systems": ["CBS (T24)", "Marqeta"], "rationale": "Enable client to transact, complete product setup", "sla": "1 business day", "status": "VALIDATED"},
+    {"id": "PS-COB-005", "sequence": 5, "name": "Client Communication & Activation", "owner": "Relationship Manager", "systems": ["CRM", "Email", "CBS"], "rationale": "Client engagement, ensure smooth activation", "sla": "1 business day", "status": "VALIDATED"},
+    {"id": "PS-COB-006", "sequence": 6, "name": "Post-Onboarding Quality Check", "owner": "Team Lead", "systems": ["OWS", "QMS"], "rationale": "Quality assurance, continuous improvement", "sla": "Within 10 business days", "status": "VALIDATED"}
+  ],
+  "process_exceptions": [
+    {"id": "EX-COB-001", "name": "Incomplete Documentation", "category": "Documentation", "trigger": "Required documents missing after submission", "affected_steps": ["PS-COB-001", "PS-COB-002"], "frequency": "HIGH", "frequency_pct": 30, "impact": "MEDIUM", "handling_owner": "Operations Officer", "status": "VALIDATED"},
+    {"id": "EX-COB-002", "name": "KYC Screening Hit", "category": "Compliance", "trigger": "World-Check match on director/UBO", "affected_steps": ["PS-COB-002"], "frequency": "LOW", "frequency_pct": 5, "impact": "HIGH", "handling_owner": "Compliance Officer", "status": "VALIDATED"},
+    {"id": "EX-COB-003", "name": "Credit Decline", "category": "Credit", "trigger": "Credit assessment fails scorecard or policy", "affected_steps": ["PS-COB-003"], "frequency": "MEDIUM", "frequency_pct": 15, "impact": "MEDIUM", "handling_owner": "Relationship Manager", "status": "VALIDATED"},
+    {"id": "EX-COB-004", "name": "System Downtime", "category": "System", "trigger": "CBS unavailable >4 hours", "affected_steps": ["PS-COB-004"], "frequency": "LOW", "frequency_pct": 1, "impact": "HIGH", "handling_owner": "IT Service Desk", "status": "VALIDATED"},
+    {"id": "EX-COB-005", "name": "Complex Ownership Structure", "category": "Compliance", "trigger": ">3 layers, foreign shareholders, trust structures", "affected_steps": ["PS-COB-002"], "frequency": "MEDIUM", "frequency_pct": 20, "impact": "MEDIUM", "handling_owner": "Senior KYC Analyst", "status": "VALIDATED"}
+  ],
+  "pain_points": [
+    {"id": "PP-COB-001", "name": "Manual document chasing", "category": "PROCESS", "affected_steps": ["PS-COB-001", "PS-COB-002"], "severity": "HIGH", "impact": "2-3 follow-ups per application, delays onboarding", "frequency": "HIGH", "priority": "P1", "status": "VALIDATED"},
+    {"id": "PP-COB-002", "name": "System switching / No single client view", "category": "SYSTEM", "affected_steps": ["PS-COB-001", "PS-COB-002", "PS-COB-003", "PS-COB-004", "PS-COB-005"], "severity": "HIGH", "impact": "6+ systems, data entry errors, staff frustration", "frequency": "HIGH", "priority": "P1", "status": "VALIDATED"},
+    {"id": "PP-COB-003", "name": "KYC screening false positives", "category": "SYSTEM", "affected_steps": ["PS-COB-002"], "severity": "MEDIUM", "impact": "40% false positive rate, manual review burden", "frequency": "HIGH", "priority": "P2", "status": "VALIDATED"},
+    {"id": "PP-COB-004", "name": "Paper-based signatures", "category": "PROCESS", "affected_steps": ["PS-COB-001"], "severity": "MEDIUM", "impact": "1-2 day digitization delay", "frequency": "MEDIUM", "priority": "P2", "status": "VALIDATED"},
+    {"id": "PP-COB-005", "name": "Credit bureau delays", "category": "SYSTEM", "affected_steps": ["PS-COB-003"], "severity": "LOW", "impact": "Variable response times, no visibility", "frequency": "MEDIUM", "priority": "P3", "status": "VALIDATED"},
+    {"id": "PP-COB-006", "name": "Welcome call scheduling", "category": "PROCESS", "affected_steps": ["PS-COB-005"], "severity": "MEDIUM", "impact": "Avg 3 attempts to reach client", "frequency": "HIGH", "priority": "P2", "status": "VALIDATED"}
+  ],
+  "controls": [
+    {"id": "CP-COB-001", "name": "Customer Identification", "type": "PREVENTIVE", "execution": "MANUAL", "regulation": "CDD Regulations 2010", "process_step": "PS-COB-002", "effectiveness": "HIGH", "owner": "KYC Analyst", "status": "VALIDATED"},
+    {"id": "CP-COB-002", "name": "Beneficial Owner Identification", "type": "PREVENTIVE", "execution": "MANUAL", "regulation": "AML Act 2010", "process_step": "PS-COB-002", "effectiveness": "HIGH", "owner": "KYC Analyst", "status": "VALIDATED"},
+    {"id": "CP-COB-003", "name": "Data Protection Consent", "type": "PREVENTIVE", "execution": "MANUAL", "regulation": "GDPR", "process_step": "PS-COB-001", "effectiveness": "HIGH", "owner": "Operations Officer", "status": "VALIDATED"},
+    {"id": "CP-COB-004", "name": "Strong Customer Authentication", "type": "PREVENTIVE", "execution": "AUTOMATED", "regulation": "PSD2", "process_step": "PS-COB-004", "effectiveness": "HIGH", "owner": "IT/Operations", "status": "VALIDATED"},
+    {"id": "CP-COB-005", "name": "Product Disclosure", "type": "PREVENTIVE", "execution": "MANUAL", "regulation": "Consumer Protection Code", "process_step": "PS-COB-005", "effectiveness": "MEDIUM", "owner": "Relationship Manager", "status": "VALIDATED"}
+  ],
+  "systems": [
+    {"id": "SYS-COB-001", "name": "CRM (Salesforce)", "type": "CORE", "purpose": "Client relationship management, case tracking", "process_steps": ["PS-COB-001", "PS-COB-002", "PS-COB-003", "PS-COB-004", "PS-COB-005", "PS-COB-006"], "integrations": ["SYS-COB-002"], "status": "VALIDATED"},
+    {"id": "SYS-COB-002", "name": "OWS (Onboarding Workflow System)", "type": "CORE", "purpose": "Process orchestration, SLA tracking", "process_steps": ["PS-COB-001", "PS-COB-002", "PS-COB-003", "PS-COB-004", "PS-COB-005", "PS-COB-006"], "integrations": ["SYS-COB-001"], "status": "VALIDATED"},
+    {"id": "SYS-COB-003", "name": "KYC Platform (Fenergo)", "type": "CORE", "purpose": "KYC case management, document storage", "process_steps": ["PS-COB-002"], "integrations": ["SYS-COB-004"], "status": "VALIDATED"},
+    {"id": "SYS-COB-004", "name": "World-Check (Refinitiv)", "type": "EXTERNAL", "purpose": "PEP & Sanctions screening", "process_steps": ["PS-COB-002"], "integrations": ["SYS-COB-003"], "status": "VALIDATED"},
+    {"id": "SYS-COB-005", "name": "CBS (Temenos T24)", "type": "CORE", "purpose": "Account creation, transaction processing", "process_steps": ["PS-COB-004"], "integrations": ["SYS-COB-008"], "status": "VALIDATED"},
+    {"id": "SYS-COB-006", "name": "CDS (Credit Decisioning)", "type": "SUPPORTING", "purpose": "Credit assessment, scorecards", "process_steps": ["PS-COB-003"], "integrations": ["Bureau Link"], "status": "VALIDATED"},
+    {"id": "SYS-COB-007", "name": "DMS (OpenText)", "type": "SUPPORTING", "purpose": "Document storage, archival", "process_steps": ["PS-COB-001", "PS-COB-002"], "integrations": [], "status": "VALIDATED"},
+    {"id": "SYS-COB-008", "name": "Card Management (Marqeta)", "type": "SUPPORTING", "purpose": "Debit card ordering, management", "process_steps": ["PS-COB-004"], "integrations": ["SYS-COB-005"], "status": "VALIDATED"}
+  ],
+
+  "validation": {
+    "status": "COMPLETE",
+    "completed_at": "2025-12-09T00:00:00Z",
+    "unknowns": [],
+    "overrides": [],
+    "summary": {
+      "process_steps": 6,
+      "exceptions": 5,
+      "pain_points": 6,
+      "controls": 5,
+      "systems": 8
+    },
+    "confidence": {
+      "overall": "HIGH",
+      "process_steps": "HIGH",
+      "exceptions": "HIGH",
+      "pain_points": "HIGH",
+      "controls": "HIGH",
+      "systems": "HIGH"
+    }
+  }
+}

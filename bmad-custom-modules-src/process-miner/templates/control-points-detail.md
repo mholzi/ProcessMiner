@@ -11,6 +11,18 @@
 
 {{controls_executive_summary}}
 
+### Key Metrics
+
+| Metric | Value |
+|--------|-------|
+| Total Control Points | {{total_controls}} |
+| Regulatory Controls | {{regulatory_count}} |
+| Internal Policy Controls | {{internal_count}} |
+| Automated Controls | {{automated_count}} |
+| Manual Controls | {{manual_count}} |
+| Highly Effective Controls | {{high_effectiveness_count}} |
+| Controls Needing Improvement | {{needs_improvement_count}} |
+
 ---
 
 ## Control Point Summary Table

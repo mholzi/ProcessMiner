@@ -42,6 +42,44 @@ Document audit trail requirements, evidence retention needs, and data elements t
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This step produces **Section 5: Audit Trail Requirements** of the compliance-control-assessment template.
+
+### Section 5: Audit Trail Requirements
+**Format:** Narrative intro + summary table + audit readiness assessment
+
+**Structure:**
+1. **Narrative Introduction** (2-3 paragraphs):
+   - Explanation of why audit trail matters ("controls without evidence are unverifiable")
+   - Overview of evidence capture across the process
+   - Key audit trail considerations for readers unfamiliar with compliance auditing
+
+2. **Audit Trail Summary Table:**
+   | ATR# | Control (CP#) | Data Elements Captured | Retention Period | Storage System | Completeness |
+   |------|---------------|------------------------|------------------|----------------|--------------|
+
+3. **Audit Readiness Narrative** (2-3 paragraphs):
+   - Overall assessment of audit readiness
+   - Areas where evidence capture is strong
+   - Gaps in audit trail that need attention
+   - Accessibility of evidence for auditors
+
+4. **Per-Control Evidence Details** (for controls with gaps or notable requirements):
+   Each block includes 1 paragraph covering:
+   - What evidence should be captured
+   - Current state of evidence capture
+   - Any gaps or improvements needed
+
+### Writing Guidelines for Section 5:
+- Explain audit trail in practical terms for non-auditors
+- Emphasize the connection between evidence and control verification
+- Be specific about what data elements are captured
+- Highlight any retention period mismatches with regulatory requirements
+- Make audit readiness assessment clear and actionable
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

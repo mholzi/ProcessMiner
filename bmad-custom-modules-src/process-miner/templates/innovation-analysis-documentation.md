@@ -35,9 +35,10 @@ status: "draft"
 {competitive_landscape}
 
 ### 3.4 Technology Radar
-```mermaid
-{technology_radar_diagram}
-```
+
+| Technology | Maturity | Applicability | Existing Initiative |
+|------------|----------|---------------|---------------------|
+{technology_radar_table}
 
 ## 4. Innovation Backlog
 ### 4.1 Innovation Ideas Summary
@@ -94,79 +95,89 @@ quadrantChart
 ### 6.3 Implementation Approach
 {implementation_approach}
 
-## 7. Prioritized Roadmap
-### 7.1 Roadmap Overview
-```mermaid
-gantt
-    title Innovation Implementation Roadmap
-    dateFormat YYYY-MM-DD
-    {gantt_roadmap}
-```
+## 7. MoSCoW Prioritization
 
-### 7.2 Phase 1: Foundation (Months 1-3)
-{phase_1_details}
+### 7.1 MUST HAVE
 
-### 7.3 Phase 2: Core Innovations (Months 4-6)
-{phase_2_details}
+{must_have_table}
 
-### 7.4 Phase 3: Advanced Capabilities (Months 7-12)
-{phase_3_details}
+{must_have_narrative}
+
+### 7.2 SHOULD HAVE
+
+{should_have_table}
+
+{should_have_narrative}
+
+### 7.3 COULD HAVE
+
+{could_have_table}
+
+{could_have_narrative}
+
+### 7.4 DEFER
+
+{defer_table}
+
+{defer_narrative}
 
 ## 8. Strategic Recommendations
-### 8.1 Quick Wins (0-3 months)
-{quick_wins}
 
-### 8.2 Strategic Initiatives (3-12 months)
-{strategic_initiatives}
+### 8.1 Low Complexity / High Value
+{low_complexity_high_value}
 
-### 8.3 Future Exploration (12+ months)
-{future_exploration}
+### 8.2 Strategic Bets
+{strategic_bets}
 
-## 9. Investment Analysis
-### 9.1 Cost Estimates
-| II ID | Development Cost | Infrastructure Cost | Ongoing Cost | Total TCO |
-|-------|-----------------|--------------------|--------------|-----------|
-{cost_estimates_table}
+### 8.3 Future Consideration
+{future_consideration}
 
-### 9.2 ROI Projections
-{roi_projections}
+## 9. Risk & Mitigation
 
-### 9.3 Resource Requirements
-{resource_requirements}
+### 9.1 Innovation Risks
 
-## 10. Risk & Mitigation
-### 10.1 Innovation Risks
 | Risk ID | Risk Description | Likelihood | Impact | Mitigation Strategy |
 |---------|-----------------|------------|--------|---------------------|
 {risks_table}
 
-### 10.2 Risk Mitigation Plan
+### 9.2 Risk Mitigation Plan
+
 {risk_mitigation_plan}
 
-## 11. Success Metrics
-### 11.1 KPI Framework
+## 10. Success Metrics
+
+### 10.1 KPI Framework
+
 {kpi_framework}
 
-### 11.2 Measurement Plan
+### 10.2 Measurement Plan
+
 {measurement_plan}
 
-### 11.3 Target Outcomes
+### 10.3 Target Outcomes
+
 {target_outcomes}
 
-## 12. Appendices
-### 12.1 Research Sources
+## 11. Appendices
+
+### 11.1 Research Sources
+
 {research_sources}
 
-### 12.2 Market Data
+### 11.2 Market Data
+
 {market_data}
 
-### 12.3 Technical Specifications
+### 11.3 Technical Specifications
+
 {technical_specs}
 
-### 12.4 Change Log
+### 11.4 Change Log
+
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 {change_log}
 
-### 12.5 Glossary
+### 11.5 Glossary
+
 {glossary}

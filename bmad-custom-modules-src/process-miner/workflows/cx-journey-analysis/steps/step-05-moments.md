@@ -87,6 +87,207 @@ A touchpoint is a "moment that matter" if it meets ANY of these criteria:
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 3 (Moments That Matter) and Section 5 (CES Analysis). The AI MUST follow these specifications when generating content.
+
+### Section 3: Moments That Matter
+
+#### 3.1 Identified Moments
+
+**Format:**
+- **Structure**: Per-moment detail block with table
+- **Required Attributes**: Stage, Why Critical, Current Experience, Emotional Impact, Risk if Degraded
+
+**Per-Moment Format:**
+```
+**[#]. [Moment Name]** ([Touchpoint ID])
+
+| Attribute | Value |
+|-----------|-------|
+| **Stage** | [Journey stage name] |
+| **Why Critical** | [1-2 sentences explaining why this moment matters] |
+| **Current Experience** | [Excellent/Good/Acceptable/Poor/Critical + brief description] |
+| **Emotional Impact** | [Emotion + intensity, e.g., "Anxiety (High)"] |
+| **Risk if Degraded** | [1-2 sentences on what would happen if this moment worsened] |
+```
+
+**Example - Identified Moment:**
+```
+**1. First application submission** (JT-ONB-001)
+
+| Attribute | Value |
+|-----------|-------|
+| **Stage** | Application |
+| **Why Critical** | This is the client's first interaction with the bank's business onboarding process. It sets expectations for the entire journey and creates first impressions of efficiency and professionalism. |
+| **Current Experience** | Acceptable — form works but is lengthy and asks for information the client may not have readily available |
+| **Emotional Impact** | Anticipation mixed with uncertainty (Medium) |
+| **Risk if Degraded** | If this moment becomes more complex or less intuitive, abandonment rates would spike and first impressions would shift negative, affecting the entire downstream journey |
+
+**2. Approval notification** (JT-ONB-008)
+
+| Attribute | Value |
+|-----------|-------|
+| **Stage** | Decision |
+| **Why Critical** | This is the moment the client has been waiting for — the answer to whether their application was successful. The emotional stakes are highest here. |
+| **Current Experience** | Good — notification arrives promptly with clear outcome |
+| **Emotional Impact** | Relief and excitement (High) |
+| **Risk if Degraded** | Delayed or unclear notification would extend anxiety, increase inbound calls, and create negative peak memory regardless of actual approval outcome |
+```
+
+#### 3.2 Moments Summary Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Moment** | Moment name | Short descriptive name |
+| **Touchpoint** | JT# ID | Format: JT-{abbrev}-### |
+| **Current State** | Experience rating | Excellent/Good/Acceptable/Poor/Critical |
+| **Enhancement Priority** | Protection/enhancement recommendation | Must Protect/Should Enhance/Can Optimize |
+
+**Example - Moments Summary:**
+```
+| Moment | Touchpoint | Current State | Enhancement Priority |
+|--------|-----------|---------------|---------------------|
+| First application submission | JT-ONB-001 | Acceptable | Should Enhance |
+| Approval notification | JT-ONB-008 | Good | Must Protect |
+| First transaction completed | JT-ONB-012 | Excellent | Must Protect |
+| Exception handling call | JT-ONB-015 | Poor | Should Enhance |
+```
+
+#### Section 3 Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 85% | **Basis:** Moments identified through systematic criteria evaluation with SME validation. Clear differentiation between critical moments and routine touchpoints.
+```
+
+### Section 5: Client Effort Score (CES) Analysis
+
+#### 5.1 CES Breakdown by Stage
+
+**Format:**
+- **Structure**: Table with all CES components per stage, plus totals row
+- **Required Columns**: Stage name, Actions, Documents, Info Requests, Follow-ups, Channel Switches, Wait Time, Stage CES
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Journey Stage** | Stage name | Match stage names from touchpoint mapping |
+| **Actions** | Client actions count | Whole number |
+| **Documents** | Documents required | Whole number |
+| **Info Requests** | Information requests | Whole number |
+| **Follow-ups** | Follow-ups required | Whole number |
+| **Channel Switches** | Forced channel changes | Whole number |
+| **Wait Time** | Active time in minutes | Number with "min" unit |
+| **Stage CES** | Calculated CES | Weighted total for stage |
+
+**Example - CES Breakdown by Stage:**
+```
+| Journey Stage | Actions | Documents | Info Requests | Follow-ups | Channel Switches | Wait Time | Stage CES |
+|---------------|---------|-----------|---------------|------------|------------------|-----------|-----------|
+| Application | 12 | 4 | 6 | 0 | 1 | 25 min | 31.0 |
+| Documentation | 8 | 6 | 4 | 2 | 2 | 45 min | 38.5 |
+| Review | 2 | 0 | 1 | 3 | 0 | 10 min | 13.0 |
+| Approval | 1 | 0 | 0 | 0 | 0 | 5 min | 3.5 |
+| Activation | 5 | 1 | 2 | 1 | 1 | 15 min | 14.0 |
+| **TOTAL** | **28** | **11** | **13** | **6** | **4** | **100 min** | **100.0** |
+```
+
+#### 5.2 CES Breakdown by Touchpoint
+
+**Format:**
+- **Structure**: Table sorted by CES contribution (highest first)
+- **Required Columns**: Touchpoint (name + ID), CES Contribution, % of Total, Reduction Priority
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Touchpoint** | Name with JT# ID | Format: "[Name] (JT-XXX-###)" |
+| **CES Contribution** | CES score | Number to 1 decimal place |
+| **% of Total** | Percentage of journey CES | Number with % symbol |
+| **Reduction Priority** | Priority for CES reduction | High/Medium/Low based on contribution and feasibility |
+
+**Example - CES Breakdown by Touchpoint:**
+```
+| Touchpoint | CES Contribution | % of Total | Reduction Priority |
+|------------|------------------|------------|-------------------|
+| Document submission portal (JT-ONB-004) | 22.5 | 22.5% | High |
+| Initial application form (JT-ONB-001) | 18.0 | 18.0% | High |
+| Identity verification (JT-ONB-006) | 12.5 | 12.5% | Medium |
+| Follow-up calls (JT-ONB-009) | 11.0 | 11.0% | High |
+| Account configuration (JT-ONB-011) | 9.5 | 9.5% | Medium |
+| Status check portal (JT-ONB-007) | 8.0 | 8.0% | Low |
+| Approval notification (JT-ONB-008) | 6.5 | 6.5% | Low |
+| Welcome package receipt (JT-ONB-012) | 5.5 | 5.5% | Low |
+| First login (JT-ONB-013) | 4.0 | 4.0% | Low |
+| First transaction (JT-ONB-014) | 2.5 | 2.5% | Low |
+```
+
+#### 5.3 Benchmark Comparison
+
+**Format:**
+- **Structure**: Table with benchmark scores and gap analysis
+- **Required Rows**: Industry Average, Best-in-Class, Internal Target
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Benchmark** | Benchmark name | Industry Average, Best-in-Class, Internal Target |
+| **Score** | CES score | Number, or "TBD" if unknown |
+| **Our Gap** | Difference from AS-IS | Number with +/- prefix, or "N/A" |
+
+**Example - Benchmark Comparison:**
+```
+| Benchmark | Score | Our Gap |
+|-----------|-------|---------|
+| Industry Average | 85 | +15 (we are 15 points higher/worse) |
+| Best-in-Class | 45 | +55 (significant gap) |
+| Internal Target | 70 | +30 (30 points to reduce) |
+```
+
+#### 5.4 CES Baseline Statement
+
+**Format:**
+- **Structure**: Blockquote with baseline CES, comparison purpose, and target calculation
+
+**Template:**
+```
+> **CES BASELINE FOR TO-BE COMPARISON**
+>
+> This AS-IS CES score (**[total_ces]**) establishes the baseline for transformation.
+> During TO-BE design, this score will be compared against the target state to measure
+> improvement. Industry standard for transformation projects is **30-40% CES reduction**.
+>
+> **Target CES:** [calculated_target] (30% reduction from [total_ces])
+```
+
+**Example - CES Baseline Statement:**
+```
+> **CES BASELINE FOR TO-BE COMPARISON**
+>
+> This AS-IS CES score (**100**) establishes the baseline for transformation.
+> During TO-BE design, this score will be compared against the target state to measure
+> improvement. Industry standard for transformation projects is **30-40% CES reduction**.
+>
+> **Target CES:** 70 (30% reduction from 100)
+```
+
+#### Section 5 Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 75% | **Basis:** CES calculations based on touchpoint data with estimated time components. Benchmark comparison requires validation against formal industry research.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

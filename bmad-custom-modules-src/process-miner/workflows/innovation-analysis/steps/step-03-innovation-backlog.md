@@ -88,6 +88,229 @@ Feasibility Score = (Technical × 0.20) + (Regulatory × 0.25) + (ROI × 0.20) +
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 4 (Innovation Backlog) and Section 5 (Feasibility Matrix). The AI MUST follow these specifications when generating content.
+
+### Section 4: Innovation Backlog
+
+#### 4.1 Innovation Ideas Summary Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **II ID** | Innovation identifier | Format: II-{ABBREV}-### (e.g., II-ONB-001) |
+| **Innovation Idea** | Short descriptive name | 5-10 words |
+| **Category** | Innovation category | Process / Technology / Business Model / Customer Experience |
+| **Source** | Where idea originated | Pain Point / Competitor / Fintech / Trend / Internal |
+| **Status** | Current status | New / Under Review / Approved / Deferred |
+| **Strategic Fit** | Alignment with strategy | High / Medium / Low |
+
+**Example - Innovation Ideas Summary:**
+```
+| II ID | Innovation Idea | Category | Source | Status | Strategic Fit |
+|-------|-----------------|----------|--------|--------|---------------|
+| II-ONB-001 | AI-powered document extraction and validation | Technology | Trend TR-ONB-001 | Under Review | High |
+| II-ONB-002 | Video-based identity verification | Technology | Competitor COMP-ONB-002 | Under Review | High |
+| II-ONB-003 | Pre-populated application from accounting software | Process | Fintech FIN-ONB-002 | New | Medium |
+| II-ONB-004 | Automated decisioning for simple structures | Process | Pain Point PP-ONB-005 | Approved | High |
+| II-ONB-005 | Real-time application status notifications | Customer Experience | Pain Point PP-ONB-008 | Approved | High |
+```
+
+#### 4.2 Innovation Details
+
+**Format:**
+- **Structure**: Per-innovation blocks with overview table + description paragraph
+- **Overview Table**: Key attributes in table format
+- **Description**: 1-2 paragraphs explaining the innovation
+
+**Per-Innovation Block Structure:**
+```
+### II-XXX-###: [Innovation Name]
+
+#### Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Innovation ID** | II-XXX-### |
+| **Innovation Name** | [Short descriptive name] |
+| **Category** | [Process / Technology / Business Model / Customer Experience] |
+| **Source** | [Origin: Pain Point, Competitor, Fintech, Trend, Internal] |
+| **Related Items** | [PP#, TR#, COMP#, FIN# references] |
+| **Strategic Fit** | [High / Medium / Low] |
+
+#### Description
+
+[1-2 paragraphs describing what this innovation is, what problem it solves, and why it matters]
+```
+
+**Example - Innovation Detail:**
+```
+### II-ONB-001: AI-powered document extraction and validation
+
+#### Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Innovation ID** | II-ONB-001 |
+| **Innovation Name** | AI-powered document extraction and validation |
+| **Category** | Technology |
+| **Source** | Trend TR-ONB-001, Pain Point PP-ONB-003 |
+| **Related Items** | TR-ONB-001, PP-ONB-003, PP-ONB-007, COMP-ONB-002 |
+| **Strategic Fit** | High |
+
+#### Description
+
+This innovation replaces manual document review with AI-powered extraction and validation. Machine learning models trained on business registration documents, financial statements, and identity documents would automatically extract key data fields and validate against external sources. The system would flag exceptions for human review while enabling straight-through processing for standard applications.
+
+The innovation directly addresses pain point PP-ONB-003 (manual document processing delays) and PP-ONB-007 (inconsistent data entry). By reducing document processing time from 45 minutes to under 5 minutes per application, this enables same-day decisioning for straightforward cases. Competitor Bank B has already deployed similar technology, making this a competitive necessity rather than a differentiator.
+```
+
+#### 4.3 Innovation Categories
+
+**Format:**
+- **Structure**: Table with counts + brief description per category
+- **Table Columns**: Category | Count | % of Total | Top Innovation
+- **Descriptions**: 1-2 sentences per category explaining what it includes
+
+**Example - Innovation Categories:**
+```
+| Category | Count | % of Total | Top Innovation |
+|----------|-------|------------|----------------|
+| Process | 5 | 33% | II-ONB-004 - Automated decisioning |
+| Technology | 6 | 40% | II-ONB-001 - AI document extraction |
+| Business Model | 1 | 7% | II-ONB-009 - Embedded banking partnerships |
+| Customer Experience | 3 | 20% | II-ONB-005 - Real-time status notifications |
+
+**Process Innovation** focuses on optimizing how work gets done within existing systems — streamlining workflows, automating manual steps, and improving handoffs between teams.
+
+**Technology Innovation** introduces new tools, platforms, or capabilities — AI/ML applications, new integrations, and digital platform enhancements.
+
+**Business Model Innovation** explores new ways to deliver services or create value — partnerships, alternative channels, and new service delivery models.
+
+**Customer Experience Innovation** improves the client-facing journey — reducing friction, improving communication, and enhancing self-service capabilities.
+```
+
+### Section 5: Feasibility Matrix
+
+#### 5.1 Six-Dimension Scoring Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **II ID** | Innovation identifier | Format: II-{ABBREV}-### |
+| **Technical** | Technical feasibility | Score 1-5 |
+| **Business** | Business value | Score 1-5 |
+| **Strategic** | Strategic alignment | Score 1-5 |
+| **Resource** | Resource availability | Score 1-5 |
+| **Risk** | Risk level (inverted: 5=low risk) | Score 1-5 |
+| **Customer** | Customer impact | Score 1-5 |
+| **Total Score** | Sum or weighted average | Calculated total |
+
+**Example - Feasibility Matrix:**
+```
+| II ID | Technical | Business | Strategic | Resource | Risk | Customer | Total Score |
+|-------|-----------|----------|-----------|----------|------|----------|-------------|
+| II-ONB-001 | 4 | 5 | 5 | 3 | 4 | 4 | 25 |
+| II-ONB-002 | 4 | 4 | 5 | 4 | 3 | 5 | 25 |
+| II-ONB-003 | 3 | 3 | 4 | 4 | 4 | 4 | 22 |
+| II-ONB-004 | 5 | 5 | 5 | 4 | 3 | 4 | 26 |
+| II-ONB-005 | 5 | 4 | 4 | 5 | 5 | 5 | 28 |
+```
+
+#### 5.2 Dimension Definitions
+
+**Format:**
+- **Structure**: Brief definitions + scoring rubric table
+- **Definitions**: 1-2 sentences per dimension explaining what it measures
+- **Rubric Table**: Score | Description for each dimension
+
+**Example - Dimension Definitions:**
+```
+**Dimension Definitions:**
+
+- **Technical Feasibility**: Can we build this with current or near-term technology capabilities? Considers existing systems, integration complexity, and technical maturity.
+- **Business Value**: Does this deliver measurable business value? Considers efficiency gains, revenue impact, and cost reduction.
+- **Strategic Alignment**: Does this support our strategic priorities? Considers alignment with digital transformation, client experience, and growth objectives.
+- **Resource Availability**: Do we have the people, skills, and budget to deliver? Considers team capacity, skill gaps, and competing priorities.
+- **Risk Level**: What is the risk of failure or negative impact? (Inverted scale: 5 = low risk, 1 = high risk)
+- **Customer Impact**: How much will this improve the client experience? Considers effort reduction, satisfaction improvement, and competitive positioning.
+
+**Scoring Rubric:**
+
+| Score | Technical | Business | Strategic | Resource | Risk | Customer |
+|-------|-----------|----------|-----------|----------|------|----------|
+| 5 | Ready to deploy | Transformative value | Core strategic priority | Fully available | Minimal risk | Major improvement |
+| 4 | Minor build required | Strong value | Strong alignment | Mostly available | Low risk | Significant improvement |
+| 3 | Moderate build | Moderate value | Partial alignment | Some gaps | Moderate risk | Moderate improvement |
+| 2 | Significant build | Limited value | Weak alignment | Significant gaps | High risk | Minor improvement |
+| 1 | Not feasible | No clear value | Not aligned | Not available | Very high risk | No improvement |
+```
+
+#### 5.3 Feasibility Analysis
+
+**Format:**
+- **Structure**: 1-2 paragraphs per innovation explaining key feasibility drivers
+- **Content**: For each innovation, explain the scores — what drives feasibility up or down
+
+**Example - Feasibility Analysis:**
+```
+**II-ONB-001: AI-powered document extraction and validation** (Score: 25)
+
+This innovation scores highly on business value and strategic alignment as it directly addresses a major operational bottleneck and supports the digital transformation priority. Technical feasibility is strong (4) because proven solutions exist in the market, though integration with legacy systems will require careful planning. The main constraint is resource availability (3) — the AI/ML team is currently committed to other projects, which would delay initiation. Risk is moderate (4) as similar implementations at other banks have been successful, though model accuracy for complex documents will need validation.
+
+**II-ONB-004: Automated decisioning for simple structures** (Score: 26)
+
+This innovation achieves the highest overall score due to strong technical feasibility — the decisioning logic already exists in policy documents and just needs to be codified. Business value is transformative (5) as it would reduce decision time from 2 days to under 1 hour for 60% of applications. Strategic alignment is perfect (5) as this is explicitly called out in the digital transformation roadmap. The primary risk (3) relates to regulatory acceptance of automated decisions, which will require early engagement with the compliance team to validate the approach.
+
+**II-ONB-005: Real-time application status notifications** (Score: 28)
+
+This is the highest-scoring innovation due to low technical risk and high customer impact. The notification infrastructure already exists for other products, making this a configuration exercise rather than a build. Customer impact is rated 5 because client research consistently identifies status uncertainty as a top frustration. Risk is minimal (5) as this is a well-understood capability with no regulatory implications.
+```
+
+#### 5.4 Priority Matrix
+
+**Format:**
+- **Structure**: Table with quadrant assignments + narrative explanation per quadrant
+- **Table Columns**: Quadrant | Innovations | Recommendation
+- **Narrative**: 1-2 sentences per quadrant explaining strategic implications
+
+**Quadrant Definitions:**
+- **Quick Wins**: High Feasibility + High Impact — implement first
+- **Strategic Bets**: High Impact + Lower Feasibility — invest carefully
+- **Fill-Ins**: Lower Impact + High Feasibility — do if capacity allows
+- **Reconsider**: Lower Impact + Lower Feasibility — deprioritize or drop
+
+**Example - Priority Matrix:**
+```
+| Quadrant | Innovations | Recommendation |
+|----------|-------------|----------------|
+| Quick Wins | II-ONB-005, II-ONB-004 | Implement immediately — high value, low risk |
+| Strategic Bets | II-ONB-001, II-ONB-002 | Prioritize with careful planning — high value, needs investment |
+| Fill-Ins | II-ONB-003, II-ONB-007 | Include if capacity allows — moderate value, easy to do |
+| Reconsider | II-ONB-009, II-ONB-010 | Deprioritize — limited value relative to effort |
+
+**Quick Wins** (II-ONB-005, II-ONB-004) should be the immediate focus. These innovations deliver high customer and business value with minimal risk and resource requirements. Status notifications can be implemented within weeks, while automated decisioning can be delivered in a single sprint once compliance approval is secured.
+
+**Strategic Bets** (II-ONB-001, II-ONB-002) require more significant investment but deliver transformative value. AI document extraction should be prioritized as it enables multiple downstream improvements. Video identity verification is a competitive necessity that should be fast-followed once a vendor is selected.
+
+**Fill-Ins** (II-ONB-003, II-ONB-007) are worthwhile if capacity allows but should not displace higher-priority items. These can be scheduled for later phases or picked up opportunistically.
+
+**Reconsider** (II-ONB-009, II-ONB-010) items should be deferred or dropped from this analysis. The business model innovations require market conditions that don't yet exist, while some process improvements have limited impact relative to implementation effort.
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 85% | **Basis:** Innovation backlog derived from pain point analysis and market research with SME validation. Feasibility scores based on SME assessment; technical validation with IT would strengthen confidence.
+```
+
+---
+
 ## PHASE A: ANALYZE [AUTO - NO USER INTERRUPTION]
 
 ### A.1 Load Inputs

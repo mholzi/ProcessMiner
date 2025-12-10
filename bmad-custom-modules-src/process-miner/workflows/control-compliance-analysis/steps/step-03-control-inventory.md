@@ -81,6 +81,71 @@ Catalog all control points in the process, classify them by type, and map them t
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This step produces **Section 2: Control Point Inventory** of the compliance-control-assessment template and populates the control-points-detail.md document.
+
+### Section 2.1: Mandatory Controls
+**Format:** Narrative intro + summary table
+
+**Structure:**
+1. **Narrative Introduction** (2-3 paragraphs):
+   - Overview of the mandatory control landscape for this process
+   - Explanation of how regulatory requirements drive control design
+   - Summary of control coverage and any notable patterns
+
+2. **Summary Table:**
+   | CP# | Control Name | Regulation (REG#) | Process Step (PS#) | Type | Execution |
+   |-----|--------------|-------------------|--------------------|----- |-----------|
+
+3. **Per-Control Brief** (1 paragraph each for key controls):
+   - What the control does and why it's required
+   - How it links to regulatory requirements
+
+### Section 2.2: Internal Policies
+**Format:** Narrative intro + table
+
+**Structure:**
+1. **Narrative Introduction** (1-2 paragraphs):
+   - Explanation of internal policy-driven controls
+   - How these complement regulatory controls
+
+2. **Policy Controls Table:**
+   | CP# | Control Name | Policy | Process Step (PS#) | Type |
+   |-----|--------------|--------|--------------------|----- |
+
+### Section 2.3: Audit Requirements
+**Format:** Narrative intro + table
+
+**Structure:**
+1. **Narrative Introduction** (1-2 paragraphs):
+   - Overview of controls that produce audit evidence
+   - Explanation of evidence requirements for compliance
+
+2. **Audit Controls Table:**
+   | CP# | Control Name | Evidence Produced | Retention Period |
+   |-----|--------------|-------------------|------------------|
+
+### Control Points Detail Document
+For each CP# in control-points-detail.md, include:
+- **Overview table** with all control attributes
+- **Control Description** (1-2 paragraphs explaining what the control does)
+- **Regulatory/Policy Requirement** with context
+- **Control Objective** explaining what it's designed to achieve
+- **Risk Addressed** with inherent and residual risk levels
+- **Control Activity** step-by-step description
+- **Evidence & Audit Trail** details
+- **Effectiveness Assessment** (populated in Step 5)
+
+### Writing Guidelines for Section 2:
+- Write for readers who need to understand the control landscape quickly
+- Explain the PURPOSE of each control, not just its existence
+- Use clear language to describe control activities
+- Ensure traceability is evident (REG# → CP# → PS#)
+- Group controls logically to show patterns and relationships
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

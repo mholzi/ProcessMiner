@@ -77,6 +77,124 @@ Analyze how clients use different channels throughout the journey, identify chan
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 6: Channel Analysis. The AI MUST follow these specifications when generating content.
+
+### 6.1 Channel Usage Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **CH#** | Channel ID | Format: CH-{abbrev}-### (e.g., CH-ONB-001) |
+| **Channel** | Channel name | From Channel Types Reference |
+| **Touchpoints Using** | Count with JT# list | Format: "4 (JT-ONB-001, JT-ONB-003, JT-ONB-007, JT-ONB-009)" |
+| **Primary Purpose** | Main use of channel | 3-5 words describing main purpose |
+| **Client Preference** | Preference rating | Preferred/Acceptable/Reluctant/Forced |
+
+**Example - Channel Usage:**
+```
+| CH# | Channel | Touchpoints Using | Primary Purpose | Client Preference |
+|-----|---------|-------------------|-----------------|-------------------|
+| CH-ONB-001 | Portal | 5 (JT-ONB-001, JT-ONB-002, JT-ONB-004, JT-ONB-007, JT-ONB-010) | Application and status tracking | Preferred |
+| CH-ONB-002 | Branch | 2 (JT-ONB-006, JT-ONB-008) | Verification and document review | Reluctant |
+| CH-ONB-003 | Phone | 3 (JT-ONB-005, JT-ONB-009, JT-ONB-011) | Support and follow-up | Acceptable |
+| CH-ONB-004 | Email | 4 (JT-ONB-003, JT-ONB-012, JT-ONB-013, JT-ONB-014) | Notifications and confirmations | Acceptable |
+| CH-ONB-005 | Mobile | 1 (JT-ONB-010) | Status checking only | Preferred |
+```
+
+### 6.2 Channel Switching Analysis
+
+**Format:**
+- **Structure**: Narrative paragraph (2-3 paragraphs) followed by switching patterns table
+
+**Narrative MUST cover:**
+1. Total number of channel switches in the journey
+2. Which switches are necessary vs avoidable (with percentages)
+3. Total CES penalty from channel switching
+4. Key pain points in channel transitions
+
+**Example - Channel Switching Narrative:**
+```
+The client journey involves 6 channel switches across 15 touchpoints. Of these switches, 2 are unavoidable (regulatory requirements for in-person verification), while 4 are potentially avoidable through process or technology changes. The total CES penalty from channel switching is 9 points (6 switches × 1.5 CES weight), representing 9% of the total journey CES.
+
+The most significant pain point is the forced branch visit (JT-ONB-006) for identity verification, which interrupts an otherwise digital application flow. Clients who prefer digital channels express frustration at having to schedule a branch appointment and travel for a single verification step. The second pain point is the switch from email notification to phone follow-up (JT-ONB-005 to JT-ONB-009) when clients need clarification on document requirements.
+
+Quick win opportunities exist in reducing phone-to-email switches by improving notification clarity, potentially eliminating 2 of the 4 avoidable switches.
+```
+
+**Switching Patterns Table:**
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **From Channel** | Origin channel name | Channel name |
+| **To Channel** | Destination channel name | Channel name |
+| **Touchpoint** | Where switch occurs | JT# ID reference |
+| **Reason** | Why switch happens | Brief explanation |
+| **Avoidable?** | Can be eliminated? | Yes/No with brief explanation |
+| **CES Penalty** | Effort penalty | Number (typically 1.5 per switch) |
+
+**Example - Switching Patterns Table:**
+```
+| From Channel | To Channel | Touchpoint | Reason | Avoidable? | CES Penalty |
+|--------------|------------|------------|--------|------------|-------------|
+| Portal | Branch | JT-ONB-006 | In-person ID verification required | No — regulatory requirement | 1.5 |
+| Email | Phone | JT-ONB-009 | Client needs clarification on documents | Yes — improve email clarity | 1.5 |
+| Phone | Portal | JT-ONB-010 | Directed to portal for status check | Yes — proactive notifications | 1.5 |
+| Branch | Email | JT-ONB-012 | Confirmation sent after branch visit | No — standard notification | 1.5 |
+| Email | Phone | JT-ONB-013 | Client calls after unclear email | Yes — improve email content | 1.5 |
+| Portal | Mobile | JT-ONB-014 | Client switches to mobile for convenience | No — client choice | 1.5 |
+```
+
+### 6.3 Channel Gaps
+
+**Format:**
+- **Structure**: Narrative paragraph (1-2 paragraphs) followed by gaps table
+
+**Narrative MUST cover:**
+1. What channel options clients expect but don't currently have
+2. Where digital self-service could be added
+3. Channel parity issues (mobile vs web vs branch capabilities)
+
+**Example - Channel Gaps Narrative:**
+```
+Clients expect mobile app functionality equivalent to the web portal, but currently only status checking is available on mobile — the full application must be completed via web. This creates friction for clients who prefer mobile-first interactions and forces unnecessary channel switching when they need to complete forms or upload documents.
+
+Additionally, there is no self-service option for document upload in the branch channel; clients who visit the branch for verification cannot upload additional documents during the visit but must return to the portal afterward. A gap also exists in real-time support — clients expect live chat capability but are currently forced to use phone or email for support queries.
+```
+
+**Channel Gaps Table:**
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Gap** | Gap description | Short descriptive name |
+| **Client Expectation** | What client expects | 1 sentence |
+| **Current Reality** | What actually exists | 1 sentence |
+| **Impact** | Effect of the gap | Brief impact statement |
+
+**Example - Channel Gaps Table:**
+```
+| Gap | Client Expectation | Current Reality | Impact |
+|-----|-------------------|-----------------|--------|
+| Mobile application completion | Complete entire application on mobile | Can only check status on mobile | Forced switch to web, increased abandonment |
+| Branch document upload | Upload documents during branch visit | Must return to portal after branch | Additional effort, duplicate visits |
+| Live chat support | Get real-time help via chat | Phone or email only | Longer resolution time, higher effort |
+| Mobile document capture | Take photos of documents in-app | Manual upload from camera roll | Extra steps, format issues |
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 80% | **Basis:** Channel usage derived from touchpoint mapping. Switching patterns based on SME observation. Client preferences based on feedback data, though formal analytics would strengthen findings.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

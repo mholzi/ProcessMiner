@@ -74,6 +74,163 @@ Perform final review of all captured CX content. AI analyzes for gaps, ambiguiti
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 7 (Enhancement Ideas), Section 9 (Inputs for TO-BE Design), and Section 10 (Discovery Logging). The AI MUST follow these specifications when generating content.
+
+### Section 7: Enhancement Ideas
+
+#### 7.1 Enhancement Catalog Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **EI#** | Enhancement ID | Format: EI-{abbrev}-### (e.g., EI-ONB-001) |
+| **Target Friction** | Related FP# ID(s) | Format: FP-XXX-### (comma-separated if multiple) |
+| **Enhancement Idea** | Description | 1-2 sentences describing the enhancement |
+| **Est. CES Reduction** | Estimated impact | Number (0-10 scale) |
+| **Complexity** | Implementation difficulty | Low/Medium/High (no time/cost estimates) |
+| **Priority** | Overall priority | P1-Critical/P2-High/P3-Medium/P4-Low |
+
+**Example - Enhancement Catalog:**
+```
+| EI# | Target Friction | Enhancement Idea | Est. CES Reduction | Complexity | Priority |
+|-----|-----------------|------------------|-------------------|------------|----------|
+| EI-ONB-001 | FP-ONB-001 | Pre-populate subsequent forms with data from initial application to eliminate repeated data entry | 6 | High | P2-High |
+| EI-ONB-002 | FP-ONB-002 | Implement automated status notifications with clear next steps and timeline visibility | 4 | Medium | P1-Critical |
+| EI-ONB-003 | FP-ONB-003 | Create document requirements checklist with examples shown upfront before application starts | 3 | Low | P1-Critical |
+| EI-ONB-004 | FP-ONB-004 | Enable video verification as alternative to branch visit for identity verification | 5 | High | P2-High |
+| EI-ONB-005 | FP-ONB-005, FP-ONB-009 | Improve email notification content with clear language and explicit next steps | 3 | Low | P1-Critical |
+```
+
+#### 7.2 Enhancement Statistics Table
+
+**Format**: Table with Metric | Value columns
+
+**Required Metrics:**
+- Total Enhancement Ideas
+- Quick Wins (Low Effort)
+- Strategic (High Effort)
+- Automation Opportunities
+- Total Est. CES Reduction
+
+**Example - Enhancement Statistics:**
+```
+| Metric | Value |
+|--------|-------|
+| Total Enhancement Ideas | 12 |
+| Quick Wins (Low Effort) | 4 |
+| Strategic (High Effort) | 5 |
+| Automation Opportunities | 3 |
+| Total Est. CES Reduction | 42 points |
+```
+
+#### Section 7 Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 85% | **Basis:** Enhancement ideas derived from friction analysis with SME validation. CES reduction estimates based on component-level analysis. Complexity assessments based on SME input.
+```
+
+### Section 9: Inputs for TO-BE Design
+
+#### 9.1 CES Baseline Summary Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Metric** | CES component | Component name |
+| **AS-IS Value** | Current state value | Number |
+| **Target (30% Reduction)** | Calculated target | Number (= AS-IS × 0.7) |
+
+**Example - CES Baseline Summary:**
+```
+| Metric | AS-IS Value | Target (30% Reduction) |
+|--------|-------------|------------------------|
+| Overall CES Score | 100 | 70 |
+| Client Actions | 28 | 20 |
+| Documents Required | 11 | 8 |
+| Channel Switches | 6 | 4 |
+```
+
+#### 9.2 Critical Success Factors
+
+**Format:**
+- **Structure**: Bullet list with bold factor name and description
+
+**Example - Critical Success Factors:**
+```
+For a successful TO-BE from a CX perspective:
+
+- **Maintain Relationship Manager Access:** Clients value dedicated RM support — do not remove or restrict this channel
+- **Protect Status Visibility:** Any new process must include real-time status tracking — this is a baseline expectation
+- **Preserve Document Upload Flexibility:** Clients need multiple ways to submit documents — mobile, portal, and branch options must remain
+- **Enable Proactive Communication:** TO-BE must include automated status updates at key milestones — silence creates anxiety
+```
+
+#### 9.3 Experience Degradation Risks
+
+**Format:**
+- **Structure**: Bullet list with bold risk name and explanation
+- **Header**: "**DO NOT** make these changes in TO-BE (would worsen CX):"
+
+**Example - Experience Degradation Risks:**
+```
+**DO NOT** make these changes in TO-BE (would worsen CX):
+
+- **Remove branch verification option:** Some clients prefer in-person verification — removing this forces digital-only which some segments resist
+- **Extend processing time for efficiency:** Trading speed for internal efficiency would significantly increase anxiety and follow-up volume
+- **Consolidate notifications:** Reducing communication frequency would increase uncertainty — clients prefer more updates, not fewer
+- **Eliminate RM for standard applications:** Even simple applications benefit from RM availability — removing this creates perception of downgrade
+```
+
+#### 9.4 Enhancement Ideas Available
+
+**Format:**
+- **Structure**: Single sentence referencing Section 7 count
+
+**Example:**
+```
+The Transformation Agent has **12** enhancement ideas to consider (see Section 7).
+```
+
+### Section 10: Discovery Logging Summary
+
+#### 10.1 New Items Logged Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Type** | Discovery type | Pain Points/Exceptions/Controls |
+| **Count** | Number discovered | Whole number |
+| **Files Updated** | Affected files | Comma-separated file names |
+
+**Example - Discovery Logging:**
+```
+| Type | Count | Files Updated |
+|------|-------|---------------|
+| Pain Points | 3 | pain-points-detail.md |
+| Exceptions | 1 | exceptions-detail.md |
+| Controls | 0 | — |
+```
+
+#### 10.2 Cross-Reference Summary (Optional)
+
+**Format:**
+- **Structure**: Narrative paragraph if significant cross-references were established
+
+**Example:**
+```
+During CX analysis, 8 friction points were linked to existing AS-IS pain points, confirming that operational issues identified in process documentation directly impact client experience. Three new pain points were discovered through friction analysis that were not visible in the operational view:
+- PP-ONB-018: Client confusion about document naming requirements (discovered via FP-ONB-003)
+- PP-ONB-019: Branch appointment availability constraints (discovered via FP-ONB-004)
+- PP-ONB-020: Email delivery delays in certain email providers (discovered via FP-ONB-005)
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Summary

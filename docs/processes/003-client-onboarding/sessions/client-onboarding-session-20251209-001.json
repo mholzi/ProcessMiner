@@ -1,0 +1,15 @@
+{
+  "session_id": "session-20251209-001",
+  "process_id": "COB-003",
+  "process_name": "Client Onboarding",
+  "contributor": {
+    "name": "Markus",
+    "role": "RTM"
+  },
+  "started": "2025-12-09T00:00:00Z",
+  "last_updated": "2025-12-09T00:00:00Z",
+  "current_step": 1,
+  "steps_completed": [1],
+  "client_groups": ["BizBanking"],
+  "notes": []
+}

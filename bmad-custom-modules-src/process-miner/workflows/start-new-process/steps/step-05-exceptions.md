@@ -73,6 +73,156 @@ Capture all process exceptions and variations with unique EX# IDs, linked to rel
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 3: Exception Paths and Variations. The AI MUST follow these specifications when generating content.
+
+### 3.1 Exception Summary
+
+**Format:**
+- **Structure**: 2 paragraphs minimum
+- **Paragraph 1**: Overview of exception landscape — count, general categories
+- **Paragraph 2**: Impact context and key insights — what these exceptions mean for the process
+
+**Example:**
+```
+The Client Onboarding process has identified 5 exception paths that deviate from the standard flow. These exceptions fall into three categories: documentation-related (2), system-related (1), and compliance-related (2). The majority of exceptions occur during the verification phase of the process.
+
+Documentation exceptions have the highest frequency, affecting approximately 30% of all applications, and are the primary driver of processing delays. Compliance-related exceptions, while less frequent, carry higher impact due to regulatory implications and require senior oversight for resolution.
+```
+
+### 3.2 Exception Summary Table
+
+**Table Format:**
+| EX# | Exception | Trigger | Affected Steps | Frequency | Impact |
+|-----|-----------|---------|----------------|-----------|--------|
+
+**Column Specifications:**
+
+| Column | Format | Example |
+|--------|--------|---------|
+| **EX#** | `EX-{{abbrev}}-###` where abbrev is 2-3 characters | EX-CRO-001, EX-ONB-002 |
+| **Exception** | Descriptive phrase | "Incomplete client documentation", "System timeout during verification" |
+| **Trigger** | Brief condition statement | "Missing KYC documents", "AML system unavailable" |
+| **Affected Steps** | PS# + step name | "PS-002: Verify ID, PS-003: Check completeness" |
+| **Frequency** | Label + context | "HIGH (~30% of cases)", "MEDIUM (~10% of cases)", "LOW (rare)" |
+| **Impact** | Label + brief description | "HIGH — Delays onboarding by 2-3 days", "MEDIUM — Requires manual workaround" |
+
+**Example Table:**
+| EX# | Exception | Trigger | Affected Steps | Frequency | Impact |
+|-----|-----------|---------|----------------|-----------|--------|
+| EX-CRO-001 | Incomplete client documentation | Client fails to provide required KYC documents | PS-002: Verify ID, PS-003: Check completeness | HIGH (~30% of cases) | MEDIUM — Delays processing by 1-2 days |
+| EX-CRO-002 | Failed sanctions screening | Client or beneficial owner flagged by AML system | PS-002: Verify ID | LOW (2-3% of cases) | HIGH — Requires compliance escalation and senior review |
+
+### 3.3 Exception Statistics
+
+**Table Format:**
+| Metric | Value |
+|--------|-------|
+| Total Exceptions | {{total_exceptions}} |
+| High-Impact Exceptions | {{high_impact_exceptions}} |
+| Frequently Occurring | {{frequent_exceptions}} |
+
+### Exception Detail Document (exceptions-detail.md)
+
+**Per-Exception Detail Block Format:**
+
+```markdown
+## EX-XXX-###: [Exception Name]
+
+| Attribute | Value |
+|-----------|-------|
+| **Exception ID** | EX-XXX-### |
+| **Category** | [Documentation / System / Compliance / Process] |
+| **Affected Steps** | [PS# + step name, PS# + step name] |
+| **Frequency** | [Label + context] |
+| **Impact** | [Label + description] |
+| **Handling Owner** | [Business Unit / Role] |
+
+### Description
+
+[1-2 paragraphs describing the exception — what happens, when it occurs, who is affected]
+
+### Trigger Conditions
+
+[Paragraph or bullet list describing specific conditions that cause this exception]
+
+### Current Handling Procedure
+
+[Narrative paragraph OR numbered steps, depending on complexity]
+
+### Root Cause Analysis
+
+[Paragraph analyzing why this exception occurs — systemic issues, process gaps, external factors]
+
+### Improvement Opportunities
+
+[Bullet list or paragraph describing potential improvements to reduce frequency or impact]
+```
+
+**Example - Exception Detail:**
+```markdown
+## EX-CRO-001: Incomplete client documentation
+
+| Attribute | Value |
+|-----------|-------|
+| **Exception ID** | EX-CRO-001 |
+| **Category** | Documentation |
+| **Affected Steps** | PS-002: Verify ID, PS-003: Check completeness |
+| **Frequency** | HIGH (~30% of cases) |
+| **Impact** | MEDIUM — Delays processing by 1-2 days |
+| **Handling Owner** | KYC Ops / Maker |
+
+### Description
+
+This exception occurs when a client application cannot proceed through verification due to missing or incomplete documentation. Common missing items include certified copies of identification, proof of address dated within 3 months, and beneficial ownership declarations for corporate clients.
+
+The exception is most prevalent in the BizBanking segment where clients self-submit applications without relationship manager guidance. It results in the application being placed on hold while the client is contacted for additional documentation.
+
+### Trigger Conditions
+
+- Client submits application without all required KYC documents
+- Documents provided are expired, illegible, or do not meet certification requirements
+- Corporate structure documentation is incomplete or missing beneficial owner information
+
+### Current Handling Procedure
+
+1. KYC Maker identifies missing documentation during verification (PS-002)
+2. Maker updates case status to "Pending Documentation" in CRM
+3. Automated email sent to client listing required documents
+4. Case placed in 5-day follow-up queue
+5. If documents received, case returns to verification queue
+6. If no response after 5 days, Relationship Manager contacted for intervention
+
+### Root Cause Analysis
+
+The primary root cause is insufficient upfront guidance to clients on documentation requirements. The online application portal lists requirements but does not prevent submission of incomplete applications. Additionally, document requirements vary by client type and segment, creating confusion for clients unfamiliar with the process.
+
+### Improvement Opportunities
+
+- Implement mandatory document upload checks in the online portal before application submission
+- Create segment-specific document checklists with visual examples
+- Add real-time document validation to flag issues before submission
+- Consider document collection service for LargeCap segment to reduce client burden
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+- **Confidence**: AI-inferred percentage (0-100%)
+- **Basis**: AI-inferred assessment explaining the confidence level
+
+**Example:**
+```
+> **Section Confidence:** 80% | **Basis:** Core exceptions identified and validated by SME. Frequency estimates based on SME experience, not system data. Root causes partially explored — may benefit from deeper analysis.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress

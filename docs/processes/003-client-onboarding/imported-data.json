@@ -1,0 +1,290 @@
+{
+  "import_metadata": {
+    "source_document": "DTP-BB-ONB-001 v2.3",
+    "import_date": "2025-12-09",
+    "imported_by": "ProcessMiner Import Workflow",
+    "confidence": "MEDIUM"
+  },
+
+  "extracted_data": {
+    "process_overview": {
+      "name": "BizBanking Client Onboarding",
+      "purpose": "End-to-end process for onboarding new BizBanking clients (businesses with annual turnover up to €10M) from initial application through account activation",
+      "scope": "BizBanking segment only (€0-€10M turnover)",
+      "triggers": [
+        "New client completes online application via Business Portal",
+        "RM submits paper application on behalf of walk-in client",
+        "Referral from branch network with completed application pack",
+        "Partner channel submission (accountants, solicitors)"
+      ],
+      "products_covered": ["Business Current Account", "Business Savings", "Overdraft facility"]
+    },
+
+    "roles": [
+      {"role": "Relationship Manager (RM)", "responsibilities": "Initial client contact, application gathering, client communication"},
+      {"role": "KYC Analyst", "responsibilities": "Identity verification, document validation, risk assessment"},
+      {"role": "Credit Analyst", "responsibilities": "Financial assessment, credit decisioning (if overdraft requested)"},
+      {"role": "Operations Officer", "responsibilities": "Account setup, system configuration, card ordering"},
+      {"role": "Compliance Officer", "responsibilities": "Enhanced Due Diligence reviews, PEP/Sanctions escalations"},
+      {"role": "Team Lead", "responsibilities": "Escalation handling, SLA breach management"}
+    ],
+
+    "process_steps": [
+      {
+        "id": "PS-COB-001",
+        "name": "Application Receipt & Initial Triage",
+        "owner": "Operations Officer",
+        "systems": ["CRM", "DMS", "OWS"],
+        "sla": "Same business day",
+        "sub_steps": [
+          "Receive application notification in CRM queue",
+          "Verify application completeness checklist",
+          "If incomplete, send Missing Documents email template",
+          "If complete, create case in Onboarding Workflow System",
+          "Assign KYC priority (Standard/Complex)"
+        ],
+        "rationale": "Ensure complete applications enter pipeline, reject incomplete early"
+      },
+      {
+        "id": "PS-COB-002",
+        "name": "KYC & Identity Verification",
+        "owner": "KYC Analyst",
+        "systems": ["KYC Platform (Fenergo)", "World-Check", "CRO Portal", "IDV (Jumio)"],
+        "sla": "2 business days (Standard), 5 business days (Complex)",
+        "sub_steps": [
+          "Verify company registration via CRO portal",
+          "Confirm Ultimate Beneficial Owners (25%+ threshold)",
+          "Screen directors and UBOs (World-Check, internal lists, adverse media)",
+          "Verify ID documents using IDV platform",
+          "Verify proof of address documents",
+          "Complete Customer Risk Assessment (CRA) form",
+          "If High Risk or PEP → escalate to Compliance",
+          "Document all verification steps in audit trail"
+        ],
+        "rationale": "Regulatory compliance (CDD, AML), risk mitigation"
+      },
+      {
+        "id": "PS-COB-003",
+        "name": "Credit Assessment",
+        "owner": "Credit Analyst",
+        "systems": ["CDS", "Bureau Link"],
+        "sla": "3 business days",
+        "condition": "Only if overdraft requested",
+        "sub_steps": [
+          "Pull credit bureau report for company and directors",
+          "Review financial statements",
+          "Calculate key ratios (DSCR, current ratio, gearing)",
+          "Complete credit scorecard",
+          "Generate recommendation (Approve/Refer/Decline)",
+          "Document facility terms if approved"
+        ],
+        "rationale": "Credit risk management, responsible lending"
+      },
+      {
+        "id": "PS-COB-004",
+        "name": "Account Setup & Configuration",
+        "owner": "Operations Officer",
+        "systems": ["CBS (Temenos T24)", "Card Management (Marqeta)"],
+        "sla": "1 business day post approval",
+        "sub_steps": [
+          "Create customer master record in CBS",
+          "Open Business Current Account",
+          "Configure account parameters",
+          "Set up online banking access",
+          "Order business debit card",
+          "Create overdraft facility if approved",
+          "Generate Welcome Pack documents"
+        ],
+        "rationale": "Enable client to transact, complete product setup"
+      },
+      {
+        "id": "PS-COB-005",
+        "name": "Client Communication & Activation",
+        "owner": "Relationship Manager",
+        "systems": ["CRM", "Email", "CBS"],
+        "sla": "1 business day",
+        "sub_steps": [
+          "Send Welcome Email with account details",
+          "Schedule welcome call within 5 business days",
+          "Conduct welcome call",
+          "Document call notes in CRM",
+          "Update case status to Active"
+        ],
+        "rationale": "Client engagement, ensure smooth activation, relationship building"
+      },
+      {
+        "id": "PS-COB-006",
+        "name": "Post-Onboarding Quality Check",
+        "owner": "Team Lead",
+        "systems": ["OWS", "Quality Management System"],
+        "sla": "Within 10 business days of activation",
+        "sub_steps": [
+          "Random sample 20% of completed onboardings",
+          "Review against quality checklist",
+          "Document findings",
+          "Feedback to team member if issues",
+          "Escalate systemic issues to Process Owner"
+        ],
+        "rationale": "Quality assurance, continuous improvement"
+      }
+    ],
+
+    "exceptions": [
+      {
+        "id": "EX-COB-001",
+        "name": "Incomplete Documentation",
+        "trigger": "Required documents missing after initial submission",
+        "handling": "2 reminders over 10 days, then RM escalation, auto-expire at 20 days",
+        "impact": "Delays onboarding, increases manual effort"
+      },
+      {
+        "id": "EX-COB-002",
+        "name": "KYC Screening Hit",
+        "trigger": "World-Check match on director/UBO",
+        "handling": "Compliance Officer review required; PEP=EDD, Sanctions=MLRO escalation",
+        "impact": "HIGH - Potential regulatory breach if missed"
+      },
+      {
+        "id": "EX-COB-003",
+        "name": "Credit Decline",
+        "trigger": "Credit assessment fails scorecard or policy",
+        "handling": "RM notification to client, offer account-only alternative",
+        "impact": "Revenue impact, client experience"
+      },
+      {
+        "id": "EX-COB-004",
+        "name": "System Downtime",
+        "trigger": "CBS unavailable >4 hours",
+        "handling": "BCP manual process, log entries for reconciliation",
+        "impact": "SLA breach, manual workarounds"
+      },
+      {
+        "id": "EX-COB-005",
+        "name": "Complex Ownership Structure",
+        "trigger": ">3 layers, foreign shareholders, trust structures",
+        "handling": "Senior KYC Analyst review, legal review for trusts",
+        "impact": "Extended timelines, specialist resource required"
+      }
+    ],
+
+    "pain_points": [
+      {
+        "id": "PP-COB-001",
+        "name": "Manual document chasing",
+        "description": "No automated reminders for missing documents, relies on manual tracking. Average 2-3 follow-ups per application.",
+        "category": "Efficiency",
+        "impact": "HIGH"
+      },
+      {
+        "id": "PP-COB-002",
+        "name": "System switching / No single client view",
+        "description": "Staff must access 6+ systems during onboarding. Copy-paste between systems leads to data entry errors.",
+        "category": "Efficiency / Quality",
+        "impact": "HIGH"
+      },
+      {
+        "id": "PP-COB-003",
+        "name": "KYC screening false positives",
+        "description": "World-Check generates ~40% false positives requiring manual review. Common names particularly problematic.",
+        "category": "Efficiency",
+        "impact": "MEDIUM"
+      },
+      {
+        "id": "PP-COB-004",
+        "name": "Paper-based signatures",
+        "description": "Many clients still submit paper applications. Manual digitization creates 1-2 day delay.",
+        "category": "Speed / Client Experience",
+        "impact": "MEDIUM"
+      },
+      {
+        "id": "PP-COB-005",
+        "name": "Credit bureau delays",
+        "description": "Bureau response times vary (instant to 24hrs). No visibility on when data will be available.",
+        "category": "Speed / Transparency",
+        "impact": "LOW"
+      },
+      {
+        "id": "PP-COB-006",
+        "name": "Welcome call scheduling",
+        "description": "RMs struggle to reach clients. Average 3 attempts before successful contact. No self-service scheduling option.",
+        "category": "Client Experience / Efficiency",
+        "impact": "MEDIUM"
+      }
+    ],
+
+    "controls": [
+      {
+        "id": "CP-COB-001",
+        "name": "Customer Identification",
+        "type": "PREVENTIVE",
+        "regulation": "CDD Regulations 2010",
+        "process_step": "PS-COB-002",
+        "description": "ID verification for all directors and UBOs"
+      },
+      {
+        "id": "CP-COB-002",
+        "name": "Beneficial Owner Identification",
+        "type": "PREVENTIVE",
+        "regulation": "AML Act 2010",
+        "process_step": "PS-COB-002",
+        "description": "Identification of all UBOs with 25%+ ownership"
+      },
+      {
+        "id": "CP-COB-003",
+        "name": "Data Protection Consent",
+        "type": "PREVENTIVE",
+        "regulation": "GDPR",
+        "process_step": "PS-COB-001",
+        "description": "Privacy notice and data processing consent obtained"
+      },
+      {
+        "id": "CP-COB-004",
+        "name": "Strong Customer Authentication",
+        "type": "PREVENTIVE",
+        "regulation": "PSD2",
+        "process_step": "PS-COB-004",
+        "description": "SCA implemented for online banking setup"
+      },
+      {
+        "id": "CP-COB-005",
+        "name": "Product Disclosure",
+        "type": "PREVENTIVE",
+        "regulation": "Consumer Protection Code",
+        "process_step": "PS-COB-005",
+        "description": "Welcome pack with required disclosures"
+      }
+    ],
+
+    "systems": [
+      {"id": "SYS-COB-001", "name": "CRM (Salesforce)", "purpose": "Client relationship management, case tracking", "type": "CORE"},
+      {"id": "SYS-COB-002", "name": "OWS (Onboarding Workflow System)", "purpose": "Process orchestration, SLA tracking", "type": "CORE"},
+      {"id": "SYS-COB-003", "name": "KYC Platform (Fenergo)", "purpose": "KYC case management, document storage", "type": "CORE"},
+      {"id": "SYS-COB-004", "name": "World-Check (Refinitiv)", "purpose": "PEP & Sanctions screening", "type": "EXTERNAL"},
+      {"id": "SYS-COB-005", "name": "CBS (Temenos T24)", "purpose": "Account creation, transaction processing", "type": "CORE"},
+      {"id": "SYS-COB-006", "name": "CDS (Credit Decisioning)", "purpose": "Credit assessment, scorecards", "type": "SUPPORTING"},
+      {"id": "SYS-COB-007", "name": "DMS (OpenText)", "purpose": "Document storage, archival", "type": "SUPPORTING"},
+      {"id": "SYS-COB-008", "name": "Card Management (Marqeta)", "purpose": "Debit card ordering, management", "type": "SUPPORTING"}
+    ],
+
+    "slas": [
+      {"metric": "End-to-end onboarding (Standard)", "target": "5 business days"},
+      {"metric": "End-to-end onboarding (Complex)", "target": "10 business days"},
+      {"metric": "KYC completion rate", "target": "95% within SLA"},
+      {"metric": "Document request turnaround", "target": "24 hours"},
+      {"metric": "Welcome call completion", "target": "100% within 5 days"},
+      {"metric": "Quality check pass rate", "target": "98%"},
+      {"metric": "Customer satisfaction (NPS)", "target": ">50"}
+    ]
+  },
+
+  "gaps_for_elicitation": [
+    "Decision point criteria not explicit (e.g., what determines Standard vs Complex?)",
+    "Exception frequency data missing",
+    "Pain point root causes not analyzed",
+    "Control effectiveness ratings not documented",
+    "System integration details missing (API vs manual)",
+    "Data flow between systems not mapped",
+    "Actual vs target SLA performance not documented",
+    "Volume data missing (applications per day/week)"
+  ]
+}

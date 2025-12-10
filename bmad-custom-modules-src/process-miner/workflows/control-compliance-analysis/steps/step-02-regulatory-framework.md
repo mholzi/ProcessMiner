@@ -74,6 +74,62 @@ Identify and document all applicable regulations, regional requirements, and ind
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This step produces **Section 1: Regulatory Framework Mapping** of the compliance-control-assessment template.
+
+### Section 1.1: Applicable Regulations
+**Format:** Narrative intro + summary table
+
+**Structure:**
+1. **Narrative Introduction** (2-3 paragraphs):
+   - Overview of the regulatory landscape applicable to this process
+   - Explanation of how regulations interact and overlap
+   - Key compliance considerations for readers unfamiliar with regulatory details
+
+2. **Summary Table:**
+   | REG# | Regulation | Jurisdiction | Applicability | Compliance Status |
+   |------|------------|--------------|---------------|-------------------|
+
+3. **Per-Regulation Details** (for each REG#):
+   - Brief description of the regulation's purpose
+   - Specific requirements applicable to this process
+   - Key articles/sections that apply
+   - Current compliance posture
+
+### Section 1.2: Regional Requirements
+**Format:** Narrative intro + table
+
+**Structure:**
+1. **Narrative Introduction** (1-2 paragraphs):
+   - Explanation of regional/local regulatory context
+   - How regional requirements layer on top of core regulations
+
+2. **Requirements Table:**
+   | Requirement | Authority | Specific Requirements | Impact on Process |
+   |-------------|-----------|----------------------|-------------------|
+
+### Section 1.3: Industry Standards
+**Format:** Narrative intro + table
+
+**Structure:**
+1. **Narrative Introduction** (1-2 paragraphs):
+   - Overview of applicable industry standards and best practices
+   - Distinction between mandatory and voluntary standards
+
+2. **Standards Table:**
+   | Standard | Applicability | Certification Status | Key Requirements |
+   |----------|---------------|---------------------|------------------|
+
+### Writing Guidelines for Section 1:
+- Write for readers who may not be regulatory experts
+- Explain WHY each regulation matters, not just WHAT it requires
+- Use plain language to describe regulatory requirements
+- Highlight practical implications for the process
+- Ensure every REG# has enough context for a non-specialist to understand
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

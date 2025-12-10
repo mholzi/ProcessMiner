@@ -23,7 +23,7 @@ sections:
     detail_document: "market-trends-detail.md"
     structured_id_prefix: "TR"
     sync_enabled: true
-    summary_table_header: "| TR ID | Trend Name | Category | Maturity | Relevance | Impact Potential |"
+    summary_table_header: "| TR ID | Trend Name | Category | Maturity | Relevance | Impact Potential | Source |"
 
   # Section 4: Innovation Backlog
   - title_pattern: "Innovation Backlog"
@@ -46,8 +46,8 @@ sections:
     section_number: 6
     sync_enabled: false
 
-  # Section 7: Prioritized Roadmap
-  - title_pattern: "Prioritized Roadmap"
+  # Section 7: MoSCoW Prioritization
+  - title_pattern: "MoSCoW Prioritization"
     section_number: 7
     sync_enabled: false
 
@@ -56,30 +56,22 @@ sections:
     section_number: 8
     sync_enabled: false
 
-  # Section 9: Investment Analysis
-  - title_pattern: "Investment Analysis"
-    section_number: 9
-    detail_document: null
-    structured_id_prefix: "II"
-    sync_enabled: false
-    summary_table_header: "| II ID | Development Cost | Infrastructure Cost | Ongoing Cost | Total TCO |"
-
-  # Section 10: Risk & Mitigation
+  # Section 9: Risk & Mitigation
   - title_pattern: "Risk & Mitigation"
-    section_number: 10
+    section_number: 9
     detail_document: null
     structured_id_prefix: "IR"
     sync_enabled: false
     summary_table_header: "| Risk ID | Risk Description | Likelihood | Impact | Mitigation Strategy |"
 
-  # Section 11: Success Metrics
+  # Section 10: Success Metrics
   - title_pattern: "Success Metrics"
-    section_number: 11
+    section_number: 10
     sync_enabled: false
 
-  # Section 12: Appendices
+  # Section 11: Appendices
   - title_pattern: "Appendices"
-    section_number: 12
+    section_number: 11
     sync_enabled: false
 
 # Confidence scoring rules
@@ -106,9 +98,7 @@ confidence_rules:
       - "II"
     6:  # Innovation Deep Dives
       - "II"
-    9:  # Investment Analysis
-      - "II"
-    10: # Risk & Mitigation
+    9:  # Risk & Mitigation
       - "IR"
       - "II"
 

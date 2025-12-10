@@ -73,6 +73,68 @@ Identify gaps between regulatory requirements and existing controls. Assess risk
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This step produces **Section 3: Compliance Gap Analysis** of the compliance-control-assessment template.
+
+### Section 3.1: Current vs Required
+**Format:** Narrative overview + table + per-gap detail blocks
+
+**Structure:**
+1. **Narrative Overview** (2-3 paragraphs):
+   - Summary of the gap analysis findings
+   - Overall compliance posture assessment
+   - Key areas of concern for non-specialist readers
+
+2. **Gap Summary Table:**
+   | GAP# | Requirement (REG#) | Current State | Gap Description | Risk Level | Priority |
+   |------|-------------------|---------------|-----------------|------------|----------|
+
+3. **Per-Gap Detail Blocks** (for Critical and High risk gaps):
+   Each block includes 1-2 paragraphs covering:
+   - What the requirement demands
+   - What is currently in place (or missing)
+   - Why this gap matters (risk implications)
+   - Recommended remediation approach
+
+### Section 3.2: Risk Exposure
+**Format:** Narrative summary + table
+
+**Structure:**
+1. **Narrative Summary** (2-3 paragraphs):
+   - Overall risk exposure assessment in plain language
+   - Explanation of what the risk levels mean for the organization
+   - Key risk areas that need attention
+
+2. **Risk Exposure Table:**
+   | Risk Level | Gap Count | Key Areas Affected | Remediation Urgency |
+   |------------|-----------|-------------------|---------------------|
+   | Critical   | X         | ...               | Immediate           |
+   | High       | X         | ...               | 30 days             |
+   | Medium     | X         | ...               | 90 days             |
+   | Low        | X         | ...               | Next review cycle   |
+
+### Section 3.3: Remediation Needs
+**Format:** Narrative intro + prioritized table
+
+**Structure:**
+1. **Narrative Introduction** (1-2 paragraphs):
+   - Overview of remediation approach
+   - Key themes in remediation needs
+
+2. **Remediation Table:**
+   | GAP# | Remediation Action | Owner | Priority | Target Completion |
+   |------|-------------------|-------|----------|-------------------|
+
+### Writing Guidelines for Section 3:
+- Be direct about gaps - no sugar-coating or diplomatic hedging
+- Explain risk implications in business terms, not just compliance terms
+- Make it clear WHY each gap matters to someone unfamiliar with the details
+- Prioritize clarity over comprehensiveness in narratives
+- Ensure remediation actions are specific and actionable
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

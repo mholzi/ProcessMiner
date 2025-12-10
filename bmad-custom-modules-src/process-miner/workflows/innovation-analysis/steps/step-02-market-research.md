@@ -63,6 +63,228 @@ Conduct comprehensive market research including competitor analysis (regional fo
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 2 (Innovation Overview) and Section 3 (Market Trends). The AI MUST follow these specifications when generating content.
+
+### Section 2: Innovation Overview
+
+#### 2.1 Analysis Scope
+
+**Format:**
+- **Structure**: 2-3 narrative paragraphs
+- **Paragraph 1**: What process/domain is being analyzed, boundaries of the analysis
+- **Paragraph 2**: What types of innovation are in scope (process, technology, business model, CX)
+- **Paragraph 3**: What is explicitly out of scope and why
+
+**Example - Analysis Scope:**
+```
+This innovation analysis focuses on the SME Onboarding process at Example Bank, covering the end-to-end client journey from initial application through account activation. The analysis encompasses all client segments within the BizBanking division and includes both digital and branch-based channels.
+
+The scope includes process innovation opportunities (workflow optimization, automation), technology innovation (AI/ML applications, RPA, digital platforms), business model innovation (new service delivery models, partnership opportunities), and customer experience innovation (friction reduction, channel enhancement). All innovations must be applicable within the existing regulatory framework.
+
+Out of scope for this analysis: core banking system replacement, retail banking processes, and innovations requiring regulatory changes not yet enacted. These areas may be addressed in future analysis phases once foundational capabilities are established.
+```
+
+#### 2.2 Innovation Objectives
+
+**Format:**
+- **Structure**: Introductory narrative paragraph + objectives table
+- **Narrative**: 1-2 paragraphs explaining the overall innovation ambition
+- **Table Columns**: Objective | Description | Success Criteria
+
+**Example - Innovation Objectives:**
+```
+This innovation analysis aims to identify opportunities that will transform the SME onboarding experience while maintaining regulatory compliance and operational efficiency. The objectives are aligned with Example Bank's digital transformation strategy and focus on creating competitive differentiation in the SME banking market.
+
+| Objective | Description | Success Criteria |
+|-----------|-------------|------------------|
+| Reduce Client Effort | Minimize the steps, documents, and time required for clients to complete onboarding | CES reduction of 30% or more |
+| Accelerate Time-to-Value | Enable clients to transact faster after application | Time from application to first transaction reduced by 50% |
+| Enable Digital-First Journey | Allow clients to complete onboarding without branch visits | 80% of onboarding journeys fully digital |
+| Improve Competitive Position | Match or exceed fintech onboarding experiences | Feature parity with top 3 fintech competitors |
+| Ensure Regulatory Compliance | All innovations must work within current regulatory framework | Zero compliance gaps in proposed innovations |
+```
+
+#### 2.3 Strategic Alignment
+
+**Format:**
+- **Structure**: Introductory narrative paragraph + alignment table
+- **Narrative**: 1-2 paragraphs connecting innovation analysis to bank strategy
+- **Table Columns**: Strategic Theme | Alignment | Relevance
+
+**Example - Strategic Alignment:**
+```
+Example Bank's 2024-2026 strategy emphasizes digital transformation, client experience excellence, and operational efficiency. This innovation analysis directly supports these priorities by identifying opportunities to modernize the SME onboarding process — a critical client acquisition touchpoint that shapes first impressions and long-term relationships.
+
+| Strategic Theme | Alignment | Relevance |
+|-----------------|-----------|-----------|
+| Digital Transformation | High | Onboarding is a flagship digitization opportunity with high visibility |
+| Client Experience Excellence | High | First touchpoint sets expectations for entire relationship |
+| Operational Efficiency | Medium | Automation opportunities reduce manual processing costs |
+| Sustainable Growth | Medium | Faster onboarding enables faster revenue recognition |
+| Risk Management | Medium | Digital audit trails and automated checks improve compliance |
+```
+
+### Section 3: Market Trends
+
+#### 3.1 Trend Summary Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **TR ID** | Trend identifier | Format: TR-{ABBREV}-### (e.g., TR-ONB-001) |
+| **Trend Name** | Short descriptive name | 3-5 words |
+| **Category** | Trend category | Technology / Regulatory / Market / Customer Behavior |
+| **Maturity** | Adoption maturity | Emerging / Growing / Mature / Declining |
+| **Relevance** | Relevance to this process | High / Medium / Low |
+| **Impact Potential** | Potential impact if adopted | High / Medium / Low |
+| **Source** | Where trend was identified | Research source or analyst report |
+
+**Example - Trend Summary Table:**
+```
+| TR ID | Trend Name | Category | Maturity | Relevance | Impact Potential | Source |
+|-------|------------|----------|----------|-----------|------------------|--------|
+| TR-ONB-001 | AI-Powered Document Processing | Technology | Growing | High | High | Forrester 2024 |
+| TR-ONB-002 | Real-Time Identity Verification | Technology | Mature | High | High | Competitor Analysis |
+| TR-ONB-003 | Open Banking Data Sharing | Regulatory | Growing | Medium | Medium | PSD3 Draft |
+| TR-ONB-004 | Mobile-First Expectations | Customer Behavior | Mature | High | High | Industry Survey |
+| TR-ONB-005 | Embedded Finance Partnerships | Market | Emerging | Medium | High | McKinsey Report |
+```
+
+#### 3.2 Trend Analysis
+
+**Format:**
+- **Structure**: Trends grouped by category, with per-trend narrative blocks
+- **Per Category**: Category heading + 1 paragraph category overview
+- **Per Trend**: Trend name as subheading + 1-2 paragraphs of analysis
+
+**Example - Trend Analysis:**
+```
+#### Technology Trends
+
+Technology trends are driving the most significant transformation opportunities in banking onboarding. AI and automation capabilities have matured to production-ready status, while identity verification technologies have become table stakes.
+
+**TR-ONB-001: AI-Powered Document Processing**
+
+Artificial intelligence for document processing has moved from experimental to production deployment at leading banks. Machine learning models can now extract data from business registration documents, financial statements, and identity documents with 95%+ accuracy. This enables straight-through processing for standard applications while flagging exceptions for human review.
+
+The opportunity for Example Bank lies in reducing manual data entry and document review time. Current state requires 45 minutes of staff time per application for document processing. AI-powered extraction could reduce this to 5 minutes of exception handling, enabling same-day decisioning for straightforward applications.
+
+**TR-ONB-002: Real-Time Identity Verification**
+
+Real-time identity verification using biometrics and government database integration has become an industry standard. Clients expect to verify their identity instantly using facial recognition and document scanning rather than scheduling branch appointments.
+
+#### Regulatory Trends
+
+Regulatory developments are creating both constraints and opportunities for innovation. Upcoming regulations like PSD3 will enable new data sharing capabilities while requiring enhanced security measures.
+
+**TR-ONB-003: Open Banking Data Sharing**
+
+[Continue with analysis...]
+```
+
+#### 3.3 Competitive Landscape
+
+**Format:**
+- **Structure**: Narrative introduction + Competitors table + Fintechs table + Strategic implications narrative
+- **Introduction**: 1-2 paragraphs summarizing competitive landscape
+- **Tables**: Separate tables for traditional competitors (COMP#) and fintech disruptors (FIN#)
+- **Conclusion**: 1-2 paragraphs on strategic implications
+
+**Competitors Table Columns:**
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **COMP#** | Competitor identifier | Format: COMP-{ABBREV}-### |
+| **Competitor** | Competitor name | Organization name |
+| **Strengths** | Key competitive strengths | 2-3 key points |
+| **Key Innovations** | Notable innovations | Specific features or capabilities |
+| **Threat Level** | Competitive threat | High / Medium / Low |
+
+**Fintechs Table Columns:**
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **FIN#** | Fintech identifier | Format: FIN-{ABBREV}-### |
+| **Fintech** | Fintech name | Organization name |
+| **What They Do** | Core value proposition | 1-2 sentences |
+| **Threat Level** | Competitive threat | High / Medium / Low |
+| **Partnership Potential** | Opportunity for partnership | High / Medium / Low |
+
+**Example - Competitive Landscape:**
+```
+The competitive landscape for SME onboarding has intensified significantly over the past three years. Traditional banks have invested heavily in digital capabilities, while fintech challengers have raised client expectations for speed and simplicity. Example Bank currently sits in the middle tier for onboarding experience, with opportunities to leapfrog competitors through strategic innovation.
+
+**Traditional Competitors:**
+
+| COMP# | Competitor | Strengths | Key Innovations | Threat Level |
+|-------|------------|-----------|-----------------|--------------|
+| COMP-ONB-001 | Bank A | Strong SME brand, extensive branch network | Mobile-first application, 24-hour decisioning | High |
+| COMP-ONB-002 | Bank B | Digital leadership, API platform | Instant account opening for simple structures | High |
+| COMP-ONB-003 | Bank C | Relationship banking, sector expertise | Industry-specific onboarding journeys | Medium |
+| COMP-ONB-004 | Bank D | Price competitiveness | Basic digital application | Low |
+
+**Fintech Disruptors:**
+
+| FIN# | Fintech | What They Do | Threat Level | Partnership Potential |
+|------|---------|--------------|--------------|----------------------|
+| FIN-ONB-001 | Fintech X | 10-minute SME account opening with AI verification | High | Low |
+| FIN-ONB-002 | Fintech Y | Embedded banking for accounting platforms | Medium | High |
+| FIN-ONB-003 | Fintech Z | KYC-as-a-service for instant verification | Low | High |
+
+The competitive analysis reveals two strategic imperatives. First, Example Bank must match the speed expectations set by fintechs — clients now expect same-day account opening as standard. Second, partnership opportunities with KYC and embedded finance providers could accelerate capability development without full internal build.
+
+Bank A and Bank B represent the most significant competitive threats, having already achieved digital onboarding capabilities that Example Bank is still developing. However, neither has fully solved complex business structure onboarding, which represents a differentiation opportunity.
+```
+
+#### 3.4 Technology Radar
+
+**Format:**
+- **Structure**: Table only (no Mermaid diagram)
+- **Table Columns**: Technology | Maturity | Applicability | Existing Initiative
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Technology** | Technology name | Specific technology or capability |
+| **Maturity** | Technology maturity | Adopt / Trial / Assess / Hold |
+| **Applicability** | Relevance to this process | High / Medium / Low |
+| **Existing Initiative** | Whether bank has initiative | Yes / No / Planned / Unknown |
+
+**Maturity Definitions:**
+- **Adopt**: Production-ready, proven in banking, low risk
+- **Trial**: Piloting recommended, promising results elsewhere
+- **Assess**: Worth investigating, not yet proven in banking
+- **Hold**: Not recommended at this time, too early or risky
+
+**Example - Technology Radar:**
+```
+| Technology | Maturity | Applicability | Existing Initiative |
+|------------|----------|---------------|---------------------|
+| Document OCR/AI Extraction | Adopt | High | Planned |
+| Biometric Identity Verification | Adopt | High | No |
+| Robotic Process Automation (RPA) | Adopt | High | Yes |
+| Generative AI for Client Communication | Trial | Medium | No |
+| Real-Time Fraud Scoring | Adopt | High | Yes |
+| Blockchain for KYC Sharing | Assess | Low | No |
+| Voice-Activated Banking | Hold | Low | No |
+| Digital Identity Wallets | Assess | Medium | No |
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+- **Confidence**: AI-inferred percentage (0-100%)
+- **Basis**: AI-inferred assessment explaining the confidence level
+
+**Example:**
+```
+> **Section Confidence:** 80% | **Basis:** Market research based on web search findings validated by SME. Competitor analysis based on public information; internal competitive intelligence would strengthen findings.
+```
+
+---
+
 ## PHASE A: ANALYZE [AUTO - NO USER INTERRUPTION]
 
 ### A.1 Load Input Files

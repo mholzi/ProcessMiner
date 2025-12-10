@@ -63,6 +63,124 @@ Capture industry benchmarks, relevant trends, and competitive landscape insights
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 8: Industry Research & Benchmarks. The AI MUST follow these specifications when generating content.
+
+### 8.1 Industry Benchmarks Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Metric** | What is being measured | CES-related or journey-related metric |
+| **Industry Average** | Typical industry performance | Number, range, or "TBD" if unknown |
+| **Best-in-Class** | Top performer benchmark | Number, range, or "TBD" if unknown |
+| **Our AS-IS** | Current state score | Number from CES analysis |
+| **Gap** | Difference from benchmarks | Number with +/- (higher CES is worse) |
+
+**Required Metrics:**
+- Overall CES
+- Journey Duration
+- Digital Completion Rate
+- First Contact Resolution
+
+**Example - Industry Benchmarks:**
+```
+| Metric | Industry Average | Best-in-Class | Our AS-IS | Gap |
+|--------|-----------------|---------------|-----------|-----|
+| Overall CES | 75-85 | 40-50 | 100 | +15-25 vs average |
+| Journey Duration | 5-7 business days | 1-2 business days | 5 days | Within average |
+| Digital Completion Rate | 60-70% | 90%+ | 45% | -15-25% vs average |
+| First Contact Resolution | 70-75% | 85%+ | 65% | -5-10% vs average |
+```
+
+**Sources Section** (after table):
+- List all benchmark sources with dates
+- Format: "- [Source Name] ([Date/Year])"
+
+**Example - Sources:**
+```
+**Sources:**
+- Forrester Banking CX Benchmarks (2024)
+- Internal competitive analysis (Q2 2024)
+- McKinsey Digital Banking Report (2023)
+```
+
+### 8.2 Relevant Trends Table
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Trend** | Trend name | Short descriptive name (3-5 words) |
+| **Relevance** | How relevant to this journey | High/Medium/Low |
+| **Assessment** | Current adoption status | 1 sentence on current state vs trend |
+| **Enhancement Alignment** | Related EI# items | EI# IDs if applicable, or "—" if none |
+
+**Example - Relevant Trends:**
+```
+| Trend | Relevance | Assessment | Enhancement Alignment |
+|-------|-----------|------------|----------------------|
+| Digital-first onboarding | High | Partially adopted — application is digital but verification requires branch | EI-ONB-004, EI-ONB-007 |
+| Real-time decisioning | High | Not adopted — decisions take 2-3 days | EI-ONB-012 |
+| Biometric verification | Medium | Not adopted — exploring options | EI-ONB-004 |
+| AI-powered document processing | Medium | Partially adopted — OCR in use but no intelligent extraction | EI-ONB-008 |
+| Proactive notifications | High | Weak adoption — only milestone notifications, no proactive updates | EI-ONB-003, EI-ONB-005 |
+| Self-service exception handling | Low | Not adopted — all exceptions require human contact | — |
+```
+
+### 8.3 Competitive Landscape
+
+**Format:**
+- **Structure**: Narrative paragraph (2-3 paragraphs) followed by competitive positioning table
+
+**Narrative MUST cover:**
+1. How competitors handle similar client journeys
+2. Where we have advantages
+3. Where competitors are ahead
+4. What innovations competitors have adopted
+
+**Example - Competitive Landscape Narrative:**
+```
+Traditional bank competitors (Bank A, Bank B) offer similar journey structures with comparable timelines (4-6 business days). However, fintech competitors (Fintech X, Fintech Y) have significantly disrupted expectations with same-day or next-day onboarding through fully digital processes and real-time verification.
+
+Our competitive advantage lies in relationship manager support and the ability to handle complex business structures that fintechs often reject. SME clients with multi-entity structures or international requirements specifically choose traditional banks for this capability. Additionally, our branch network provides reassurance for clients who prefer face-to-face interaction for significant financial decisions.
+
+However, competitors are ahead in digital self-service capabilities and mobile experience. Fintech X offers complete mobile application with in-app document capture, while our mobile app only supports status checking. Bank B has implemented live chat support, reducing phone wait times significantly. These gaps affect our appeal to digital-first business owners who prioritize convenience over relationship depth.
+```
+
+**Competitive Positioning Table:**
+
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **Aspect** | Competitive dimension | Short name |
+| **Our Position** | Our current capability | Brief description |
+| **Key Competitors** | What competitors offer | Brief description |
+| **Gap/Advantage** | Assessment | Gap (behind)/Advantage (ahead)/Parity |
+
+**Example - Competitive Positioning Table:**
+```
+| Aspect | Our Position | Key Competitors | Gap/Advantage |
+|--------|--------------|-----------------|---------------|
+| Onboarding Speed | 5 business days | Fintechs: Same-day; Banks: 4-6 days | Gap vs fintechs, Parity vs banks |
+| Mobile Experience | Status checking only | Full mobile applications common | Gap |
+| Complex Business Support | Strong multi-entity capability | Limited fintech support | Advantage |
+| Digital Document Processing | Basic OCR | AI-powered extraction | Gap |
+| Relationship Manager Access | Dedicated RM for all clients | RM only for premium clients | Advantage |
+| Real-Time Support | Phone and email only | Live chat common | Gap |
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 70% | **Basis:** Industry benchmarks based on general market awareness and published reports. Competitive analysis based on SME observation and informal research. Formal market research would strengthen findings.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

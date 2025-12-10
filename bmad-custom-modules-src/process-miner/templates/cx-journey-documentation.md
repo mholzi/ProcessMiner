@@ -274,14 +274,6 @@
 | Automation Opportunities | {{automation_enhancements}} |
 | Total Est. CES Reduction | {{total_ces_reduction_potential}} |
 
-### 7.3 Innovation Considerations
-
-{{innovations_considered}}
-
-### 7.4 Exclusions (Not Recommended)
-
-{{exclusions}}
-
 > **Section Confidence:** {{section_7_confidence}} | **Basis:** {{section_7_confidence_basis}}
 
 ---

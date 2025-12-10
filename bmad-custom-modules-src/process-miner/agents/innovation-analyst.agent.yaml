@@ -119,8 +119,7 @@ agent:
       section: 'Flow 2: Target Validation'
 
     # Documentation Input
- 
-     - trigger: list-documentation
+    - trigger: list-documentation
       workflow: '{module_root}/workflows/shared/list-document/workflow.md'
       description: 'List all imported documentation'
       section: 'Documentation Input'

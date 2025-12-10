@@ -80,6 +80,138 @@ Catalog all systems and tools used in the process with unique SYS# IDs, linked t
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 5: System Dependencies. The AI MUST follow these specifications when generating content.
+
+### 5.1 System Summary
+
+**Table Format:**
+| SYS# | System Name | Purpose | Integration Points |
+|------|-------------|---------|-------------------|
+
+**Column Specifications:**
+
+| Column | Format | Example |
+|--------|--------|---------|
+| **SYS#** | `SYS-{{abbrev}}-###` where abbrev is 2-3 characters | SYS-CRO-001, SYS-ONB-002 |
+| **System Name** | Application name only | "Salesforce", "Core Banking", "WorldCheck" |
+| **Purpose** | Brief phrase or 1 sentence | "Client relationship management", "Account and transaction processing" |
+| **Integration Points** | SYS# + system name | "SYS-CRO-002 (Core Banking), SYS-CRO-003 (Document Mgmt)" |
+
+**Example Table:**
+| SYS# | System Name | Purpose | Integration Points |
+|------|-------------|---------|-------------------|
+| SYS-CRO-001 | Salesforce CRM | Client relationship and application management | SYS-CRO-002 (Core Banking), SYS-CRO-003 (WorldCheck) |
+| SYS-CRO-002 | Core Banking | Account creation and maintenance | SYS-CRO-001 (Salesforce CRM), SYS-CRO-004 (Document Mgmt) |
+| SYS-CRO-003 | WorldCheck | AML/Sanctions screening | SYS-CRO-001 (Salesforce CRM) |
+| SYS-CRO-004 | Document Management | Document storage and retrieval | SYS-CRO-001 (Salesforce CRM), SYS-CRO-002 (Core Banking) |
+
+**Per-System Detail (below table):**
+
+For each system, include 2-3 paragraphs covering:
+- Description and role in the process
+- Technical details (version, owner, support contact where known)
+- Known limitations or issues
+
+**Example - Per-System Detail:**
+```markdown
+#### SYS-CRO-001: Salesforce CRM
+
+Salesforce serves as the primary interface for the Client Onboarding process, managing the end-to-end application workflow from initial submission through to account activation. All client interactions, document uploads, and status updates are tracked within Salesforce, providing a single source of truth for application progress.
+
+The system is owned by the IT Applications team with day-to-day support provided by the CRM Support desk. Current version is Salesforce Enterprise Edition (Spring '24 release). The system integrates with Core Banking via a custom API and with WorldCheck via a certified connector package.
+
+Known limitations include: limited offline capability for Relationship Managers in the field, batch synchronization with Core Banking (not real-time), and a 25MB file size limit for document uploads which occasionally requires workarounds for large corporate documentation packages.
+```
+
+### 5.2 System Integration Overview
+
+**Format:**
+- **Structure**: Narrative paragraphs (2-3) describing how systems connect
+- **Plus**: Bullet list explaining key dependencies and failure points
+
+**Content to cover:**
+- How systems connect (APIs, file transfers, manual handoffs)
+- Key dependencies and failure points
+
+**Example:**
+```markdown
+The Client Onboarding process relies on four interconnected systems, with Salesforce CRM serving as the orchestration hub. Data flows primarily from Salesforce to downstream systems, with confirmation responses flowing back to update application status.
+
+System integration is achieved through a combination of real-time API calls and batch file transfers. The Salesforce-to-WorldCheck integration operates in real-time, providing screening results within seconds. The Salesforce-to-Core Banking integration uses a combination of real-time API calls for status queries and hourly batch transfers for account creation requests.
+
+**Key Dependencies and Failure Points:**
+
+- **Salesforce availability** — All process steps require CRM access; downtime halts onboarding entirely
+- **WorldCheck API** — Screening failures block verification; 4-hour SLA for resolution
+- **Core Banking batch window** — Account creation requests submitted after 6 PM process next business day
+- **Document Management storage** — Large files may fail upload; manual workaround required
+- **Network connectivity** — Field-based Relationship Managers dependent on VPN for system access
+```
+
+### 5.3 Data Flow Summary
+
+**Format:**
+1. **Narrative intro** (1-2 paragraphs) describing overall data flow patterns
+2. **Table** showing specific data flows:
+
+| Source System | Data | Destination System | Method |
+|---------------|------|-------------------|--------|
+
+3. **Optional**: Mermaid diagram for complex processes
+
+**Example:**
+```markdown
+Data flows in the Client Onboarding process follow a hub-and-spoke pattern with Salesforce CRM at the center. Client data is captured in Salesforce and distributed to downstream systems as needed for verification, screening, and account creation. Results and confirmations flow back to Salesforce to maintain a complete audit trail.
+
+The most critical data flows involve client identity information, which must be accurately transmitted to both WorldCheck for screening and Core Banking for account setup. Document metadata flows to the Document Management system, with the actual files stored centrally and accessed via reference links.
+
+| Source System | Data | Destination System | Method |
+|---------------|------|-------------------|--------|
+| Salesforce CRM | Client identity data | WorldCheck | Real-time API |
+| WorldCheck | Screening results | Salesforce CRM | Real-time API callback |
+| Salesforce CRM | Application data | Core Banking | Hourly batch file |
+| Core Banking | Account numbers | Salesforce CRM | Real-time API |
+| Salesforce CRM | Document metadata | Document Mgmt | Real-time API |
+| Document Mgmt | Document links | Core Banking | Batch file (daily) |
+```
+
+**Optional Mermaid Diagram (for complex processes):**
+```mermaid
+graph LR
+    subgraph "Data Flow"
+        CRM[Salesforce CRM]
+        WC[WorldCheck]
+        CB[Core Banking]
+        DM[Document Mgmt]
+    end
+
+    CRM -->|Client data| WC
+    WC -->|Screening results| CRM
+    CRM -->|Application data| CB
+    CB -->|Account numbers| CRM
+    CRM -->|Doc metadata| DM
+    DM -->|Doc links| CB
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+- **Confidence**: AI-inferred percentage (0-100%)
+- **Basis**: AI-inferred assessment explaining the confidence level
+
+**Example:**
+```
+> **Section Confidence:** 82% | **Basis:** All primary systems identified with integration points mapped. Technical details (versions, owners) confirmed for 3 of 4 systems. Data flow timings estimated based on SME input, not system documentation.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress

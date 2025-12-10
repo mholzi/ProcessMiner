@@ -49,6 +49,49 @@ Residual Risk depends on:
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This step produces **Section 6: Risk & Compliance Matrix** of the compliance-control-assessment template.
+
+### Section 6: Risk & Compliance Matrix
+**Format:** Narrative intro + matrix table + per-category narratives + summary
+
+**Structure:**
+1. **Narrative Introduction** (2-3 paragraphs):
+   - Explanation of the risk-control relationship for non-specialists
+   - Overview of how inherent risk is reduced by controls
+   - Summary of overall risk posture
+
+2. **Risk & Compliance Matrix Table:**
+   | RCM# | Risk | Category | Regulation (REG#) | Control (CP#) | Inherent Risk | Residual Risk | Status |
+   |------|------|----------|-------------------|---------------|---------------|---------------|--------|
+
+3. **Per-Risk-Category Narratives** (1-2 paragraphs each):
+   For each risk category (Compliance, Operational, Fraud, etc.):
+   - What risks exist in this category
+   - How they are being controlled
+   - What residual risk remains and why
+   - Status and any actions needed
+
+4. **Residual Risk Summary** (2-3 paragraphs):
+   - Overall residual risk posture in plain language
+   - Key areas where residual risk is acceptable
+   - Areas where additional mitigation is needed
+   - Implications for transformation/TO-BE design
+
+5. **Risk Summary Table:**
+   | Risk Category | Inherent Risk (Avg) | Residual Risk (Avg) | Status |
+   |---------------|---------------------|---------------------|--------|
+
+### Writing Guidelines for Section 6:
+- Explain risk concepts in business terms, not just risk management jargon
+- Make the inherent → residual risk reduction visible and understandable
+- Be clear about what "acceptable" vs "needs mitigation" means
+- Connect risks to regulations and controls explicitly
+- Focus on what the risk means for the organization, not just scores
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress and Context

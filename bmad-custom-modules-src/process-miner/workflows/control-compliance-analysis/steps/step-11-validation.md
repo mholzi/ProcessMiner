@@ -1,5 +1,5 @@
 ---
-name: 'step-10-validation'
+name: 'step-11-validation'
 description: 'Final review, AI-driven gap analysis, and document generation'
 
 # Path Definitions
@@ -7,7 +7,7 @@ module_root: '{project-root}/bmad-custom-modules-src/process-miner'
 workflow_path: '{module_root}/workflows/control-compliance-analysis'
 
 # File References
-thisStepFile: '{workflow_path}/steps/step-10-validation.md'
+thisStepFile: '{workflow_path}/steps/step-11-validation.md'
 workflowFile: '{workflow_path}/workflow.md'
 
 # Shared Protocols
@@ -25,7 +25,7 @@ asIsDocumentFile: '{current_process_folder}/as-is-process-documentation.md'
 advancedElicitationTask: '{project-root}/.bmad/core/tasks/advanced-elicitation.xml'
 ---
 
-# Step 10: Validation & Document Completion
+# Step 11: Validation & Document Completion
 
 ## STEP GOAL
 
@@ -49,10 +49,64 @@ Perform final review of all captured compliance content. AI analyzes for gaps, a
 - Ask clarification questions before declaring complete
 
 ### Step-Specific Rules
-- This is the FINAL step — no step-11 exists
+- This is the FINAL step — no step-12 exists
 - Both output files must be finalized
 - SME must confirm completeness
 - All cross-references must be validated
+
+---
+
+## CONTENT FORMAT SPECIFICATION
+
+This step produces the **Executive Summary** and finalizes both output documents.
+
+### Executive Summary
+**Format:** Narrative paragraphs + key metrics table
+
+**Structure:**
+1. **Narrative Summary** (3-4 paragraphs):
+   - **Paragraph 1 - Scope & Context**: What process was analyzed, why this compliance assessment was conducted, and the regulatory context
+   - **Paragraph 2 - Key Findings**: Summary of the most important findings (control strengths, gaps, risk areas) written for a non-specialist executive audience
+   - **Paragraph 3 - Risk Posture**: Overall compliance and risk posture, what it means for the organization, and any urgent concerns
+   - **Paragraph 4 - Recommended Actions**: High-level summary of priority actions and next steps
+
+2. **Key Metrics Table:**
+   | Metric | Value |
+   |--------|-------|
+   | Total Regulations Mapped | X |
+   | Total Control Points | X |
+   | Compliance Gaps Identified | X |
+   | Critical/High Risk Gaps | X |
+   | Open Audit Findings | X |
+   | Average Control Effectiveness | X/5 |
+   | Controls Needing Improvement | X |
+   | Improvement Recommendations | X |
+
+3. **Confidence Summary Table:**
+   | Section | Confidence Level |
+   |---------|-----------------|
+   | Regulatory Framework | High/Medium/Low |
+   | Control Inventory | High/Medium/Low |
+   | ... | ... |
+   | **Overall** | **X** |
+
+### Document Finalization Checklist
+Before completing, ensure:
+- [ ] All sections have narrative introductions
+- [ ] All tables are properly formatted
+- [ ] All cross-references are valid (REG# → CP# → PS#)
+- [ ] Traceability is complete and verifiable
+- [ ] Executive summary accurately reflects content
+- [ ] Writing is accessible to non-specialists
+- [ ] Change log is updated
+
+### Writing Guidelines for Executive Summary:
+- Write for executives who need the key points quickly
+- Avoid jargon - use plain business language
+- Lead with the most important findings
+- Be direct about risks and gaps
+- End with clear, actionable next steps
+- Keep it concise but comprehensive enough to stand alone
 
 ---
 
@@ -61,7 +115,7 @@ Perform final review of all captured compliance content. AI analyzes for gaps, a
 ### 1. Display Progress and Summary
 
 ```
-**Progress: Step 10 of 10 - Final Review**
+**Progress: Step 11 of 11 - Final Review**
 
 Excellent work! Let me summarize what we've captured:
 
@@ -76,6 +130,7 @@ Excellent work! Let me summarize what we've captured:
 | Audit Trail Requirements (ATR#) | {{atr_count}} |
 | Risk Matrix Entries (RCM#) | {{rcm_count}} |
 | Regulatory Changes (RCI#) | {{rci_count}} |
+| Open Audit Findings (OAF#) | {{oaf_count}} |
 | Improvement Recommendations (CIR#) | {{cir_count}} |
 
 **Risk Summary:**
@@ -202,7 +257,8 @@ Calculate overall document confidence:
 | 5. Audit Trail | {{section_5_confidence}} |
 | 6. Risk Matrix | {{section_6_confidence}} |
 | 7. Regulatory Change | {{section_7_confidence}} |
-| 8. Recommendations | {{section_8_confidence}} |
+| 8. Open Audit Findings | {{section_8_confidence}} |
+| 9. Recommendations | {{section_9_confidence}} |
 
 Overall Confidence: {{calculate_overall_confidence}}
 </action>
@@ -257,6 +313,7 @@ Your compliance documentation has been saved:
 | Regulations Mapped | {{reg_count}} |
 | Controls Documented | {{cp_count}} |
 | Compliance Gaps | {{gap_count}} |
+| Open Audit Findings | {{oaf_count}} |
 | Improvement Recommendations | {{cir_count}} |
 
 **Risk Profile:**
@@ -271,6 +328,7 @@ Your compliance documentation has been saved:
 - All controls linked to process steps (CP# → PS#)
 - All controls linked to audit evidence (CP# → ATR#)
 - All gaps linked to remediation (GAP# → CIR#)
+- All audit findings linked to controls (OAF# → CP#)
 
 **Overall Confidence:** {{overall_confidence}}
 

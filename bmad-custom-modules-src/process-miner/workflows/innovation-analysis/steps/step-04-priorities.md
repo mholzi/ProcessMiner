@@ -92,6 +92,288 @@ Prioritize innovations using MoSCoW categorization with explicit criteria, creat
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 6 (Innovation Deep Dives), Section 7 (MoSCoW Prioritization), and Section 8 (Strategic Recommendations). The AI MUST follow these specifications when generating content.
+
+**NOTE:** This workflow does NOT include time estimates or cost projections. Focus on feasibility, strategic value, and complexity without specific timelines or budgets.
+
+### Section 6: Innovation Deep Dives
+
+#### 6.1 Top Priority Innovations
+
+**Format:**
+- **Structure**: Summary table + abbreviated detail blocks (2+ paragraphs per innovation)
+- **Coverage**: MUST HAVE, SHOULD HAVE, and COULD HAVE innovations all get detail blocks
+- **Summary Table**: Quick reference for all prioritized innovations
+- **Detail Blocks**: Per-innovation sections with transformation handoff information
+
+**Summary Table Columns:**
+| Column | Content | Formatting Rules |
+|--------|---------|------------------|
+| **II#** | Innovation identifier | Format: II-{ABBREV}-### |
+| **Innovation** | Short name | 5-10 words |
+| **Priority** | MoSCoW category | MUST / SHOULD / COULD |
+| **Feasibility Score** | Total score | Number |
+| **Key Justification** | Why this priority | 1 sentence |
+
+**Per-Innovation Detail Block Structure:**
+```
+### II-XXX-###: [Innovation Name] (MUST HAVE / SHOULD HAVE / COULD HAVE)
+
+#### Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Priority** | [MUST HAVE / SHOULD HAVE / COULD HAVE] |
+| **Feasibility Score** | [Score] |
+| **Why This Priority** | [1-2 sentence justification] |
+
+#### Description & Business Case
+
+[2+ paragraphs covering:
+- What this innovation does
+- What problem it solves
+- Why it matters strategically
+- Expected benefits and outcomes]
+
+#### Transformation Handoff (MUST HAVEs only)
+
+**What TO-BE Must Include:**
+[Bullet list of requirements for transformation design]
+
+**Integration Requirements:**
+[Bullet list of integration points and dependencies]
+
+**Constraints:**
+[Bullet list of technical, regulatory, or organizational constraints]
+```
+
+**Example - Top Priority Innovation:**
+```
+### II-ONB-001: AI-powered document extraction (MUST HAVE)
+
+#### Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Priority** | MUST HAVE |
+| **Feasibility Score** | 25 |
+| **Why This Priority** | Addresses critical pain point (PP-ONB-003), enables same-day decisioning, competitive necessity |
+
+#### Description & Business Case
+
+This innovation replaces manual document review with AI-powered extraction and validation. Machine learning models will automatically extract data from business registration documents, financial statements, and identity documents, validating against external sources. The system flags exceptions for human review while enabling straight-through processing for standard applications.
+
+The business case is compelling: current document processing requires 45 minutes of staff time per application, creating a bottleneck that prevents same-day decisioning. AI extraction reduces this to under 5 minutes of exception handling, enabling 60% of applications to receive same-day decisions. This directly addresses the top client complaint (status uncertainty during processing delays) and matches competitor capabilities that are now table stakes in the market.
+
+#### Transformation Handoff
+
+**What TO-BE Must Include:**
+- AI document extraction service integrated with application intake
+- Confidence scoring for extracted data with threshold for human review
+- Audit trail capturing extraction results and any manual corrections
+- Fallback process for documents that fail extraction
+
+**Integration Requirements:**
+- Integration with document management system for ingestion
+- Integration with core banking for data validation
+- Integration with workflow system for exception routing
+
+**Constraints:**
+- Model accuracy must exceed 95% for production deployment
+- Extracted data must be auditable for regulatory compliance
+- Must support document formats: PDF, JPG, PNG, TIFF
+```
+
+#### 6.2 Technical Architecture
+
+**Format:**
+- **Structure**: Per-innovation architecture notes for MUST HAVEs
+- **Content**: 1-2 paragraphs per innovation describing key technical considerations
+
+**Example - Technical Architecture:**
+```
+#### II-ONB-001: AI-powered document extraction
+
+The technical architecture centers on a document processing pipeline with three components: ingestion, extraction, and validation. The ingestion layer receives documents from multiple channels (portal upload, email, branch scan) and normalizes formats. The extraction layer uses pre-trained ML models fine-tuned on banking documents, with separate models for each document type (registration, financials, identity). The validation layer cross-references extracted data against external sources (companies registry, credit bureaus) and flags discrepancies for review.
+
+Key technical decisions include: (1) cloud vs on-premise deployment — cloud is recommended for scalability and model updates, subject to data residency requirements; (2) build vs buy — vendor solutions are mature and recommended over custom build; (3) integration pattern — async processing with webhook callbacks is recommended to avoid blocking the application flow.
+
+#### II-ONB-002: Video identity verification
+
+The video verification architecture requires a real-time streaming component for the verification session, integration with government ID databases for validation, and secure storage for verification recordings. The recommended approach is a vendor-provided SDK embedded in the mobile and web applications, with the vendor handling the verification logic and returning a confidence score and audit trail.
+
+Key considerations include: liveness detection to prevent spoofing, accessibility requirements for clients who cannot use video, and fallback to branch verification for edge cases.
+```
+
+#### 6.3 Implementation Approach
+
+**Format:**
+- **Structure**: Per-innovation implementation approach for MUST HAVEs
+- **Content**: 1-2 paragraphs per innovation describing how to implement
+
+**Example - Implementation Approach:**
+```
+#### II-ONB-001: AI-powered document extraction
+
+Implementation should follow a phased approach starting with a proof of concept on a single document type (business registration) before expanding to other document types. Phase 1 focuses on validating model accuracy with a sample of historical applications — the target is 95% extraction accuracy with less than 5% false positive rate on exception flagging. Phase 2 expands to additional document types and integrates with the production workflow. Phase 3 implements continuous learning to improve model performance based on correction feedback.
+
+Key success factors include: early engagement with compliance to validate the audit approach, parallel running with manual processing during initial deployment, and clear escalation paths for extraction failures.
+
+#### II-ONB-002: Video identity verification
+
+Implementation begins with vendor selection — three vendors should be evaluated against criteria including accuracy, accessibility, regulatory compliance, and integration complexity. Following vendor selection, implementation involves SDK integration with mobile and web applications, integration with the identity verification workflow, and staff training on exception handling. A pilot with a subset of applications is recommended before full rollout.
+
+Success factors include: clear client communication about the new verification option, accessibility alternatives for clients who cannot use video, and monitoring of verification success rates and abandonment.
+```
+
+### Section 7: MoSCoW Prioritization
+
+**NOTE:** Section 7 replaces the original "Prioritized Roadmap" with MoSCoW categories. No Gantt charts or timeline-based phases.
+
+**Format:**
+- **Structure**: Four subsections, one per MoSCoW category
+- **Per Category**: Table of innovations + brief narrative explaining the category criteria
+
+#### 7.1 MUST HAVE
+
+**Format:**
+- **Table Columns**: II# | Innovation | Feasibility | Justification
+- **Narrative**: 1-2 paragraphs on what makes these MUST HAVE
+
+**Example:**
+```
+### 7.1 MUST HAVE
+
+These innovations are essential for the transformation to succeed. They address critical pain points, enable competitive parity, or are required foundations for other improvements.
+
+| II# | Innovation | Feasibility | Justification |
+|-----|-----------|-------------|---------------|
+| II-ONB-001 | AI document extraction | 25 | Addresses critical bottleneck, competitive necessity |
+| II-ONB-004 | Automated decisioning | 26 | Enables same-day decisions, high business value |
+| II-ONB-005 | Status notifications | 28 | Top client complaint, low risk implementation |
+
+These three innovations form the core of the transformation. Without AI document extraction (II-ONB-001), processing times cannot be reduced sufficiently to enable same-day decisioning. Without automated decisioning (II-ONB-004), the benefits of faster document processing cannot be realized. Status notifications (II-ONB-005) address the most frequent client complaint and can be implemented independently as a quick win.
+```
+
+#### 7.2 SHOULD HAVE
+
+**Format:**
+- **Table Columns**: II# | Innovation | Feasibility | Justification
+- **Narrative**: 1-2 paragraphs on what makes these SHOULD HAVE
+
+**Example:**
+```
+### 7.2 SHOULD HAVE
+
+These innovations add significant value and should be included if feasible. They are important but the transformation could proceed without them in the initial scope.
+
+| II# | Innovation | Feasibility | Justification |
+|-----|-----------|-------------|---------------|
+| II-ONB-002 | Video identity verification | 25 | Competitive differentiator, removes branch dependency |
+| II-ONB-006 | Mobile application completion | 22 | Client preference, extends digital reach |
+
+Video verification (II-ONB-002) would eliminate the branch visit requirement for 70% of applications, significantly improving the digital-first experience. However, regulatory approval for video verification is still in progress, making this a SHOULD HAVE rather than MUST HAVE. Mobile application (II-ONB-006) addresses client preference for mobile-first journeys but is not essential if web application is optimized for mobile browsers.
+```
+
+#### 7.3 COULD HAVE
+
+**Format:**
+- **Table Columns**: II# | Innovation | Feasibility | Justification
+- **Narrative**: 1-2 paragraphs on what makes these COULD HAVE
+
+#### 7.4 DEFER
+
+**Format:**
+- **Table Columns**: II# | Innovation | Feasibility | Why Deferred | Reconsider When
+- **Narrative**: 1-2 paragraphs on deferral rationale
+
+**Example:**
+```
+### 7.4 DEFER
+
+These innovations are not recommended for the current transformation scope. They may be valuable in future phases when conditions change.
+
+| II# | Innovation | Feasibility | Why Deferred | Reconsider When |
+|-----|-----------|-------------|--------------|-----------------|
+| II-ONB-009 | Embedded banking partnerships | 18 | Market not ready, requires API platform | API platform deployed |
+| II-ONB-010 | Blockchain KYC sharing | 15 | Technology immature, regulatory unclear | Industry consortium forms |
+
+Embedded banking (II-ONB-009) is an attractive long-term opportunity but requires an API platform that doesn't yet exist. This should be reconsidered once the core banking API modernization project completes. Blockchain KYC (II-ONB-010) shows promise but no banking consortium has achieved production scale, and regulatory treatment remains unclear.
+```
+
+### Section 8: Strategic Recommendations
+
+#### 8.1 Low Complexity / High Value
+
+**Format:**
+- **Structure**: Bullet list of innovations with brief rationale
+- **Content**: Innovations that deliver high value with minimal complexity
+
+**Example:**
+```
+### 8.1 Low Complexity / High Value
+
+These innovations should be prioritized for immediate attention due to their favorable value-to-complexity ratio:
+
+- **II-ONB-005: Real-time status notifications** — Leverages existing notification infrastructure, addresses top client complaint, can be deployed rapidly with minimal risk.
+
+- **II-ONB-004: Automated decisioning for simple structures** — Policy logic already documented, implementation is primarily configuration, enables same-day decisions for majority of applications.
+
+- **II-ONB-007: Pre-filled application fields** — Integration with existing data sources, reduces client effort significantly, proven pattern from other products.
+```
+
+#### 8.2 Strategic Bets
+
+**Format:**
+- **Structure**: Bullet list of innovations with brief rationale
+- **Content**: Innovations requiring significant investment but delivering transformative value
+
+**Example:**
+```
+### 8.2 Strategic Bets
+
+These innovations require more significant investment but deliver transformative value:
+
+- **II-ONB-001: AI document extraction** — Requires vendor selection and integration, but enables same-day processing which is a market differentiator. Investment is justified by operational savings and competitive positioning.
+
+- **II-ONB-002: Video identity verification** — Dependent on regulatory approval, but eliminates the primary friction point (branch visits) for digital-native clients. Worth investing in regulatory engagement to accelerate approval.
+```
+
+#### 8.3 Future Consideration
+
+**Format:**
+- **Structure**: Bullet list of innovations with monitoring triggers
+- **Content**: Innovations not ready now but worth watching
+
+**Example:**
+```
+### 8.3 Future Consideration
+
+These innovations should be monitored for future inclusion:
+
+- **II-ONB-009: Embedded banking partnerships** — Monitor API platform project progress; revisit when platform is production-ready.
+
+- **II-ONB-010: Blockchain KYC sharing** — Monitor industry consortium developments; revisit if major banks achieve production deployment.
+
+- **II-ONB-011: Voice-activated applications** — Monitor voice assistant adoption in banking; revisit when client demand signals emerge.
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 80% | **Basis:** Prioritization based on feasibility scores and SME judgment. Transformation handoffs validated with SME. Technical architecture requires IT review for final validation.
+```
+
+---
+
 ## PHASE A: ANALYZE [AUTO - NO USER INTERRUPTION]
 
 ### A.1 Load Inputs

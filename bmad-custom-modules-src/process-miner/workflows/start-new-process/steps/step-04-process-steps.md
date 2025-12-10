@@ -78,6 +78,113 @@ Capture all process steps with unique PS# IDs, descriptions, owners, and rationa
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 2: Process Steps. The AI MUST follow these specifications when generating content.
+
+### 2.1 Process Step Summary (Table)
+
+**Table Format:**
+| PS# | Step Name | Owner | System(s) |
+|-----|-----------|-------|-----------|
+
+**Column Specifications:**
+
+| Column | Format | Example |
+|--------|--------|---------|
+| **PS#** | `PS-{{abbrev}}-###` where abbrev is 2-3 characters | PS-CRO-001, PS-ONB-002 |
+| **Step Name** | Verb-first action phrase | "Verify client identity", "Submit for approval" |
+| **Owner** | Business Unit / Role | "KYC Ops / Maker", "Credit Risk / Assessor" |
+| **System(s)** | SYS# + system name | "SYS-CRO-001 (CRM), SYS-CRO-002 (Core Banking)" |
+
+### 2.2 Process Flow Diagram
+
+**Diagram Type:** Mermaid flowchart using `graph TD`
+- **Linear flow** with boxes and arrows
+- **Include decision diamonds** (yes/no branches) where applicable
+- **Node labels**: PS# + abbreviated name (e.g., "PS-001: Verify ID")
+- **Include systems/actors** as annotations or swim lanes
+
+**Example:**
+```mermaid
+graph TD
+    subgraph "KYC Ops"
+        PS001[PS-001: Receive Application]
+        PS002[PS-002: Verify ID]
+        PS003{PS-003: Docs Complete?}
+    end
+    subgraph "Credit Risk"
+        PS004[PS-004: Risk Assessment]
+    end
+
+    PS001 --> PS002
+    PS002 --> PS003
+    PS003 -->|Yes| PS004
+    PS003 -->|No| PS001
+```
+
+### 2.3 Step Details
+
+**Structure:**
+1. **Brief narrative summary** (2-3 paragraphs) describing the overall flow, key handoffs, and decision points
+2. **Followed by per-step detail blocks**
+
+**Per-Step Detail Block Format:**
+
+```markdown
+#### PS-XXX-###: [Step Name]
+
+[1+ paragraph describing:
+- Activities performed (what happens in this step)
+- Inputs required and outputs produced
+- Decision points or conditions (if applicable)]
+
+[Handoff statement: who/what receives the output and what happens next]
+
+**Rationale:** [1-2 sentences — why this step exists, business or compliance reason]
+
+**Outcome:** [1-2 sentences — what is achieved when this step completes successfully]
+```
+
+**Example - Narrative Summary:**
+```
+The Client Onboarding process follows a sequential flow with two key decision points. The process begins with application receipt and initial validation, then moves through identity verification and document collection. A completeness check determines whether the application can proceed or requires additional information from the client.
+
+Once documentation is complete, the application moves to risk assessment, which may result in approval, rejection, or escalation for further review. Approved applications then proceed through account setup and system provisioning before final client notification.
+
+Key handoffs occur between KYC Operations (responsible for verification) and Credit Risk (responsible for assessment), with system integrations automating data transfer between CRM and Core Banking platforms.
+```
+
+**Example - Step Detail:**
+```markdown
+#### PS-CRO-002: Verify client identity
+
+The KYC Maker retrieves the client application from the CRM queue and initiates identity verification. This involves validating government-issued ID documents against the client's submitted information, running automated screening checks through the AML system, and verifying beneficial ownership for corporate clients.
+
+The Maker documents all verification activities in the case notes and attaches supporting evidence. Upon completion, the case is routed to the KYC Checker for review and approval.
+
+**Rationale:** Regulatory requirement under AML/KYC regulations to verify client identity before establishing a banking relationship. Prevents fraud and ensures compliance with sanctions screening requirements.
+
+**Outcome:** Client identity confirmed and documented, with verification evidence attached to the case file. Case ready for checker review.
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+- **Confidence**: AI-inferred percentage (0-100%)
+- **Basis**: AI-inferred assessment explaining the confidence level
+
+**Example:**
+```
+> **Section Confidence:** 90% | **Basis:** All process steps validated by SME with clear sequence. System assignments confirmed. Two steps have estimated owners pending confirmation.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress

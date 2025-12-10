@@ -63,9 +63,17 @@ sections:
     sync_enabled: false
     summary_table_header: "| RCI# | Regulation | Change Description | Effective Date | Impact | Action Required |"
 
-  # Section 8: Control Improvement Recommendations
-  - title_pattern: "Control Improvement Recommendations"
+  # Section 8: Open Audit Findings
+  - title_pattern: "Open Audit Findings"
     section_number: 8
+    detail_document: null
+    structured_id_prefix: "OAF"
+    sync_enabled: false
+    summary_table_header: "| OAF# | Finding | Source | Date Issued | Severity | Affected Control (CP#) | Status | Target Closure |"
+
+  # Section 9: Control Improvement Recommendations
+  - title_pattern: "Control Improvement Recommendations"
+    section_number: 9
     detail_document: null
     structured_id_prefix: "CIR"
     sync_enabled: false
@@ -100,7 +108,10 @@ confidence_rules:
       - "RCM#"
       - "CP#"
       - "REG#"
-    8:  # Control Improvement
+    8:  # Open Audit Findings
+      - "OAF#"
+      - "CP#"
+    9:  # Control Improvement
       - "CIR#"
       - "CP#"
 
@@ -115,6 +126,7 @@ id_patterns:
   audit_trail: "ATR-[A-Z]{2,4}-\\d{3}"
   risk_compliance: "RCM-[A-Z]{2,4}-\\d{3}"
   regulatory_change: "RCI-[A-Z]{2,4}-\\d{3}"
+  open_audit_finding: "OAF-[A-Z]{2,4}-\\d{3}"
   control_improvement: "CIR-[A-Z]{2,4}-\\d{3}"
 
 # Companion documents
@@ -143,16 +155,36 @@ risk_ratings:
       score_range: "1-3"
       response_time: "Next review cycle"
 
-# Control effectiveness ratings
+# Control effectiveness ratings (5-point scale)
 effectiveness_ratings:
+  - rating: "Highly Effective"
+    score: 5
+    description: "Control consistently operates as designed with strong evidence"
   - rating: "Effective"
-    description: "Control operating as designed with no issues"
+    score: 4
+    description: "Control operates as designed with minor variations"
   - rating: "Partially Effective"
-    description: "Control operating but with minor deficiencies"
+    score: 3
+    description: "Control operates but with notable deficiencies"
   - rating: "Ineffective"
-    description: "Control not operating as designed or major deficiencies"
-  - rating: "Not Tested"
-    description: "Control has not been recently tested"
+    score: 2
+    description: "Control does not reliably achieve its objective"
+  - rating: "Not Operating"
+    score: 1
+    description: "Control is not being performed"
+
+# Effectiveness assessment dimensions
+effectiveness_dimensions:
+  - name: "Consistency"
+    description: "Is the control performed every time it should be?"
+  - name: "Detection"
+    description: "Does it catch exceptions when they occur?"
+  - name: "Evidence Quality"
+    description: "Is there adequate proof the control was performed?"
+  - name: "Accountability"
+    description: "Is there clear ownership and follow-up?"
+  - name: "Timeliness"
+    description: "Is the control performed when it should be?"
 
 # Change log format
 change_log:

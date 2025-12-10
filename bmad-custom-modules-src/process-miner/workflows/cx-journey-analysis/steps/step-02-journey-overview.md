@@ -73,6 +73,95 @@ Capture the client journey perspective: what the client is trying to achieve, wh
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 1: Journey Overview. The AI MUST follow these specifications when generating content.
+
+### 1.1 Journey Identification (Table)
+
+| Attribute | Value | Formatting Rules |
+|-----------|-------|------------------|
+| **Journey Name** | {{journey_name}} | Client perspective phrase (e.g., "Getting my business account set up") |
+| **Process ID** | {{process_id}} | As captured in Step 1 |
+| **Client Goal** | {{client_goal}} | Both goal + outcome in one statement |
+| **Journey Trigger** | {{journey_trigger}} | Always include the actor (e.g., "Client submits application...") |
+| **Success Outcome** | {{success_outcome}} | Narrative + measurable criteria |
+| **Typical Duration** | {{typical_duration}} | Either range or target (e.g., "3-5 business days" or "Within 5 business days") |
+
+**Example - Journey Identification:**
+```
+| Attribute | Value |
+|-----------|-------|
+| **Journey Name** | Getting my business account set up |
+| **Process ID** | PROC-ONB-001 |
+| **Client Goal** | Open a fully operational business account that allows me to manage payments, receive funds, and access digital banking services |
+| **Journey Trigger** | Business owner submits application through the online portal or via Relationship Manager |
+| **Success Outcome** | Account active with cards issued, online banking access enabled, and first transaction completed. Measurable: account operational within SLA, client can transact |
+| **Typical Duration** | 3-5 business days |
+```
+
+### 1.2 Client Persona (Table)
+
+| Attribute | Value | Formatting Rules |
+|-----------|-------|------------------|
+| **Segment** | {{client_segment}} | From config/structured data |
+| **Typical Profile** | {{client_profile}} | Both demographics + behavioral characteristics |
+| **Key Motivations** | {{client_motivations}} | Prioritized list (most important first) |
+| **Expected Experience** | {{expected_experience}} | Industry expectations + competitor benchmarks |
+
+**Example - Client Persona:**
+```
+| Attribute | Value |
+|-----------|-------|
+| **Segment** | BizBanking (SME) |
+| **Typical Profile** | SME owner, 5-20 employees, €1-5M revenue. Time-poor, digital-first, expects quick responses. Often managing finances personally alongside running the business |
+| **Key Motivations** | 1. Speed — need account operational quickly to not miss business opportunities. 2. Simplicity — minimal paperwork and clear requirements. 3. Reliability — confidence the bank will deliver on promises |
+| **Expected Experience** | Industry: Same-day decisions, digital-first applications. Competitors: Fintech banks offering 10-minute onboarding. Expectation of real-time status visibility and proactive communication |
+```
+
+### 1.3 Journey Context
+
+**Format:**
+- **Structure**: 2-3 paragraphs minimum, covering different aspects
+- **Plus**: Bullet points when required for specific details
+
+**Content MUST cover:**
+1. Client's emotional state entering the journey
+2. Time pressure / urgency factors
+3. Competitive alternatives available
+4. Relationship context (new vs existing client)
+
+**Example - Journey Context:**
+```
+Clients entering this journey are typically experiencing a mix of anticipation and anxiety. For new business owners, this may be their first banking relationship for the company, creating uncertainty about requirements and timelines. Existing clients expanding operations may feel frustrated if the process doesn't reflect their established relationship with the bank.
+
+Time pressure is a significant factor for most clients. New businesses often have immediate operational needs — suppliers to pay, customer payments to receive, or payroll deadlines. A delay in account opening can directly impact their ability to operate. This urgency is heightened for seasonal businesses or those with time-sensitive opportunities.
+
+The competitive landscape offers clients multiple alternatives:
+- Traditional banks with established business banking propositions
+- Fintech challengers offering rapid digital onboarding (some claiming 10-minute account opening)
+- Existing banking relationships that could be expanded instead
+
+Clients are increasingly aware of these alternatives and benchmark their experience accordingly. First-time business owners may have consumer banking expectations shaped by mobile-first experiences, while experienced business owners compare against previous corporate banking relationships.
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+- **Confidence**: AI-inferred percentage (0-100%)
+- **Basis**: AI-inferred assessment explaining the confidence level
+
+**Example:**
+```
+> **Section Confidence:** 85% | **Basis:** Journey identification derived from AS-IS documentation. Client persona based on segment data with SME behavioral assumptions. Journey context inferred from pain points and industry knowledge.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress

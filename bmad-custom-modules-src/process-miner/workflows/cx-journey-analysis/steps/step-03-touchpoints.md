@@ -89,6 +89,273 @@ Client Effort Score components and weights:
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 2: Client Touchpoints. The AI MUST follow these specifications when generating content.
+
+### 2.1 Touchpoint Summary
+
+**Format:**
+- **Structure**: 2+ paragraphs minimum
+- **Content MUST cover**: Total touchpoint count, stage distribution, dominant channels, where CES effort is concentrated
+
+**Example:**
+```
+The Client Onboarding journey comprises 12 client touchpoints distributed across 5 journey stages. The Application stage has the highest concentration of touchpoints (4), reflecting the documentation-intensive nature of initial onboarding. The Processing stage, while operationally complex, presents only 2 client-visible touchpoints as most activity occurs behind the scenes.
+
+Channel usage is predominantly digital, with 8 touchpoints occurring through the online portal or mobile app. Human-assisted touchpoints (4) are concentrated in the Verification and Completion stages where personal interaction adds value. The Portal channel drives 45% of total CES contribution, primarily due to document upload and form completion requirements.
+
+CES effort is heavily concentrated in the early stages of the journey. The Application stage alone accounts for 52% of total client effort, driven by document collection and information provision requirements. This front-loading of effort creates a significant barrier that may contribute to application abandonment.
+```
+
+### 2.2 Touchpoint Summary Table
+
+**Table Format:**
+| JT# | Touchpoint Name | Stage | Channel | What Client SEES | What Client DOES | CES Contribution |
+|-----|-----------------|-------|---------|------------------|------------------|------------------|
+
+**Column Specifications:**
+
+| Column | Format | Example |
+|--------|--------|---------|
+| **JT#** | `JT-{{abbrev}}-###` where abbrev is 2-3 characters | JT-ONB-001, JT-CRO-002 |
+| **Touchpoint Name** | Action phrase | "Receive welcome email", "Upload identity documents" |
+| **Stage** | From suggested list (flexible): Initiation, Application, Processing, Verification, Completion, Follow-up | Application |
+| **Channel** | CH# reference + name | "CH-001 (Portal)", "CH-002 (Email)" |
+| **What Client SEES** | Brief phrase or short sentence | "Document upload interface with checklist" |
+| **What Client DOES** | Brief phrase or short sentence | "Uploads certified ID and proof of address" |
+| **CES Contribution** | Number + ranking | "4.5 (HIGH)", "1.0 (LOW)" |
+
+**Example Table:**
+| JT# | Touchpoint Name | Stage | Channel | What Client SEES | What Client DOES | CES Contribution |
+|-----|-----------------|-------|---------|------------------|------------------|------------------|
+| JT-ONB-001 | Receive welcome email | Initiation | CH-002 (Email) | Welcome message with next steps | Opens email, reviews requirements | 0.5 (LOW) |
+| JT-ONB-002 | Complete application form | Application | CH-001 (Portal) | Multi-page form with progress indicator | Enters business and personal details | 5.5 (HIGH) |
+| JT-ONB-003 | Upload identity documents | Application | CH-001 (Portal) | Document upload interface with checklist | Uploads certified ID and proof of address | 4.0 (HIGH) |
+
+### 2.3 Journey Flow Diagram
+
+**Diagram Type:** Flexible based on journey complexity
+- Simple journeys: Linear flow with boxes and arrows
+- Complex journeys: Include decision diamonds, swim lanes by stage or channel
+
+**Node Labels:** JT# + abbreviated name (e.g., "JT-001: Welcome Email")
+
+**MANDATORY:** Always indicate waiting periods between touchpoints
+
+**Example (simple journey):**
+```mermaid
+flowchart LR
+    subgraph Initiation
+        JT001[JT-001: Welcome Email]
+    end
+    subgraph Application
+        JT002[JT-002: Complete Form]
+        JT003[JT-003: Upload Docs]
+    end
+    subgraph Processing
+        JT004[JT-004: Status Update]
+    end
+
+    JT001 --> JT002
+    JT002 --> JT003
+    JT003 -->|"⏳ 1-2 days"| JT004
+```
+
+**Example (complex journey with decisions):**
+```mermaid
+flowchart TD
+    subgraph Initiation
+        JT001[JT-001: Welcome Email]
+    end
+    subgraph Application
+        JT002[JT-002: Complete Form]
+        JT003[JT-003: Upload Docs]
+        JT004{JT-004: Docs Complete?}
+    end
+    subgraph Verification
+        JT005[JT-005: Verification Call]
+    end
+
+    JT001 --> JT002
+    JT002 --> JT003
+    JT003 --> JT004
+    JT004 -->|Yes| JT005
+    JT004 -->|No| JT003
+    JT003 -.->|"⏳ Wait: 1-2 days"| JT005
+```
+
+### 2.4 Touchpoint Statistics
+
+**Table Format:**
+| Metric | Value |
+|--------|-------|
+| Total Touchpoints | {{total_touchpoints}} |
+| Digital Touchpoints | {{digital_touchpoints}} |
+| Human-Assisted Touchpoints | {{human_touchpoints}} |
+| Self-Service Touchpoints | {{self_service_touchpoints}} |
+| Wait Points | {{wait_points}} |
+
+### Client Touchpoints Detail Document (client-touchpoints-detail.md)
+
+**Per-Touchpoint Detail Block Format:**
+
+```markdown
+### JT-XXX-###: [Touchpoint Name]
+
+#### Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Touchpoint ID** | JT-XXX-### |
+| **Touchpoint Name** | [Action phrase] |
+| **Journey Stage** | [Stage name] |
+| **Channel** | CH-### ([Channel name]) |
+| **Linked Process Steps** | PS-###, PS-### |
+| **Owner/Responsible** | [Business Unit / Role] |
+| **Moment That Matters?** | Yes/No (populated in Step 5) |
+
+#### Client Perspective
+
+**What Client SEES:**
+[Description of what the client sees — screens, communications, forms, etc.]
+
+**What Client DOES:**
+[Description of actions the client must take]
+
+**What Client FEELS:**
+[Emotional state — always capture this]
+
+**Client Goal at This Point:**
+[What the client is trying to achieve at this touchpoint]
+
+#### Effort Analysis
+
+[Narrative paragraph describing the effort required at this touchpoint]
+
+| Effort Component | Count/Value | CES Weight | Weighted Score |
+|------------------|-------------|------------|----------------|
+| Actions Required | {{count}} | 1.0 | {{weighted}} |
+| Documents/Info Provided | {{count}} | 1.5 | {{weighted}} |
+| Information Requests | {{count}} | 1.0 | {{weighted}} |
+| Follow-ups Needed | {{count}} | 2.0 | {{weighted}} |
+| Time Investment (minutes) | {{count}} | 0.5 | {{weighted}} |
+| **Touchpoint CES** | | | **{{total}}** |
+
+#### Wait Time Analysis
+
+| Attribute | Value |
+|-----------|-------|
+| **Wait Before This Touchpoint** | [Duration or "None"] |
+| **Wait After This Touchpoint** | [Duration or "None"] |
+| **Proactive Communication During Wait** | [Yes/No + description] |
+| **Client Anxiety Level During Wait** | [LOW/MEDIUM/HIGH + context] |
+
+#### Channel Details
+
+| Attribute | Value |
+|-----------|-------|
+| **Primary Channel** | [Channel name] |
+| **Alternative Channels** | [List or "None available"] |
+| **Channel Switching Required** | [Yes/No + from/to if Yes] |
+| **Self-Service Available** | [Yes/No] |
+| **Digital vs Human** | [Digital/Human-Assisted/Hybrid] |
+
+#### Linked Process Steps
+
+| PS# | Process Step | Visible to Client? |
+|-----|--------------|-------------------|
+| PS-XXX-### | [Step name] | Yes/Partial/No |
+
+#### Linked Friction Points
+
+> *Populated in Step 4*
+```
+
+**Example - Touchpoint Detail:**
+```markdown
+### JT-ONB-003: Upload identity documents
+
+#### Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Touchpoint ID** | JT-ONB-003 |
+| **Touchpoint Name** | Upload identity documents |
+| **Journey Stage** | Application |
+| **Channel** | CH-001 (Portal) |
+| **Linked Process Steps** | PS-ONB-002, PS-ONB-003 |
+| **Owner/Responsible** | Client Services / Digital Team |
+| **Moment That Matters?** | TBD |
+
+#### Client Perspective
+
+**What Client SEES:**
+Document upload interface displaying a checklist of required documents (certified ID, proof of address, business registration). Progress indicator shows upload status. Help text explains certification requirements.
+
+**What Client DOES:**
+Locates required documents, ensures they meet certification requirements, scans or photographs documents, uploads each document to the portal, confirms upload completion.
+
+**What Client FEELS:**
+Frustrated if documents need certification they don't have. Anxious about whether uploads will be accepted. Relief when checklist shows green ticks.
+
+**Client Goal at This Point:**
+Successfully submit all required identity documentation to proceed with the application.
+
+#### Effort Analysis
+
+Document upload is one of the highest-effort touchpoints in the journey. Clients must gather physical documents, ensure they meet specific requirements (certified, dated within 3 months), digitize them, and upload through the portal. Many clients encounter issues with file formats, size limits, or certification requirements.
+
+| Effort Component | Count/Value | CES Weight | Weighted Score |
+|------------------|-------------|------------|----------------|
+| Actions Required | 6 | 1.0 | 6.0 |
+| Documents/Info Provided | 3 | 1.5 | 4.5 |
+| Information Requests | 0 | 1.0 | 0 |
+| Follow-ups Needed | 0 | 2.0 | 0 |
+| Time Investment (minutes) | 25 | 0.5 | 12.5 |
+| **Touchpoint CES** | | | **23.0** |
+
+#### Wait Time Analysis
+
+| Attribute | Value |
+|-----------|-------|
+| **Wait Before This Touchpoint** | None — follows directly from form completion |
+| **Wait After This Touchpoint** | 1-2 business days for document verification |
+| **Proactive Communication During Wait** | No — client must check portal for status |
+| **Client Anxiety Level During Wait** | HIGH — uncertain if documents will be accepted |
+
+#### Channel Details
+
+| Attribute | Value |
+|-----------|-------|
+| **Primary Channel** | Portal |
+| **Alternative Channels** | Email (manual submission), Branch (in-person) |
+| **Channel Switching Required** | No |
+| **Self-Service Available** | Yes |
+| **Digital vs Human** | Digital |
+
+#### Linked Process Steps
+
+| PS# | Process Step | Visible to Client? |
+|-----|--------------|-------------------|
+| PS-ONB-002 | Receive and validate documents | Partial — client sees upload success |
+| PS-ONB-003 | Document completeness check | No — internal processing |
+```
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+**Example:**
+```
+> **Section Confidence:** 88% | **Basis:** Touchpoints mapped from AS-IS process steps with clear client visibility. CES estimates based on SME input. Channel assignments confirmed. Wait time estimates may vary based on workload.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress

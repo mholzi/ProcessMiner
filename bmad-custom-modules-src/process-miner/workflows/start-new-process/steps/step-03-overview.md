@@ -78,6 +78,112 @@ Capture the high-level process overview by eliciting four key topics: Purpose, T
 
 ---
 
+## CONTENT FORMAT SPECIFICATION
+
+This section defines the exact formatting requirements for Section 1: Process Overview. The AI MUST follow these specifications when generating content.
+
+### 1.1 Process Identification (Table)
+
+| Attribute | Value | Formatting Rules |
+|-----------|-------|------------------|
+| **Process Name** | {{process_name}} | As captured in Step 1 |
+| **Process ID** | {{process_id}} | Format: assigned ID |
+| **Process Category** | Free text | SME decides (e.g., "Client Onboarding", "Credit Operations") |
+| **Scope** | Process boundary | Describe start-to-end (e.g., "From application receipt to account opening") |
+| **Process Owner** | Name + Role OR Team/Dept | Either format acceptable (e.g., "Jane Smith, Head of Client Onboarding" or "Client Services Team") |
+
+### 1.2 Purpose and Trigger
+
+**Process Purpose — Format:**
+- **Structure**: Two paragraphs
+- **Paragraph 1**: Explain WHAT the process does
+- **Paragraph 2**: Explain WHY it matters — business value
+- **MANDATORY**: Always end with explicit business outcome (e.g., "...ensuring regulatory compliance and reducing onboarding time by 40%")
+
+**Process Trigger — Format:**
+- **Structure**: One paragraph explaining trigger conditions and variations
+- **MANDATORY**: Always specify the initiating actor (e.g., "Client", "Relationship Manager", "System", "Scheduled batch job")
+- **Include**: Any trigger variations or conditions
+
+**Example - Purpose:**
+```
+The Client Onboarding process establishes new banking relationships by collecting, validating, and processing client information to create fully operational accounts. This includes identity verification, risk assessment, and regulatory compliance checks.
+
+This process is critical for revenue generation and regulatory compliance. Efficient onboarding directly impacts client satisfaction and time-to-revenue, while ensuring the bank meets all AML/KYC requirements and avoids regulatory penalties.
+```
+
+**Example - Trigger:**
+```
+This process is triggered when a Relationship Manager submits a new client application through the CRM system. Alternative triggers include direct client applications via the online portal (for BizBanking segment) or referrals from partner institutions. In all cases, the process initiates upon receipt of the signed engagement letter and minimum required documentation.
+```
+
+### 1.3 Operational Characteristics
+
+**Process Frequency — Format:**
+- **Structure**: Paragraph with context, plus any variations/exceptions
+- **Include**: Peak times, seasonal variations, batch vs. real-time nature
+- **Specificity**: General patterns acceptable (e.g., "Multiple times daily", "Weekly on Mondays")
+- **Qualitative OK**: If data unavailable (e.g., "Ad-hoc, triggered by client requests")
+
+**Process Volume — Format:**
+- **Structure**: Flexible — capture whatever metrics SME can provide
+- **MANDATORY**: Always include trend/variability (growing, stable, seasonal, declining)
+- **Examples of acceptable metrics**: Transaction counts, case volumes, FTE workload, processing hours
+
+**Example - Frequency:**
+```
+The process runs continuously during business hours (8:00 AM - 6:00 PM local time), with applications processed as they arrive. Peak periods occur at month-end and quarter-end when corporate clients rush to complete onboarding before reporting deadlines. The LargeCap segment typically sees batch processing of complex applications on Monday mornings, while BizBanking applications flow through in real-time.
+```
+
+**Example - Volume:**
+```
+Current volume averages 150-200 new client applications per month across all segments, with BizBanking representing approximately 60% of volume. Volumes have grown 15% year-over-year, with seasonal spikes of up to 40% during Q4. Each application requires an average of 4-6 hours of processing time across all stakeholders.
+```
+
+### 1.4 Key Stakeholders
+
+**Format:**
+1. **Two narrative paragraphs** introducing the stakeholder landscape (who is involved, why, internal vs external context)
+2. **Followed by a table** with columns: Business Unit | Role
+
+**Include**: Both internal and external parties (clients, regulators, vendors if applicable)
+
+**Example - Narrative:**
+```
+The Client Onboarding process involves collaboration across multiple business units, each playing a distinct role in ensuring compliant and efficient client setup. The process is primarily owned by Client Services, with critical dependencies on KYC Operations for compliance verification and Credit Risk for assessment decisions.
+
+External stakeholders are equally important to process success. Clients drive the process timeline through document provision, while regulatory bodies set the compliance framework that shapes every step. Third-party data providers support identity verification and risk screening activities.
+```
+
+**Example - Table:**
+| Business Unit | Role |
+|---------------|------|
+| Client Services | Process Owner, Client Liaison |
+| KYC Operations | Maker (document verification) |
+| KYC Operations | Checker (approval) |
+| Credit Risk | Risk Assessor |
+| Legal | Contract Review |
+| IT Support | System Access Setup |
+| Client (External) | Document Provider, Signatory |
+| Regulator (External) | Compliance Framework |
+
+### Section Confidence Statement
+
+**Format:**
+```
+> **Section Confidence:** {{percentage}}% | **Basis:** {{ai_inferred_basis}}
+```
+
+- **Confidence**: AI-inferred percentage (0-100%)
+- **Basis**: AI-inferred assessment explaining the confidence level
+
+**Example:**
+```
+> **Section Confidence:** 85% | **Basis:** Core process details validated by SME. Volume trends estimated from partial data. Process owner role confirmed but specific name TBC.
+```
+
+---
+
 ## EXECUTION SEQUENCE
 
 ### 1. Display Progress
